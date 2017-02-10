@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/document-properties.png</file>
+        <file>icons/edit-copy.png</file>
+        <file>icons/edit-paste.png</file>
+        <file>icons/zoom-in.png</file>
+        <file>icons/zoom-out.png</file>
+        <file>icons/tab-new.png</file>
+        <file>icons/view-list-details.png</file>
+        <file>icons/terminal.png</file>
+    </qresource>
+</RCC>

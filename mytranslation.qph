@@ -1,0 +1,1964 @@
+<!DOCTYPE QPH>
+<QPH language="ar_DZ">
+<phrase>
+    <source>Application</source>
+    <target>التطبيقات</target>
+</phrase>
+<phrase>
+    <source>To &amp;Desktop</source>
+    <target>الى &amp;سطح المكتب</target>
+</phrase>
+<phrase>
+    <source>&amp;All Desktops</source>
+    <target>&amp;كل أسطح المكتب</target>
+</phrase>
+<phrase>
+    <source>&amp;To Current Desktop</source>
+    <target>الى &amp;سطح المكتب الحالي</target>
+</phrase>
+<phrase>
+    <source>Desktop &amp;%1</source>
+    <target>سطح المكتب &amp;%1</target>
+</phrase>
+<phrase>
+    <source>Ma&amp;ximize</source>
+    <target>ت&amp;كبير</target>
+</phrase>
+<phrase>
+    <source>Roll down</source>
+    <target>ظلًل</target>
+</phrase>
+<phrase>
+    <source>Mi&amp;nimize</source>
+    <target>ت&amp;صغير</target>
+</phrase>
+<phrase>
+    <source>&amp;Restore</source>
+    <target>ا&amp;ستعادة</target>
+</phrase>
+<phrase>
+    <source>&amp;Close</source>
+    <target>&amp;اغلق</target>
+</phrase>
+<phrase>
+    <source>Always on &amp;bottom</source>
+    <target>ابق &amp;تحت الاخرين</target>
+</phrase>
+<phrase>
+    <source>&amp;Normal</source>
+    <target>&amp;عادي</target>
+</phrase>
+<phrase>
+    <source>Always on &amp;top</source>
+    <target>ابق فوق الا&amp;خرين</target>
+</phrase>
+<phrase>
+    <source>&amp;Layer</source>
+    <target>المو&amp;ضع</target>
+</phrase>
+<phrase>
+    <source>Roll up</source>
+    <target>استعادة</target>
+</phrase>
+<phrase>
+    <source>Roll down</source>
+    <target>ظلًل</target>
+</phrase>
+<phrase>
+    <source>Mi&amp;nimize</source>
+    <target>ت&amp;صغير</target>
+</phrase>
+<phrase>
+    <source>Office</source>
+    <target>المكتب</target>
+</phrase>
+<phrase>
+    <source>Add</source>
+    <target>إضافة</target>
+</phrase>
+<phrase>
+    <source>All Files (*)</source>
+    <target>كل الملفات (*)</target>
+</phrase>
+<phrase>
+    <source>Open Files...</source>
+    <target>فتح ملفات...</target>
+</phrase>
+<phrase>
+    <source>Image File (*.png );;All Files (*)</source>
+    <target>ملف صورة (*.png );;All Files (*)</target>
+</phrase>
+<phrase>
+    <source>Open Images Files...</source>
+    <target>فتح ملفات الصور...</target>
+</phrase>
+<phrase>
+    <source>Other</source>
+    <target>أخرى</target>
+</phrase>
+<phrase>
+    <source>System</source>
+    <target>النظام</target>
+</phrase>
+<phrase>
+    <source>Settings</source>
+    <target>الإعدادات</target>
+</phrase>
+<phrase>
+    <source>Network</source>
+    <target>الإنترنت</target>
+</phrase>
+<phrase>
+    <source>Utility</source>
+    <target>أدوات</target>
+</phrase>
+<phrase>
+    <source>Development</source>
+    <target>التطوير</target>
+</phrase>
+<phrase>
+    <source>Game</source>
+    <target>الألعاب</target>
+</phrase>
+<phrase>
+    <source>Graphics</source>
+    <target>الرسم</target>
+</phrase>
+<phrase>
+    <source>AudioVideo</source>
+    <target>الوسائط المتعددة</target>
+</phrase>
+<phrase>
+    <source>Office</source>
+    <target>المكتب</target>
+</phrase>
+<phrase>
+    <source>Exec</source>
+    <target>تنفيذ</target>
+</phrase>
+<phrase>
+    <source>Quit</source>
+    <target>خروج</target>
+</phrase>
+<phrase>
+    <source>Add Lancher</source>
+    <target>إضافة تطبيق</target>
+</phrase>
+<phrase>
+    <source>properties</source>
+    <target>خصائص</target>
+</phrase>
+<phrase>
+    <source>Dock Bar</source>
+    <target>اللوحة</target>
+</phrase>
+<phrase>
+    <source>Remove from quicklaunch</source>
+    <target>حذف من اللوحة</target>
+</phrase>
+<phrase>
+    <source>Generale</source>
+    <target>عام</target>
+</phrase>
+<phrase>
+    <source>Position :</source>
+    <target>الموضع :</target>
+</phrase>
+<phrase>
+    <source>Screen Edge :</source>
+    <target>الموقع من الشاشة</target>
+</phrase>
+<phrase>
+    <source>Screen Edge :</source>
+    <target>الموقع من الشاشة :</target>
+</phrase>
+<phrase>
+    <source>Bottom screen</source>
+    <target>اسفل الشاشة </target>
+</phrase>
+<phrase>
+    <source>Top screen</source>
+    <target>اعلى الشاشة</target>
+</phrase>
+<phrase>
+    <source>Icon size :</source>
+    <target>حجم الايقونة :</target>
+</phrase>
+<phrase>
+    <source>show Selection on mouse hover</source>
+    <target>اظهر التحديد عند مرور المؤشر على الايقونة</target>
+</phrase>
+<phrase>
+    <source>Auto hide</source>
+    <target>اخفاء تلقائي</target>
+</phrase>
+<phrase>
+    <source>On top</source>
+    <target>فوق الكل</target>
+</phrase>
+<phrase>
+    <source>keep the dock below</source>
+    <target>ابقه تحت الكل</target>
+</phrase>
+<phrase>
+    <source>keep the dock below</source>
+    <target>ابق اللوحة تحت الكل</target>
+</phrase>
+<phrase>
+    <source>Icons Theme</source>
+    <target>سمة الايقونات</target>
+</phrase>
+<phrase>
+    <source>Default &lt;none&gt;</source>
+    <target>الافتراضي &lt;لا شيئ&gt;</target>
+</phrase>
+<phrase>
+    <source>Rotation</source>
+    <target>تدوير</target>
+</phrase>
+<phrase>
+    <source>Image loading</source>
+    <target>تحميل</target>
+</phrase>
+<phrase>
+    <source>Default icons theme</source>
+    <target>الايقونات الافتراضية</target>
+</phrase>
+<phrase>
+    <source>Theme</source>
+    <target>السمة</target>
+</phrase>
+<phrase>
+    <source>Gradien</source>
+    <target>التدرج</target>
+</phrase>
+<phrase>
+    <source>Image</source>
+    <target>صورة</target>
+</phrase>
+<phrase>
+    <source>3D</source>
+    <target>ثلاثي الابعاد</target>
+</phrase>
+<phrase>
+    <source>image :</source>
+    <target>صورة :</target>
+</phrase>
+<phrase>
+    <source>Selection Color :</source>
+    <target>لون التحديد :</target>
+</phrase>
+<phrase>
+    <source>Border Color :</source>
+    <target>لون الاطار:</target>
+</phrase>
+<phrase>
+    <source>White</source>
+    <target>أبيض</target>
+</phrase>
+<phrase>
+    <source>White Rounded</source>
+    <target>أبيض دائري</target>
+</phrase>
+<phrase>
+    <source>Black</source>
+    <target>أسود</target>
+</phrase>
+<phrase>
+    <source>Black Rounded</source>
+    <target>أسود دائري </target>
+</phrase>
+<phrase>
+    <source>Open Image</source>
+    <target>فتح صورة</target>
+</phrase>
+<phrase>
+    <source>Image Files (*.png *.jpg *.bmp *.svg)</source>
+    <target>ملفات الصور  (*.png *.jpg *.bmp *.svg)</target>
+</phrase>
+<phrase>
+    <source>Generate Download Script</source>
+    <target>انشاء سكريبت تنزيل</target>
+</phrase>
+<phrase>
+    <source>add to favorite</source>
+    <target>إضافة للمفظلة</target>
+</phrase>
+<phrase>
+    <source>remove from favorite</source>
+    <target>حذف من المفظلة</target>
+</phrase>
+<phrase>
+    <source>Maximize vertically</source>
+    <target>تكبير أفقيا</target>
+</phrase>
+<phrase>
+    <source>Maximize horizontally</source>
+    <target>تكبير عموديا</target>
+</phrase>
+<phrase>
+    <source>Quick Launch</source>
+    <target>تشغيل سريع</target>
+</phrase>
+<phrase>
+    <source>Device Mount</source>
+    <target>ضم الاجهزة</target>
+</phrase>
+<phrase>
+    <source>move up</source>
+    <target>الى الاعلى</target>
+</phrase>
+<phrase>
+    <source>remove</source>
+    <target>حذف</target>
+</phrase>
+<phrase>
+    <source>move down</source>
+    <target>الى الاسفل</target>
+</phrase>
+<phrase>
+    <source>Name</source>
+    <target>الاسم</target>
+</phrase>
+<phrase>
+    <source>Folders</source>
+    <target>مجلدات</target>
+</phrase>
+<phrase>
+    <source>Applications</source>
+    <target>التطبيقات</target>
+</phrase>
+<phrase>
+    <source>Start Here</source>
+    <target>ابدأ هنا</target>
+</phrase>
+<phrase>
+    <source>Remove from quicklaunch</source>
+    <target>حذف من التشغيل السريع</target>
+</phrase>
+<phrase>
+    <source>System Tray</source>
+    <target>صينية النظام</target>
+</phrase>
+<phrase>
+    <source>System Tray</source>
+    <target>منطقة الاعلام</target>
+</phrase>
+<phrase>
+    <source>Panel Settings</source>
+    <target>اعدادات اللوحة</target>
+</phrase>
+<phrase>
+    <source>Add Plugins</source>
+    <target>إضافة مكونات</target>
+</phrase>
+<phrase>
+    <source>Default</source>
+    <target>الافتراضي</target>
+</phrase>
+<phrase>
+    <source>Costum :</source>
+    <target>تخصيص</target>
+</phrase>
+<phrase>
+    <source>shoose</source>
+    <target>اختر</target>
+</phrase>
+<phrase>
+    <source>Globale Color :</source>
+    <target>لون عام :</target>
+</phrase>
+<phrase>
+    <source>Font Color :</source>
+    <target>لون الخط</target>
+</phrase>
+<phrase>
+    <source>Font Color :</source>
+    <target>لون الخط :</target>
+</phrase>
+<phrase>
+    <source>Border Color :</source>
+    <target>لون الاطار</target>
+</phrase>
+<phrase>
+    <source>Text beside icon</source>
+    <target>نص مع ايقونة</target>
+</phrase>
+<phrase>
+    <source>Icon only</source>
+    <target>ايقونة فقط</target>
+</phrase>
+<phrase>
+    <source>Desktop settings</source>
+    <target>اعدادات سطح المكتب</target>
+</phrase>
+<phrase>
+    <source>Wallpaper :</source>
+    <target>الخلفية :</target>
+</phrase>
+<phrase>
+    <source>Color</source>
+    <target>اللون</target>
+</phrase>
+<phrase>
+    <source>Options</source>
+    <target>خيارات</target>
+</phrase>
+<phrase>
+    <source>First color</source>
+    <target>اللون الاول</target>
+</phrase>
+<phrase>
+    <source>Second Color</source>
+    <target>اللون الثاني</target>
+</phrase>
+<phrase>
+    <source>Choose</source>
+    <target>اختر</target>
+</phrase>
+<phrase>
+    <source>Posittioning :</source>
+    <target>الموضع</target>
+</phrase>
+<phrase>
+    <source>Posittioning :</source>
+    <target>الموضع :</target>
+</phrase>
+<phrase>
+    <source>Centered</source>
+    <target>توسيط</target>
+</phrase>
+<phrase>
+    <source>Scaled</source>
+    <target>تمدد</target>
+</phrase>
+<phrase>
+    <source>Open File</source>
+    <target>فتح ملف</target>
+</phrase>
+<phrase>
+    <source>Open Directory</source>
+    <target>فتح مجلد</target>
+</phrase>
+<phrase>
+    <source>Dock Bar</source>
+    <target>لوحة الارساء</target>
+</phrase>
+<phrase>
+    <source>Name</source>
+    <target>الإسم</target>
+</phrase>
+<phrase>
+    <source>click  to select icon file</source>
+    <target>انقر لتحديد ملف ايقونة</target>
+</phrase>
+<phrase>
+    <source>icon name :</source>
+    <target>اسم الايقونة :</target>
+</phrase>
+<phrase>
+    <source>Maximize vertically</source>
+    <target>تكبير عمودي</target>
+</phrase>
+<phrase>
+    <source>Maximize horizontally</source>
+    <target>تكبير أفقي</target>
+</phrase>
+<phrase>
+    <source>Application</source>
+    <target>التطبيق</target>
+</phrase>
+<phrase>
+    <source>Desktop Switch</source>
+    <target>مبدل اسطح المكتب</target>
+</phrase>
+<phrase>
+    <source>Home</source>
+    <target>المنزل</target>
+</phrase>
+<phrase>
+    <source>Documents</source>
+    <target>المستندات</target>
+</phrase>
+<phrase>
+    <source>Desktop settings</source>
+    <target>اعدادات خلفية سطح المكتب</target>
+</phrase>
+<phrase>
+    <source>Color :</source>
+    <target>لون الخلفية المبدئي</target>
+</phrase>
+<phrase>
+    <source>Color :</source>
+    <target>لون الخلفية المبدئي :</target>
+</phrase>
+<phrase>
+    <source>Edit</source>
+    <target>تحرير</target>
+</phrase>
+<phrase>
+    <source>Add program..</source>
+    <target>إضافة برنامج..</target>
+</phrase>
+<phrase>
+    <source>Program</source>
+    <target>برنامج</target>
+</phrase>
+<phrase>
+    <source>programe name</source>
+    <target>اسم البرنامج</target>
+</phrase>
+<phrase>
+    <source>script</source>
+    <target>ملف سكريبت</target>
+</phrase>
+<phrase>
+    <source>program</source>
+    <target>تطبيق</target>
+</phrase>
+<phrase>
+    <source>Islamic Software</source>
+    <target>برامج إسلامية</target>
+</phrase>
+<phrase>
+    <source>Icons </source>
+    <target>الأيقونات</target>
+</phrase>
+<phrase>
+    <source>General</source>
+    <target>عام</target>
+</phrase>
+<phrase>
+    <source>Themes</source>
+    <target>السمات</target>
+</phrase>
+<phrase>
+    <source>Autostart</source>
+    <target>بدأ التشغيل</target>
+</phrase>
+<phrase>
+    <source>Shortcuts</source>
+    <target>الاختصارات</target>
+</phrase>
+<phrase>
+    <source>Window Manager</source>
+    <target>مدير النوافذ</target>
+</phrase>
+<phrase>
+    <source>Auto Start</source>
+    <target>بدأ التشغيل</target>
+</phrase>
+<phrase>
+    <source>Aconfiguration tool for managing programs start up automatically with ddsktop </source>
+    <target>ادات لاعداد برامج بدأ التشغيل لسطح المكتب</target>
+</phrase>
+<phrase>
+    <source>type</source>
+    <target>النوع</target>
+</phrase>
+<phrase>
+    <source>Add program..</source>
+    <target>إضافة تطبيق..</target>
+</phrase>
+<phrase>
+    <source>shortcut</source>
+    <target>اختصار</target>
+</phrase>
+<phrase>
+    <source>select window manager</source>
+    <target>حدد مدير النوافذ</target>
+</phrase>
+<phrase>
+    <source>Comment</source>
+    <target>تعريف</target>
+</phrase>
+<phrase>
+    <source>File Manager</source>
+    <target>مدير الملفات</target>
+</phrase>
+<phrase>
+    <source>Costum :</source>
+    <target>تخصيص :</target>
+</phrase>
+<phrase>
+    <source>Widget theme</source>
+    <target>سمة الادوات</target>
+</phrase>
+<phrase>
+    <source>Desktop theme</source>
+    <target>سمة سطح المكتب</target>
+</phrase>
+<phrase>
+    <source>Creat new</source>
+    <target>انشاء سمة</target>
+</phrase>
+<phrase>
+    <source>theme name</source>
+    <target>اسم السمة</target>
+</phrase>
+<phrase>
+    <source>Preview</source>
+    <target>معاينة</target>
+</phrase>
+<phrase>
+    <source>Copy File Error</source>
+    <target>خطأ في نسخ الملف</target>
+</phrase>
+<phrase>
+    <source>Cannot copy file %1 to %2</source>
+    <target>لا يمكن نسخ الملف %1 الى %2</target>
+</phrase>
+<phrase>
+    <source>New File</source>
+    <target>ملف جديد</target>
+</phrase>
+<phrase>
+    <source>Enter name:</source>
+    <target>ادخل اسما :</target>
+</phrase>
+<phrase>
+    <source>New Folder</source>
+    <target>مجلد جديد</target>
+</phrase>
+<phrase>
+    <source>Name :</source>
+    <target>الاسم :</target>
+</phrase>
+<phrase>
+    <source>File Name :</source>
+    <target>المسار :</target>
+</phrase>
+<phrase>
+    <source>All file (*)</source>
+    <target>كل الملفات (*)</target>
+</phrase>
+<phrase>
+    <source>Link File</source>
+    <target>وصلة الى ملف</target>
+</phrase>
+<phrase>
+    <source>Create New</source>
+    <target>انشاء جديد</target>
+</phrase>
+<phrase>
+    <source>Open</source>
+    <target>فتح</target>
+</phrase>
+<phrase>
+    <source>Rename</source>
+    <target>اعد التسمية</target>
+</phrase>
+<phrase>
+    <source>Enter New name:</source>
+    <target>ادخل اسم جديد :</target>
+</phrase>
+<phrase>
+    <source>Copy File</source>
+    <target>نسخ ملف</target>
+</phrase>
+<phrase>
+    <source>Wallpapers</source>
+    <target>الخلفيات</target>
+</phrase>
+<phrase>
+    <source>Icons View</source>
+    <target>مشهد الايقونات</target>
+</phrase>
+<phrase>
+    <source>Icons Size :</source>
+    <target>حجم الايقونات :</target>
+</phrase>
+<phrase>
+    <source>Size :</source>
+    <target>النوع :</target>
+</phrase>
+<phrase>
+    <source>Last Modified :</source>
+    <target>اخر تعديل :</target>
+</phrase>
+<phrase>
+    <source>Readable :</source>
+    <target>يمكن قراءته:</target>
+</phrase>
+<phrase>
+    <source>Writable :</source>
+    <target>يمكن الكتابة فيه :</target>
+</phrase>
+<phrase>
+    <source>Comment :</source>
+    <target> تعريف :</target>
+</phrase>
+<phrase>
+    <source>Command :</source>
+    <target>تنفيذ :</target>
+</phrase>
+<phrase>
+    <source>Link to Application</source>
+    <target>وصلة الى تطبيق</target>
+</phrase>
+<phrase>
+    <source>New Desktop File</source>
+    <target>ملف تطبيق سطح مكتب جديد</target>
+</phrase>
+<phrase>
+    <source>Sort Icons By</source>
+    <target>ترتيب الايقونات</target>
+</phrase>
+<phrase>
+    <source>Do you really want to delets these itemes?</source>
+    <target>هل تريد حذف  الملفات المحددة ؟</target>
+</phrase>
+<phrase>
+    <source>Size :</source>
+    <target>الحجم :</target>
+</phrase>
+<phrase>
+    <source>Shortcut : </source>
+    <target> اختصار :</target>
+</phrase>
+<phrase>
+    <source>Run</source>
+    <target>شغل</target>
+</phrase>
+<phrase>
+    <source>run any programme whit a cpmmand</source>
+    <target>تشغيل اي برنامج بواسطة امر</target>
+</phrase>
+<phrase>
+    <source>About</source>
+    <target>حول</target>
+</phrase>
+<phrase>
+    <source>Version :</source>
+    <target>النسخة :</target>
+</phrase>
+<phrase>
+    <source>Author :</source>
+    <target>المؤلف :</target>
+</phrase>
+<phrase>
+    <source>About Zakaria</source>
+    <target>أبو زكريا </target>
+</phrase>
+<phrase>
+    <source>Abou zakaria</source>
+    <target>أبو زكريا</target>
+</phrase>
+<phrase>
+    <source>Gpl 3</source>
+    <target>رخصة جنو العمومية 3</target>
+</phrase>
+<phrase>
+    <source>Gpl3</source>
+    <target>رخصة جنو العمومية 3 </target>
+</phrase>
+<phrase>
+    <source>Shortcut Edit</source>
+    <target>تحرير الاختصار</target>
+</phrase>
+<phrase>
+    <source>lisence :</source>
+    <target>الرخصة :</target>
+</phrase>
+<phrase>
+    <source>Mail :</source>
+    <target>البريد الالكتروني :</target>
+</phrase>
+<phrase>
+    <source>Home page :</source>
+    <target>الموقع الرسمي :</target>
+</phrase>
+<phrase>
+    <source>Description :</source>
+    <target>تعريفات :</target>
+</phrase>
+<phrase>
+    <source>Select your default file manager :</source>
+    <target>حدد مدير الملفات الافتراضي :</target>
+</phrase>
+<phrase>
+    <source>Themes Settings</source>
+    <target>اعدادات السمات</target>
+</phrase>
+<phrase>
+    <source>Langages Settings</source>
+    <target>اعدادات اللغة </target>
+</phrase>
+<phrase>
+    <source>Language</source>
+    <target>اللغة</target>
+</phrase>
+<phrase>
+    <source>Widget Style Settings</source>
+    <target>اعدادات سمة الادوات</target>
+</phrase>
+<phrase>
+    <source>Window Manager  Settings</source>
+    <target>اعدادات مدير النوافذ</target>
+</phrase>
+<phrase>
+    <source>AutoStart Settings</source>
+    <target>اعدادات بدأ التشغيل</target>
+</phrase>
+<phrase>
+    <source>Select the icon theme you want to use :</source>
+    <target>حدد سمة الايقونات التي سيتم استخدامها :</target>
+</phrase>
+<phrase>
+    <source>Icons Theme Settings</source>
+    <target>اعدادات سمة الايقونات</target>
+</phrase>
+<phrase>
+    <source>File Manager Settings</source>
+    <target> اعدادات مدير الملفات</target>
+</phrase>
+<phrase>
+    <source>Show/Hide Desktop</source>
+    <target>اظهار /اخفاء سطح المكتب</target>
+</phrase>
+<phrase>
+    <source>Islamic</source>
+    <target>برامج اسلامية</target>
+</phrase>
+<phrase>
+    <source>New Item</source>
+    <target>عنصر جديد</target>
+</phrase>
+<phrase>
+    <source>New Subitem</source>
+    <target>عنصر ابن جديد</target>
+</phrase>
+<phrase>
+    <source>Tab 2</source>
+    <target>حاوي</target>
+</phrase>
+<phrase>
+    <source>Tab 2</source>
+    <target>حاوي 2</target>
+</phrase>
+<phrase>
+    <source>Tab 1</source>
+    <target>حاوي 1</target>
+</phrase>
+<phrase>
+    <source>GroupBox</source>
+    <target>مجموعة</target>
+</phrase>
+<phrase>
+    <source>Keyboard Settings</source>
+    <target>اعدادات لوحة المفاتيح</target>
+</phrase>
+<phrase>
+    <source>Advenced</source>
+    <target>متقدم</target>
+</phrase>
+<phrase>
+    <source>Layout</source>
+    <target>المخطط</target>
+</phrase>
+<phrase>
+    <source>Map</source>
+    <target>الخريطة</target>
+</phrase>
+<phrase>
+    <source>Keyboard Settings</source>
+    <target>اعدادات لوحة المفاتيح</target>
+</phrase>
+<phrase>
+    <source>Configure keyboard options</source>
+    <target>ضبط خيارات لوحة المفاتيح</target>
+</phrase>
+<phrase>
+    <source>keyboard Layout</source>
+    <target>تخطيط لوحة المفاتيح</target>
+</phrase>
+<phrase>
+    <source>Add Layout</source>
+    <target>اضافة تخطيط</target>
+</phrase>
+<phrase>
+    <source>add to Desktop</source>
+    <target>إضافة الى سطح المكتب</target>
+</phrase>
+<phrase>
+    <source>Variant :</source>
+    <target>متنوع :</target>
+</phrase>
+<phrase>
+    <source>Layoyt :</source>
+    <target>تخطيط :</target>
+</phrase>
+<phrase>
+    <source>configure...</source>
+    <target>تحرير...</target>
+</phrase>
+<phrase>
+    <source>Layouts</source>
+    <target>التخطيطات</target>
+</phrase>
+<phrase>
+    <source>Variant</source>
+    <target>متنوع</target>
+</phrase>
+<phrase>
+    <source>Key sequance to kill the X server</source>
+    <target>مفتاح لقتل المدير اكس</target>
+</phrase>
+<phrase>
+    <source>Key to change layout</source>
+    <target>مفتاح التبديل بين التخطيطات</target>
+</phrase>
+<phrase>
+    <source>Layout :</source>
+    <target>المخطط :</target>
+</phrase>
+<phrase>
+    <source>delets itemes</source>
+    <target>حذف العناصر</target>
+</phrase>
+<phrase>
+    <source>Do you want to permanently delete all items? This action cannot be undone.</source>
+    <target>هل تريد حذف  الملفات المحددة نهائيا ؟ هذا الخيار لا يمكن التراجع عنه .</target>
+</phrase>
+<phrase>
+    <source>Image Repeat</source>
+    <target>تكرار الصورة</target>
+</phrase>
+<phrase>
+    <source>this application exist</source>
+    <target>هذا التطبيق موجود</target>
+</phrase>
+<phrase>
+    <source>this application is not xdg desktop valid</source>
+    <target>هذا التطبيق ليس ملف سطح مكتب صالح</target>
+</phrase>
+<phrase>
+    <source>PushButton</source>
+    <target>زر</target>
+</phrase>
+<phrase>
+    <source>Current theme</source>
+    <target>السمة الحالية</target>
+</phrase>
+<phrase>
+    <source>Prayer Time</source>
+    <target>أوقات الصلاة</target>
+</phrase>
+<phrase>
+    <source>prayer</source>
+    <target>الصلاة</target>
+</phrase>
+<phrase>
+    <source>Fajr</source>
+    <target>الفجر</target>
+</phrase>
+<phrase>
+    <source>Sunrise</source>
+    <target>الشروق</target>
+</phrase>
+<phrase>
+    <source>Dhuhr</source>
+    <target>الظهر</target>
+</phrase>
+<phrase>
+    <source>Asr</source>
+    <target>العصر</target>
+</phrase>
+<phrase>
+    <source>Maghrib</source>
+    <target>المغرب</target>
+</phrase>
+<phrase>
+    <source>Isha&apos;a</source>
+    <target>العشاء</target>
+</phrase>
+<phrase>
+    <source>It is time for %1 prayer.</source>
+    <target>حان وقت صلاة %1.</target>
+</phrase>
+<phrase>
+    <source>%1 minute until %2 prayer.</source>
+    <target>&quot;%1 دقيقة حتى صلاة %2.</target>
+</phrase>
+<phrase>
+    <source>%1 minute after %2 prayer.</source>
+    <target>%1 دقيقة منذ صلاة %2.</target>
+</phrase>
+<phrase>
+    <source>%1 from %2</source>
+    <target>%1 منذ %2</target>
+</phrase>
+<phrase>
+    <source> to %1</source>
+    <target> حتى %1</target>
+</phrase>
+<phrase>
+    <source>&amp;Location</source>
+    <target>ال&amp;موقع</target>
+</phrase>
+<phrase>
+    <source>&amp;Display</source>
+    <target>ال&amp;عرض</target>
+</phrase>
+<phrase>
+    <source>&amp;Notifications</source>
+    <target>ال&amp;تنبيهات</target>
+</phrase>
+<phrase>
+    <source>&amp;Quit</source>
+    <target>&amp;خروج</target>
+</phrase>
+<phrase>
+    <source>Display</source>
+    <target>العرض</target>
+</phrase>
+<phrase>
+    <source>Show Times</source>
+    <target>أظهر الأوقات</target>
+</phrase>
+<phrase>
+    <source>Chose times to show in tooltips:</source>
+    <target>اختر الأوقات التي تظهر في التلميحة:</target>
+</phrase>
+<phrase>
+    <source>Display Mode</source>
+    <target>طريقة العرض</target>
+</phrase>
+<phrase>
+    <source>Show next prayer time</source>
+    <target>أظهر الوقت التالي للصلاة</target>
+</phrase>
+<phrase>
+    <source>Countdown to next prayer</source>
+    <target>عد تنازليا حتى الوقت التالي للصلاة</target>
+</phrase>
+<phrase>
+    <source>Don&apos;t show hour if it is zero</source>
+    <target>لا تظهر الساعات إذا كانت صفرا</target>
+</phrase>
+<phrase>
+    <source>Show until 10 minutes current prayer time</source>
+    <target>أظهر الوقت الحالي للصلاة لمدة 10 دقائق</target>
+</phrase>
+<phrase>
+    <source>Show time from previous prayer</source>
+    <target>أظهر الوقت منذ الصلاة السابقة</target>
+</phrase>
+<phrase>
+    <source>Use AM/PM clock format</source>
+    <target>استعمل نموذج الساعة صباحا/مساء</target>
+</phrase>
+<phrase>
+    <source>Enable effect of the remaining time for prayer</source>
+    <target>تفعيل مؤثر الوقت المتبقي للصلاة</target>
+</phrase>
+<phrase>
+    <source>Location</source>
+    <target>الموقع</target>
+</phrase>
+<phrase>
+    <source>Country/City</source>
+    <target>البلد/المدينة</target>
+</phrase>
+<phrase>
+    <source>Chose your country:</source>
+    <target>اختر بلدك:</target>
+</phrase>
+<phrase>
+    <source>Chose your city:</source>
+    <target>اختر مدينتك:</target>
+</phrase>
+<phrase>
+    <source>Informations</source>
+    <target>معلومات</target>
+</phrase>
+<phrase>
+    <source>Latitude:</source>
+    <target>خط العرض:</target>
+</phrase>
+<phrase>
+    <source>Longitude:</source>
+    <target>خط الطول:</target>
+</phrase>
+<phrase>
+    <source>Time zone:</source>
+    <target>النطاق الزمني:</target>
+</phrase>
+<phrase>
+    <source>Daylight Savings Time</source>
+    <target>مراعاة التوقيت الصيفي</target>
+</phrase>
+<phrase>
+    <source>Other Settings</source>
+    <target>خيارات أخرى</target>
+</phrase>
+<phrase>
+    <source>Calculation method:</source>
+    <target>طريقة الحساب:</target>
+</phrase>
+<phrase>
+    <source>Umm Al-Qurra</source>
+    <target>جامعة أم القرى</target>
+</phrase>
+<phrase>
+    <source>Egyptian General Authority of Survey</source>
+    <target>الهيئة العامة المصرية للمساحة</target>
+</phrase>
+<phrase>
+    <source>University of Islamic Sciences, Karachi</source>
+    <target>جامعة العلوم الإسلامية، كراتشى</target>
+</phrase>
+<phrase>
+    <source>Islamic Society of North America</source>
+    <target></target>
+</phrase>
+<phrase>
+    <source>Muslim World League</source>
+    <target>رابطة العالم الإسلامي</target>
+</phrase>
+<phrase>
+    <source>Asr juristic method:</source>
+    <target>المذهب الفقهي للعصر:</target>
+</phrase>
+<phrase>
+    <source>Shafi&apos;i, Hanbali, Maliki</source>
+    <target>الشافعي، الحنبلي، المالكي</target>
+</phrase>
+<phrase>
+    <source>Shafi&apos;i, Hanbali, Maliki</source>
+    <target>الشافعي، الحنبلي، المالكي</target>
+</phrase>
+<phrase>
+    <source>Shafi&apos;i, Hanbali, Maliki</source>
+    <target>الشافعي، الحنبلي، المالكي</target>
+</phrase>
+<phrase>
+    <source>Hanafi</source>
+    <target>الحنفي</target>
+</phrase>
+<phrase>
+    <source>Manual Calculations</source>
+    <target>الحساب اليدوي</target>
+</phrase>
+<phrase>
+    <source>None</source>
+    <target>لا شيء</target>
+</phrase>
+<phrase>
+    <source>Middle of Night</source>
+    <target>منتصف الليل</target>
+</phrase>
+<phrase>
+    <source>Angle-Based</source>
+    <target>اعتمادا على الزاوية</target>
+</phrase>
+<phrase>
+    <source>Fixed Time</source>
+    <target>وقت ثابت</target>
+</phrase>
+<phrase>
+    <source>Notifications</source>
+    <target>التنبيهات</target>
+</phrase>
+<phrase>
+    <source>Alerts</source>
+    <target>الإنذارات</target>
+</phrase>
+<phrase>
+    <source>Display notifications after prayer times:</source>
+    <target>أظهر التنبيهات بعد أوقات الصلاة:</target>
+</phrase>
+<phrase>
+    <source>Play</source>
+    <target>تشغيل</target>
+</phrase>
+<phrase>
+    <source>Fajr Adhan file:</source>
+    <target>ملف أذان الفجر</target>
+</phrase>
+<phrase>
+    <source>Play Duaa</source>
+    <target>تفعيل الدعاء</target>
+</phrase>
+<phrase>
+    <source>Volume:</source>
+    <target>حجم الصوت:</target>
+</phrase>
+<phrase>
+    <source>Fatal Error</source>
+    <target>خطأ فادح</target>
+</phrase>
+<phrase>
+    <source>Error</source>
+    <target>خطأ</target>
+</phrase>
+<phrase>
+    <source>&amp;Configurations</source>
+    <target>&amp;الإعدادات</target>
+</phrase>
+<phrase>
+    <source>&amp;Configure Prayer Times</source>
+    <target>ا&amp;عدادات أوقات الصلاة</target>
+</phrase>
+<phrase>
+    <source>Adhkar</source>
+    <target>الأذكار</target>
+</phrase>
+<phrase>
+    <source>Show Adhkar</source>
+    <target>عرض الأذكار</target>
+</phrase>
+<phrase>
+    <source> min</source>
+    <target> د </target>
+</phrase>
+<phrase>
+    <source>Colors</source>
+    <target>اﻷلوان</target>
+</phrase>
+<phrase>
+    <source>previous prayer :</source>
+    <target>الصلاة السابفة :</target>
+</phrase>
+<phrase>
+    <source>BackGround text :</source>
+    <target>نص الحلفية :</target>
+</phrase>
+<phrase>
+    <source>Description :</source>
+    <target>تعريف :</target>
+</phrase>
+<phrase>
+    <source>add to favorite</source>
+    <target>إضافة للمفضلة</target>
+</phrase>
+<phrase>
+    <source>remove from favorite</source>
+    <target>حذف من المفضلة</target>
+</phrase>
+<phrase>
+    <source>Icons</source>
+    <target>ايقونات</target>
+</phrase>
+<phrase>
+    <source>Colors</source>
+    <target>ألألوان</target>
+</phrase>
+<phrase>
+    <source>Location :</source>
+    <target>المسار :</target>
+</phrase>
+<phrase>
+    <source>Widgets Style :</source>
+    <target>سمة الادوات :</target>
+</phrase>
+<phrase>
+    <source>Cursor theme</source>
+    <target>سمة المؤشر</target>
+</phrase>
+<phrase>
+    <source>Descreption :</source>
+    <target>معلومات:</target>
+</phrase>
+<phrase>
+    <source>Description : </source>
+    <target>معلومات:</target>
+</phrase>
+<phrase>
+    <source>edit Menu </source>
+    <target>تحرير القائمة</target>
+</phrase>
+<phrase>
+    <source>Add New application</source>
+    <target>إضافة تطبق جديد</target>
+</phrase>
+<phrase>
+    <source>Add New Menu</source>
+    <target>إضافة قائمة جديدة</target>
+</phrase>
+<phrase>
+    <source>This action cannot be undone.
+Do you want to restore the system menu? Warning: This will remove all custom menus.</source>
+    <target>هذا الامر لا يمكن التراجع عنه.
+هل تريد استرجاع القوائم الاصلية ؟ سوف يتم حذف كل التغييرات التي اجريتها.</target>
+</phrase>
+<phrase>
+    <source>Past</source>
+    <target>لصق</target>
+</phrase>
+<phrase>
+    <source>Copy</source>
+    <target>نسخ</target>
+</phrase>
+<phrase>
+    <source>Cut</source>
+    <target>قص</target>
+</phrase>
+<phrase>
+    <source>Quite</source>
+    <target>خروج</target>
+</phrase>
+<phrase>
+    <source>Delete item</source>
+    <target>حذف العنصر</target>
+</phrase>
+<phrase>
+    <source>File</source>
+    <target>ملف</target>
+</phrase>
+<phrase>
+    <source>Edit</source>
+    <target>تحرير</target>
+</phrase>
+<phrase>
+    <source>&amp;Position :</source>
+    <target>الو&amp;ضعية :</target>
+</phrase>
+<phrase>
+    <source>Roll up</source>
+    <target>لف للأعلى</target>
+</phrase>
+<phrase>
+    <source>Roll down</source>
+    <target>لف للأسفل </target>
+</phrase>
+<phrase>
+    <source>Hibernate</source>
+    <target>اسبات الجهاز</target>
+</phrase>
+<phrase>
+    <source>Suspend</source>
+    <target>تعليق الجهاز</target>
+</phrase>
+<phrase>
+    <source>Reboot</source>
+    <target>اعادة اقلاع الجهاز</target>
+</phrase>
+<phrase>
+    <source>Log out</source>
+    <target>خروج</target>
+</phrase>
+<phrase>
+    <source>message</source>
+    <target>رسالة</target>
+</phrase>
+<phrase>
+    <source>icon</source>
+    <target>ايقونة</target>
+</phrase>
+<phrase>
+    <source>Select Action:</source>
+    <target>حدد امرا :</target>
+</phrase>
+<phrase>
+    <source>Shutdown</source>
+    <target>اطفاء الجهاز</target>
+</phrase>
+<phrase>
+    <source>PolicyKit Error</source>
+    <target>خطأ بوليسي كيت</target>
+</phrase>
+<phrase>
+    <source>Authorization failed for some reason</source>
+    <target>فشلت المواثقة لسببٍ ما</target>
+</phrase>
+<phrase>
+    <source>Authorization Failed</source>
+    <target>فشلت المواثقة</target>
+</phrase>
+<phrase>
+    <source>PolicyKit Information</source>
+    <target>معلومات بوليسي كيت</target>
+</phrase>
+<phrase>
+    <source>details</source>
+    <target>معلومات</target>
+</phrase>
+<phrase>
+    <source>Identity</source>
+    <target>الهويَّة</target>
+</phrase>
+<phrase>
+    <source>Password</source>
+    <target>كلمة السر</target>
+</phrase>
+<phrase>
+    <source>Authentication Required</source>
+    <target>المواثقة مطلوبة</target>
+</phrase>
+<phrase>
+    <source>Log out</source>
+    <target>اغلاق الجلسة</target>
+</phrase>
+<phrase>
+    <source>Run</source>
+    <target>شغل تطبيق</target>
+</phrase>
+<phrase>
+    <source>Click to mont this disc.</source>
+    <target>انقر لضم الجهاز.</target>
+</phrase>
+<phrase>
+    <source>&amp;File</source>
+    <target>&amp;ملف</target>
+</phrase>
+<phrase>
+    <source>Desktop Switch</source>
+    <target>مبدل اسطح المكتب</target>
+</phrase>
+<phrase>
+    <source>Costum images</source>
+    <target>صور مخصصة</target>
+</phrase>
+<phrase>
+    <source>Hover Image :</source>
+    <target>الصورة تحت المؤشر:</target>
+</phrase>
+<phrase>
+    <source>Discharging</source>
+    <target>تفريغ</target>
+</phrase>
+<phrase>
+    <source>Charging</source>
+    <target>تحميل</target>
+</phrase>
+<phrase>
+    <source>Full</source>
+    <target>ممتلأ</target>
+</phrase>
+<phrase>
+    <source>status: %1</source>
+    <target>الحالة: %1</target>
+</phrase>
+<phrase>
+    <source>unknown</source>
+    <target>غير معروف</target>
+</phrase>
+<phrase>
+    <source>Date Modified</source>
+    <target>تاريخ التعديل</target>
+</phrase>
+<phrase>
+    <source>Type</source>
+    <target>النوع</target>
+</phrase>
+<phrase>
+    <source>Size</source>
+    <target>الحجم</target>
+</phrase>
+<phrase>
+    <source>Name</source>
+    <target>الإسم</target>
+</phrase>
+<phrase>
+    <source>File Name:</source>
+    <target>اسم الملف:</target>
+</phrase>
+<phrase>
+    <source>%1 bytes</source>
+    <target>%1 بايت</target>
+</phrase>
+<phrase>
+    <source>%1 KB</source>
+    <target>%1 كيلو بايت</target>
+</phrase>
+<phrase>
+    <source>%1 MB</source>
+    <target>%1 ميجا بايت</target>
+</phrase>
+<phrase>
+    <source>%1 GB</source>
+    <target>%1 جيجا بايت</target>
+</phrase>
+<phrase>
+    <source>Image File (*.png *.svg *.svgz *.svg.gz *.xpm);;All Files (*)</source>
+    <target>ملفات الصور (*.png *.svg *.svgz *.svg.gz *.xpm);;كل الملفات (*)</target>
+</phrase>
+<phrase>
+    <source>Animation</source>
+    <target>متحركة</target>
+</phrase>
+<phrase>
+    <source>Select item:</source>
+    <target>حدد عنصرا:</target>
+</phrase>
+<phrase>
+    <source>folder</source>
+    <target>مجلد</target>
+</phrase>
+<phrase>
+    <source>Accessed:</source>
+    <target>تم الوصول اليه:</target>
+</phrase>
+<phrase>
+    <source>Device Usage:</source>
+    <target>معلومات الجهاز:</target>
+</phrase>
+<phrase>
+    <source>location:</source>
+    <target>الموقع:</target>
+</phrase>
+<phrase>
+    <source>Permissions</source>
+    <target>الصلاحيات</target>
+</phrase>
+<phrase>
+    <source>Owner:</source>
+    <target>المالك:</target>
+</phrase>
+<phrase>
+    <source>Can Read</source>
+    <target>يمكن القراءة</target>
+</phrase>
+<phrase>
+    <source>Can Read &amp; Write</source>
+    <target>يمكن القراءة والكتابة</target>
+</phrase>
+<phrase>
+    <source>Group:</source>
+    <target>المجموعة:</target>
+</phrase>
+<phrase>
+    <source>Other:</source>
+    <target>أخرى:</target>
+</phrase>
+<phrase>
+    <source>Is executable</source>
+    <target>تطبيق</target>
+</phrase>
+<phrase>
+    <source>User:</source>
+    <target>المستخدم:</target>
+</phrase>
+<phrase>
+    <source>Apply changes to all subfolder and files</source>
+    <target>تطبيق التغييرات على كل المجلدات الفرعية والملفات</target>
+</phrase>
+<phrase>
+    <source>Open With</source>
+    <target>فتح باستخدام</target>
+</phrase>
+<phrase>
+    <source>Add...</source>
+    <target>إضافة...</target>
+</phrase>
+<phrase>
+    <source>Delete</source>
+    <target>حذف</target>
+</phrase>
+<phrase>
+    <source>%1 free Of %2 %p%</source>
+    <target>%1 فارغ من %2 %p%</target>
+</phrase>
+<phrase>
+    <source> folders, </source>
+    <target>مجلداتة,</target>
+</phrase>
+<phrase>
+    <source> files, </source>
+    <target>ملفات,</target>
+</phrase>
+<phrase>
+    <source>Calculating...</source>
+    <target>جاري الحساب...</target>
+</phrase>
+<phrase>
+    <source>Bunse</source>
+    <target>القفز</target>
+</phrase>
+<phrase>
+    <source>&amp;Arrangement :</source>
+    <target>التموضع :</target>
+</phrase>
+<phrase>
+    <source>&amp;Arrangement :</source>
+    <target>ال&amp;تموضع :</target>
+</phrase>
+<phrase>
+    <source>&amp;Position :</source>
+    <target>الم&amp;كان :</target>
+</phrase>
+<phrase>
+    <source>
+ %7Type: %6 
+ Size: %1 
+Modified: %2 
+
+User Permission: %3 %4 %5</source>
+    <target> %7النوع: %6 
+ الحجم: %1 
+تاريخ التعديل: %2 
+
+صلاحيات المستخدم : %3 %4 %5</target>
+</phrase>
+<phrase>
+    <source>Directory</source>
+    <target>مجلد</target>
+</phrase>
+<phrase>
+    <source>restor to %1 failed 
+ please check if the path exist</source>
+    <target>الاستعادة الى %1 لم تنجح 
+الرجاء التأكد من ان المسار موجود مسبقا</target>
+</phrase>
+<phrase>
+    <source>no description</source>
+    <target>لا توجد تعريفات</target>
+</phrase>
+<phrase>
+    <source>&amp;Lightness:</source>
+    <target>الا&amp;ضاءة:</target>
+</phrase>
+<phrase>
+    <source>&amp;Saturation:</source>
+    <target>الاشب&amp;اع:</target>
+</phrase>
+<phrase>
+    <source>Screen Locker</source>
+    <target>قفل الشاشة</target>
+</phrase>
+<phrase>
+    <source>&amp;Group:</source>
+    <target>المجمو&amp;عة:</target>
+</phrase>
+<phrase>
+    <source>&amp;Owner:</source>
+    <target>الم&amp;الك:</target>
+</phrase>
+<phrase>
+    <source>&amp;Group:</source>
+    <target>المجمو&amp;عة:</target>
+</phrase>
+<phrase>
+    <source>&amp;Folder Color</source>
+    <target>لون الم&amp;جلد</target>
+</phrase>
+<phrase>
+    <source>&amp;Hue:</source>
+    <target>اللو&amp;ن:</target>
+</phrase>
+<phrase>
+    <source>&amp;Saturation:</source>
+    <target>الاشب&amp;اع:</target>
+</phrase>
+<phrase>
+    <source>&amp;Lightness:</source>
+    <target>الا&amp;ضاءة:</target>
+</phrase>
+<phrase>
+    <source>Permissions</source>
+    <target>الصلاحيات</target>
+</phrase>
+<phrase>
+    <source>Apply ...</source>
+    <target>طبق ...</target>
+</phrase>
+<phrase>
+    <source>&amp;Generale</source>
+    <target>&amp;عام</target>
+</phrase>
+<phrase>
+    <source>&amp;Expanding</source>
+    <target>تمد&amp;د</target>
+</phrase>
+<phrase>
+    <source>Pressed</source>
+    <target>ضغط</target>
+</phrase>
+<phrase>
+    <source>&amp;Animmation :</source>
+    <target></target>
+</phrase>
+<phrase>
+    <source>&amp;Animmation :</source>
+    <target>الحر&amp;كة</target>
+</phrase>
+<phrase>
+    <source>&amp;Animmation :</source>
+    <target>الحر&amp;كة:</target>
+</phrase>
+<phrase>
+    <source>show ToolTip</source>
+    <target>اظهر التعريفات</target>
+</phrase>
+<phrase>
+    <source>Top of desktop</source>
+    <target>اعلى الشاشة</target>
+</phrase>
+<phrase>
+    <source>Bottom of desktop</source>
+    <target>اسفل الشاشة</target>
+</phrase>
+<phrase>
+    <source>&amp;HighlightedText :</source>
+    <target>الن&amp;ص المحدد:</target>
+</phrase>
+<phrase>
+    <source>&amp;Window : </source>
+    <target>الناف&amp;ذة:</target>
+</phrase>
+<phrase>
+    <source>Hi&amp;ghlight :</source>
+    <target>التحدي&amp;د:</target>
+</phrase>
+<phrase>
+    <source>Window&amp;Text :</source>
+    <target>ن&amp;ص النافذة:</target>
+</phrase>
+<phrase>
+    <source>T&amp;oolTipBase :</source>
+    <target>خلفية ال&amp;تعريف:</target>
+</phrase>
+<phrase>
+    <source>&amp;Wallpapers</source>
+    <target>ال&amp;خلفيات</target>
+</phrase>
+<phrase>
+    <source>Wall&amp;paper :</source>
+    <target>الخل&amp;فية :</target>
+</phrase>
+<phrase>
+    <source>C&amp;olor :</source>
+    <target>ال&amp;لون :</target>
+</phrase>
+<phrase>
+    <source>&amp;Choose</source>
+    <target>ا&amp;ختر</target>
+</phrase>
+<phrase>
+    <source>&amp;time :</source>
+    <target>الو&amp;قت :</target>
+</phrase>
+<phrase>
+    <source>&amp;Icons View</source>
+    <target>م&amp;شهد الايقونات</target>
+</phrase>
+<phrase>
+    <source>Icons Si&amp;ze :</source>
+    <target>&amp;حجم الايقونات :</target>
+</phrase>
+<phrase>
+    <source>Navigation :</source>
+    <target>النقر:</target>
+</phrase>
+<phrase>
+    <source>Single-Click</source>
+    <target>نقر مفرد</target>
+</phrase>
+<phrase>
+    <source>Vertical Alignment</source>
+    <target>ترتيب عمودي</target>
+</phrase>
+<phrase>
+    <source>Horizontal Alignment</source>
+    <target>ترتيب افقي</target>
+</phrase>
+<phrase>
+    <source>&amp;About</source>
+    <target>حو&amp;ل</target>
+</phrase>
+<phrase>
+    <source> h</source>
+    <target> س</target>
+</phrase>
+<phrase>
+    <source> m</source>
+    <target> د</target>
+</phrase>
+<phrase>
+    <source>Add/Remove Widget</source>
+    <target>إضافة/حذف  ودجات</target>
+</phrase>
+<phrase>
+    <source>Install a widget archive file you already have locally </source>
+    <target>تثبيت ملف ودجات مضغوط موجود على القرص</target>
+</phrase>
+<phrase>
+    <source>Install...</source>
+    <target>تثبيت...</target>
+</phrase>
+<phrase>
+    <source>Remove the selected widget from your disk</source>
+    <target>حذف الودجات المحددة من القرص</target>
+</phrase>
+<phrase>
+    <source>Remove...</source>
+    <target>حذف...</target>
+</phrase>
+<phrase>
+    <source>Available Widgets</source>
+    <target>حدد او ازل تحديد ودجات</target>
+</phrase>
+<phrase>
+    <source>Browse...</source>
+    <target>اختيار ...</target>
+</phrase>
+<phrase>
+    <source>Pattern</source>
+    <target>زخرفة</target>
+</phrase>
+<phrase>
+    <source>Small</source>
+    <target>صغير</target>
+</phrase>
+<phrase>
+    <source>Large</source>
+    <target>كبير</target>
+</phrase>
+<phrase>
+    <source>Double-Click</source>
+    <target>نقر مزدوج</target>
+</phrase>
+<phrase>
+    <source>&amp;Theme Edit </source>
+    <target>تحرير السمة</target>
+</phrase>
+<phrase>
+    <source>&amp;Theme Edit </source>
+    <target>ت&amp;حرير السمة</target>
+</phrase>
+<phrase>
+    <source>Books</source>
+    <target>الكتب</target>
+</phrase>
+<phrase>
+    <source>&amp;File</source>
+    <target>&amp;ملف</target>
+</phrase>
+<phrase>
+    <source>&amp;Edit</source>
+    <target>&amp;تحرير</target>
+</phrase>
+<phrase>
+    <source>&amp;View</source>
+    <target>&amp;عرض</target>
+</phrase>
+<phrase>
+    <source>&amp;Help</source>
+    <target>&amp;مساعدة</target>
+</phrase>
+<phrase>
+    <source>Scan folder</source>
+    <target>مسح مجلد</target>
+</phrase>
+<phrase>
+    <source>scan folder for existing books</source>
+    <target>مسح مجلد بحثا عن كتب</target>
+</phrase>
+<phrase>
+    <source>Groops</source>
+    <target>المجموعات</target>
+</phrase>
+<phrase>
+    <source>Autors</source>
+    <target>المؤلفين</target>
+</phrase>
+<phrase>
+    <source>Rating</source>
+    <target>التنقيط</target>
+</phrase>
+<phrase>
+    <source>Create books information...</source>
+    <target>انشاء معلومات الكتب...</target>
+</phrase>
+<phrase>
+    <source>Cancel</source>
+    <target>الغاء</target>
+</phrase>
+<phrase>
+    <source>Title</source>
+    <target>العنوان</target>
+</phrase>
+<phrase>
+    <source>Informatons</source>
+    <target>معلومات</target>
+</phrase>
+<phrase>
+    <source>Path :</source>
+    <target>المسار :</target>
+</phrase>
+<phrase>
+    <source>Information</source>
+    <target>معلومات</target>
+</phrase>
+<phrase>
+    <source>Num Pages :</source>
+    <target>عدد الصفحات :</target>
+</phrase>
+<phrase>
+    <source>show/hide contents</source>
+    <target>عرض / اخفاء الفهرسة</target>
+</phrase>
+<phrase>
+    <source>Thambnails</source>
+    <target>مصغرات</target>
+</phrase>
+<phrase>
+    <source>Contents</source>
+    <target>الفهرسة</target>
+</phrase>
+<phrase>
+    <source>Continous</source>
+    <target>مستمر</target>
+</phrase>
+<phrase>
+    <source>Auto start</source>
+    <target>بدأ تلقائي</target>
+</phrase>
+<phrase>
+    <source>Time</source>
+    <target>الساعة</target>
+</phrase>
+<phrase>
+    <source>Elokab-Terminal</source>
+    <target>طرفية العقاب</target>
+</phrase>
+<phrase>
+    <source>New Tab</source>
+    <target>لسان جديد</target>
+</phrase>
+<phrase>
+    <source>Zoom in</source>
+    <target>تكبير</target>
+</phrase>
+<phrase>
+    <source>Zoom out</source>
+    <target>تصغير</target>
+</phrase>
+<phrase>
+    <source>Settings</source>
+    <target>الإعدادات</target>
+</phrase>
+<phrase>
+    <source>About Qt...</source>
+    <target>حول كيوتي</target>
+</phrase>
+<phrase>
+    <source>About Qt...</source>
+    <target>حول كيوتي...</target>
+</phrase>
+<phrase>
+    <source>Menu</source>
+    <target>القائمة</target>
+</phrase>
+<phrase>
+    <source>About Elokab-terminal</source>
+    <target>حول طرفية العقاب</target>
+</phrase>
+<phrase>
+    <source>Fonts</source>
+    <target>الخطوط</target>
+</phrase>
+<phrase>
+    <source>Font :</source>
+    <target>الخط :</target>
+</phrase>
+<phrase>
+    <source>Font Size :</source>
+    <target>حجم الخط :</target>
+</phrase>
+<phrase>
+    <source>&amp;Global Color :</source>
+    <target>لون عام :</target>
+</phrase>
+</QPH>
