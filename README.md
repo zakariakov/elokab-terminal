@@ -9,5 +9,5 @@ Ce programme fait partie de elokab desktop
 
 ====================
 Elokab-terminal lightweight terminal program that supports the Arabic language......
-This program is part of the desktop
+This program is part of the elokab desktop
 
