@@ -175,7 +175,7 @@ void QTermWidget::setTextCodec(QTextCodec *codec)
   m_impl->m_session->setCodec(codec);
 }
 
-void QTermWidget::setColorScheme(int scheme)
+void QTermWidget::setColorScheme(int scheme,QColor bColor,QColor fColor)
 {
   switch(scheme)
   {
@@ -188,6 +188,9 @@ void QTermWidget::setColorScheme(int scheme)
     case COLOR_SCHEME_BLACK_ON_LIGHT_YELLOW:
       m_impl->m_terminalDisplay->setColorTable(blackonlightyellow_color_table);
       break;
+    case COLOR_SCHEME_COSTUM:
+      m_impl->m_terminalDisplay->setCostumColorTable(bColor,fColor);
+    break;
     default: //do nothing
       break;
   };

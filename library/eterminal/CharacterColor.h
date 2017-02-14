@@ -75,6 +75,8 @@ public:
   /** The color value of this entry for display. */
   QColor color;
 
+   QColor colorBack;
+
   /** 
    * If true character backgrounds using this color should be transparent. 
    * This is not applicable when the color is used to render text.

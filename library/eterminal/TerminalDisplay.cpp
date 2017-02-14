@@ -130,6 +130,34 @@ void TerminalDisplay::setColorTable(const ColorEntry table[])
   update();
 }
 
+void TerminalDisplay::setCostumColorTable(QColor bColor,QColor fColor)
+{
+//==================================================
+    ColorEntry costumw_color_table[TABLE_COLORS]={
+                ColorEntry(fColor,  0, 0), ColorEntry(bColor,  1, 0),
+                ColorEntry(QColor(     0,   0,   0),  0, 0), ColorEntry(QColor(   178,  24,  24),  0, 0),
+                ColorEntry(QColor(    24, 178,  24),  0, 0), ColorEntry(QColor(   178, 104,  24),  0, 0),
+                ColorEntry(QColor(    24,  24, 178),  0, 0), ColorEntry(QColor(   178,  24, 178),  0, 0),
+                ColorEntry(QColor(    24, 178, 178),  0, 0), ColorEntry(QColor(   178, 178, 178),  0, 0),
+                ColorEntry(fColor,  0, 1 ), ColorEntry(bColor,  1, 0 ),
+                ColorEntry(QColor(  104, 104, 104),  0, 0 ), ColorEntry(QColor(  255,  84,  84),  0, 0 ),
+                ColorEntry(QColor(   84, 255,  84),  0, 0 ), ColorEntry(QColor(  255, 255,  84),  0, 0 ),
+                ColorEntry(QColor(   84,  84, 255),  0, 0 ), ColorEntry(QColor(  255,  84, 255),  0, 0 ),
+                ColorEntry(QColor(   84, 255, 255),  0, 0 ), ColorEntry(QColor(  255, 255, 255),  0, 0 ) };
+ //=================================================
+  for (int i = 0; i < TABLE_COLORS; i++)
+      _colorTable[i] = costumw_color_table[i];
+
+  QPalette p = palette();
+  p.setColor( backgroundRole(), _colorTable[DEFAULT_BACK_COLOR].color );
+  setPalette( p );
+
+  // Avoid propagating the palette change to the scroll bar
+  _scrollBar->setPalette( QApplication::palette() );
+
+  update();
+}
+
 /* ------------------------------------------------------------------------- */
 /*                                                                           */
 /*                                   Font                                    */

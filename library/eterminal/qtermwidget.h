@@ -21,14 +21,17 @@
 #define _Q_TERM_WIDGET
 
 #include <QWidget>
+#include "CharacterColor.h"
 
+using namespace Konsole;
 struct TermWidgetImpl;
 
 enum COLOR_SCHEME
 {
   COLOR_SCHEME_WHITE_ON_BLACK	= 1,
   COLOR_SCHEME_GREEN_ON_BLACK,
-  COLOR_SCHEME_BLACK_ON_LIGHT_YELLOW
+  COLOR_SCHEME_BLACK_ON_LIGHT_YELLOW,
+  COLOR_SCHEME_COSTUM
 };
   enum ScrollBarPosition
 {
@@ -73,7 +76,7 @@ public:
     void setTextCodec(QTextCodec *codec);
 
     //Color scheme, default is white on black
-    void setColorScheme(int scheme);
+    void setColorScheme(int scheme, QColor bColor, QColor fColor);
 
     //set size
     void setSize(int h, int v);
@@ -103,6 +106,9 @@ public:
     void zoomOut();
 
     void setTerminalOpacity(qreal level);
+QColor bColor;
+
+
 
 public slots:
     // Copy selected Text

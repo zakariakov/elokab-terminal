@@ -27,10 +27,12 @@ QMAKE_INCDIR += $$PWD/../library/include $$PWD/../library
 
 SOURCES += main.cpp\
            mainwindow.cpp \
-           settingdialog.cpp
+           settingdialog.cpp \
+    buttonColor/buttoncolor.cpp
 
 HEADERS  += mainwindow.h \
-            settingdialog.h
+            settingdialog.h \
+    buttonColor/buttoncolor.h
 
 FORMS    += mainwindow.ui \
             settingdialog.ui

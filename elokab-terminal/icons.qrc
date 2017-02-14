@@ -8,5 +8,6 @@
         <file>icons/tab-new.png</file>
         <file>icons/view-list-details.png</file>
         <file>icons/terminal.png</file>
+        <file>icons/color-picker.png</file>
     </qresource>
 </RCC>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>470</width>
-    <height>441</height>
+    <width>451</width>
+    <height>527</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -70,37 +70,74 @@
      <property name="title">
       <string>Themes</string>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
-       <widget class="QLabel" name="label_3">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Color Sheme :</string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Color Sheme :</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="themesComboBox">
+          <item>
+           <property name="text">
+            <string>Black White</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Black Green</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Light Yellow Black</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Costum Color</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
-       <widget class="QComboBox" name="themesComboBox">
-        <item>
-         <property name="text">
-          <string>Black White</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Black Green</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Light Yellow Black</string>
-         </property>
-        </item>
+       <widget class="QWidget" name="widgetCostumColor" native="true">
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <layout class="QHBoxLayout" name="hLayoutForColor">
+           <item>
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Font Color:</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="hLayoutBackColor">
+           <item>
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>BackGround Color:</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
        </widget>
       </item>
      </layout>

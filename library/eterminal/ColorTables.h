@@ -43,15 +43,15 @@ static const ColorEntry blackonlightyellow_color_table[TABLE_COLORS] =
     ColorEntry(QColor( 24, 178,  24),  0, 0),  ColorEntry(QColor( 178, 104,  24),  0, 0),  
     ColorEntry(QColor( 24,  24, 178),  0, 0),  ColorEntry(QColor( 178,  24, 178),  0, 0),  
     ColorEntry(QColor( 24, 178, 178),  0, 0),  ColorEntry(QColor( 178, 178, 178),  0, 0),  
-    ColorEntry(QColor(  0,   0,   0),  0, 1),  ColorEntry(QColor( 255, 255, 221),  1, 0),  
+    // intensive colors
+    ColorEntry(QColor(  0,   0,   0),  0, 1),  ColorEntry(QColor( 255, 255, 221),  1, 0),
     ColorEntry(QColor(104, 104, 104),  0, 0),  ColorEntry(QColor( 255,  84,  84),  0, 0),  
     ColorEntry(QColor( 84, 255,  84),  0, 0),  ColorEntry(QColor( 255, 255,  84),  0, 0),  
     ColorEntry(QColor( 84,  84, 255),  0, 0),  ColorEntry(QColor( 255,  84, 255),  0, 0),  
     ColorEntry(QColor( 84, 255, 255),  0, 0),  ColorEntry(QColor( 255, 255, 255),  0, 0)
 };
  			  
-			  
-			  
+
 
 
 #endif

@@ -2,7 +2,7 @@
 #define SETTINGDIALOG_H
 
 #include <QDialog>
-
+#include "buttonColor/buttoncolor.h"
 namespace Ui {
 class SettingDialog;
 }
@@ -17,11 +17,20 @@ public:
 QFont getFont();
 int getColorSheme();
 int getScrollBar();
+QColor getBcolor();
+QColor getFcolor();
 private slots:
 void on_buttonBox_accepted();
 
+void on_themesComboBox_currentIndexChanged(int index);
+
 private:
     Ui::SettingDialog *ui;
+
+    ButtonColor *btnFColor;
+
+    ButtonColor *btnBColor;
+
 };
 
 #endif // SETTINGDIALOG_H

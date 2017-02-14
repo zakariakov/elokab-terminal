@@ -170,10 +170,13 @@ void MainWindow::addNewTab(const QString &wDir, const QString &command)
     QFont f=  setting.value("Font",font).value<QFont>();
     int color=setting.value("ColorSheme",0).toInt();
     int spos=setting.value("ScrollBar",0).toInt();
+    QColor fcolor=setting.value("FontColor",QColor(255,255,255)).value<QColor>();
+    QColor bcolor=setting.value("BackColor",QColor(0,0,0)).value<QColor>();
+
     QString shell=setting.value("Shell",QString()).toString();
     terminaleWidget-> setShellProgram(shell);
     terminaleWidget->setTerminalFont(f);
-    terminaleWidget->setColorScheme(color+1);
+    terminaleWidget->setColorScheme(color+1,bcolor,fcolor);
     terminaleWidget->setScrollBarPosition(spos);
     terminaleWidget->setInitialWorkingDirectory(wDir);
     terminaleWidget->startShellProgram();
@@ -263,8 +266,10 @@ void MainWindow::settingShow()
     if(dlg->exec()==QDialog::Accepted)
     {
         QFont font=dlg->getFont();
-        int color=dlg->getColorSheme();
+        int colorIndex=dlg->getColorSheme();
         int spos=dlg->getScrollBar();
+        QColor bColor=dlg->getBcolor();
+        QColor fColor=dlg->getFcolor();
         for (int i = 0; i < ui->tabWidget->count(); ++i)
        {
             QTermWidget *termWidget= qobject_cast<QTermWidget *>(ui->tabWidget->widget(i));
@@ -272,8 +277,12 @@ void MainWindow::settingShow()
            if(termWidget)
            {
               termWidget->setTerminalFont(font);
-              termWidget->setColorScheme(color);
+
               termWidget->setScrollBarPosition(spos);
+
+
+              termWidget->setColorScheme(colorIndex,bColor,fColor);
+
 
 
            }
