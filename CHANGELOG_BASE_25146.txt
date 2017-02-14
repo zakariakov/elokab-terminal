@@ -1,0 +1,87 @@
+-0.3 jul 2015
+
+Applications
+============
+add elokab-terminal
+new elokab-settings
+
+libray common
+============
+libeterminal
+
+Modified
+========
+elokab-fm added terminal
+
+
+-0.2 
+
+
+-0.1 realease 2014
+
+Applications
+============
+elokab-applications
+elokab-desktop
+elokab-dock
+elokab-filesManager
+   1-elokab-fm
+   2-elokab-fa
+elokab-notify
+elokab-panel
+elokab-polkit
+elokab-run
+elokab-screensaver
+elokab-session
+elokab-settings
+elokab-sudo
+elokab-syspower
+
+plugins-panel
+=============
+  1-libdbattery
+  2-libddswitch
+  3-libdkeymap
+  4-libdmainmenu
+  5-libdmenubar
+  6-libdmount
+  7-libdquicklaunch
+  8-libdsensor
+  9-libdshowdesktop
+  10-libdsysstat
+  11-libdsystray
+  12-libdtaskbar
+  13-libdtimer
+  14-libdvolume
+
+plugins-settings
+================
+  1-desktopSetting
+  2-dockSetting
+  3-panelSetting
+  4-language
+  5-defaultapps
+  6-notifications
+  7-screenlocker
+  8-datetime
+  9-desktoptheme
+  10-iconstheme
+  11-cursortheme
+  12-widgetstyle
+  13-widgetcolors
+  14-WidgetFonts
+  15-keyShortcuts
+  16-keylayout
+  17-autostart
+  18-windowmanager
+  
+libray common
+============
+   1-buttonColor
+   2-mimIcon
+   3-mount
+   4-power
+   5-qxt
+   6-sysstat
+   7-x11utils
+   
