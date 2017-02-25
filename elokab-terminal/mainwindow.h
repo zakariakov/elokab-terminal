@@ -57,6 +57,7 @@ private:
     QAction *mActSetting;
 QAction *mActAbout;
 QAction *mActAboutQt;
+QAction *mActQuit;
     int numTab;
 };
 

@@ -114,6 +114,9 @@
       </item>
       <item>
        <widget class="QWidget" name="widgetCostumColor" native="true">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <layout class="QHBoxLayout" name="hLayoutForColor">
@@ -136,6 +139,16 @@
             </widget>
            </item>
           </layout>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>Scheme :</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QGridLayout" name="gridLayoutBtn"/>
          </item>
         </layout>
        </widget>

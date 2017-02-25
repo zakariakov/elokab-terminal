@@ -2,6 +2,7 @@
 #include "ui_settingdialog.h"
 #include <QSettings>
 #include <QLayout>
+#include <QTimer>
 SettingDialog::SettingDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SettingDialog)
@@ -9,10 +10,17 @@ SettingDialog::SettingDialog(QWidget *parent) :
     ui->setupUi(this);
 
     btnFColor=new ButtonColor;
-
     btnBColor=new ButtonColor;
 
+    for (int i = 0; i < 16; ++i) {
+        btnColor[i]=new ButtonColor;
+        if(i<8){
+        ui->gridLayoutBtn->addWidget(btnColor[i],1,i);
+        }else{
+         ui->gridLayoutBtn->addWidget(btnColor[i],2,i-8);
+        }
 
+    }
 
     QFont font = QApplication::font();
     font.setFamily("Monospace");
@@ -26,11 +34,33 @@ SettingDialog::SettingDialog(QWidget *parent) :
     QString txt=setting.value("Shell","/bin/bash").toString();
     QColor fcolor=setting.value("FontColor",QColor(255,255,255)).value<QColor>();
     QColor bcolor=setting.value("BackColor",QColor(0,0,0)).value<QColor>();
+
+
+
+    QList<QColor> listColor;
+    listColor<<QColor(0,   0,   0)<<QColor(178,  24,  24)
+    <<QColor(    24, 178,  24)<<QColor(   178, 104,  24)
+    <<QColor(    24,  24, 178)<<QColor(   178,  24, 178)
+    <<QColor(    24, 178, 178)<<QColor(   178, 178, 178)
+    <<QColor(  104, 104, 104)<<QColor(  255,  84,  84)
+    <<QColor(   84, 255,  84)<<QColor(  255, 255,  84)
+    <<QColor(   84,  84, 255)<<QColor(  255,  84, 255)
+    <<QColor(   84, 255, 255) <<QColor(  255, 255, 255);
+
+
+
+
+
+    for (int i = 0; i < 16; ++i) {
+        btnColor[i]->setColor(setting.value("Color"+QString::number(i),listColor.at(i)).value<QColor>());
+    }
+
     btnBColor->setColor(bcolor);
     btnFColor->setColor(fcolor);
     ui->hLayoutBackColor->addWidget(btnBColor);
     ui->hLayoutForColor->addWidget(btnFColor);
     //    ui->hLayoutForColor
+
 
     ui->fontComboBox->setFontFilters(QFontComboBox::MonospacedFonts
                                      | QFontComboBox::NonScalableFonts
@@ -44,7 +74,7 @@ SettingDialog::SettingDialog(QWidget *parent) :
     ui->ScrollBarComboBox->setCurrentIndex(sPos);
     ui->lineEditShell->setText(txt);
 
-    ui->widgetCostumColor->setEnabled(colorSheme==3);
+    ui->widgetCostumColor->setVisible(colorSheme==3);
 
 }
 
@@ -87,11 +117,18 @@ void SettingDialog::on_buttonBox_accepted()
     setting.setValue("Shell",ui->lineEditShell->text());
 
   setting.setValue("BackColor",btnBColor->color());
+
   setting.setValue("FontColor",btnFColor->color());
 
+  for (int i = 0; i < 16; ++i) {
+      setting.setValue("Color"+QString::number(i),btnColor[i]->color());
+  }
 }
 
 void SettingDialog::on_themesComboBox_currentIndexChanged(int index)
 {
-      ui->widgetCostumColor->setEnabled(index==3);
+      ui->widgetCostumColor->setVisible(index==3);
+      resize(100,100);
+      adjustSize();
+
 }

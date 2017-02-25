@@ -30,6 +30,9 @@ private:
     ButtonColor *btnFColor;
 
     ButtonColor *btnBColor;
+enum mi{mD=16};
+
+    ButtonColor *btnColor[mD];
 
 };
 

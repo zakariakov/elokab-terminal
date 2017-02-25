@@ -51,6 +51,7 @@
 #include "ScreenWindow.h"
 #include "TerminalCharacterDecoder.h"
 #include "ColorTables.h"
+#include <QSettings>
 
 using namespace Konsole;
 
@@ -130,20 +131,30 @@ void TerminalDisplay::setColorTable(const ColorEntry table[])
   update();
 }
 
-void TerminalDisplay::setCostumColorTable(QColor bColor,QColor fColor)
+void TerminalDisplay::setCostumColorTable()
 {
+
+    QSettings setting;
+    QColor fColor=setting.value("FontColor",QColor(255,255,255)).value<QColor>();
+    QColor bColor=setting.value("BackColor",QColor(0,0,0)).value<QColor>();
+    enum mi{mD=16};
+     QColor Color[mD];
+
+    for (int i = 0; i < 16; ++i) {
+       Color[i]=setting.value("Color"+QString::number(i)).value<QColor>();
+    }
 //==================================================
     ColorEntry costumw_color_table[TABLE_COLORS]={
                 ColorEntry(fColor,  0, 0), ColorEntry(bColor,  1, 0),
-                ColorEntry(QColor(     0,   0,   0),  0, 0), ColorEntry(QColor(   178,  24,  24),  0, 0),
-                ColorEntry(QColor(    24, 178,  24),  0, 0), ColorEntry(QColor(   178, 104,  24),  0, 0),
-                ColorEntry(QColor(    24,  24, 178),  0, 0), ColorEntry(QColor(   178,  24, 178),  0, 0),
-                ColorEntry(QColor(    24, 178, 178),  0, 0), ColorEntry(QColor(   178, 178, 178),  0, 0),
+                ColorEntry(Color[0],  0, 0), ColorEntry(Color[1],  0, 0),
+                ColorEntry(Color[2],  0, 0), ColorEntry(Color[3],  0, 0),
+                ColorEntry(Color[4],  0, 0), ColorEntry(Color[5],  0, 0),
+                ColorEntry(Color[6],  0, 0), ColorEntry(Color[7],  0, 0),
                 ColorEntry(fColor,  0, 1 ), ColorEntry(bColor,  1, 0 ),
-                ColorEntry(QColor(  104, 104, 104),  0, 0 ), ColorEntry(QColor(  255,  84,  84),  0, 0 ),
-                ColorEntry(QColor(   84, 255,  84),  0, 0 ), ColorEntry(QColor(  255, 255,  84),  0, 0 ),
-                ColorEntry(QColor(   84,  84, 255),  0, 0 ), ColorEntry(QColor(  255,  84, 255),  0, 0 ),
-                ColorEntry(QColor(   84, 255, 255),  0, 0 ), ColorEntry(QColor(  255, 255, 255),  0, 0 ) };
+                ColorEntry(Color[8],  0, 0 ), ColorEntry(Color[9],  0, 0 ),
+                ColorEntry(Color[10],  0, 0 ), ColorEntry(Color[11],  0, 0 ),
+                ColorEntry(Color[12],  0, 0 ), ColorEntry(Color[13],  0, 0 ),
+                ColorEntry(Color[14],  0, 0 ), ColorEntry(Color[15],  0, 0 ) };
  //=================================================
   for (int i = 0; i < TABLE_COLORS; i++)
       _colorTable[i] = costumw_color_table[i];

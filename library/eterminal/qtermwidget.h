@@ -76,7 +76,7 @@ public:
     void setTextCodec(QTextCodec *codec);
 
     //Color scheme, default is white on black
-    void setColorScheme(int scheme, QColor bColor, QColor fColor);
+    void setColorScheme(int scheme);
 
     //set size
     void setSize(int h, int v);

@@ -10,6 +10,7 @@
 #include <QDebug>
 #include <QSettings>
 #include <QMessageBox>
+#include <QApplication>
 MainWindow::MainWindow(const QString &wDir,
                        const QString &command,QWidget *parent) :
     QMainWindow(parent),
@@ -81,6 +82,10 @@ void MainWindow::setupActions()
     mActAboutQt=new QAction(tr("About Qt..."),this);
     connect(mActAboutQt,SIGNAL(triggered()),qApp,SLOT(aboutQt()));
 
+    mActQuit=new QAction(tr("Exit"),this);
+    connect(mActQuit,SIGNAL(triggered()),qApp,SLOT(quit()));
+    mActQuit->setShortcut(QKeySequence::Quit);
+
     QMenu *menu=new QMenu(this);
     menu->addAction(actionNewTab);
     menu->addSeparator();
@@ -94,9 +99,11 @@ void MainWindow::setupActions()
     menu->addSeparator();
     menu->addAction(mActAbout);
     menu->addAction(mActAboutQt);
+    menu->addSeparator();
+    menu->addAction(mActQuit);
 
     QToolButton *btnMenu=new QToolButton(this);
-    btnMenu->setShortcut(QKeySequence("Ctrl+L"));
+    btnMenu->setShortcut(QKeySequence("Ctrl+M"));
     btnMenu->setToolTip(tr("Menu")+"\n"+btnMenu->shortcut().toString());
     btnMenu->setIcon(QIcon::fromTheme("view-list-details",QIcon(":/icons/view-list-details.png")));
     btnMenu->setMenu(menu);
@@ -170,13 +177,13 @@ void MainWindow::addNewTab(const QString &wDir, const QString &command)
     QFont f=  setting.value("Font",font).value<QFont>();
     int color=setting.value("ColorSheme",0).toInt();
     int spos=setting.value("ScrollBar",0).toInt();
-    QColor fcolor=setting.value("FontColor",QColor(255,255,255)).value<QColor>();
-    QColor bcolor=setting.value("BackColor",QColor(0,0,0)).value<QColor>();
+//    QColor fcolor=setting.value("FontColor",QColor(255,255,255)).value<QColor>();
+//    QColor bcolor=setting.value("BackColor",QColor(0,0,0)).value<QColor>();
 
     QString shell=setting.value("Shell",QString()).toString();
     terminaleWidget-> setShellProgram(shell);
     terminaleWidget->setTerminalFont(f);
-    terminaleWidget->setColorScheme(color+1,bcolor,fcolor);
+    terminaleWidget->setColorScheme(color+1);
     terminaleWidget->setScrollBarPosition(spos);
     terminaleWidget->setInitialWorkingDirectory(wDir);
     terminaleWidget->startShellProgram();
@@ -281,7 +288,7 @@ void MainWindow::settingShow()
               termWidget->setScrollBarPosition(spos);
 
 
-              termWidget->setColorScheme(colorIndex,bColor,fColor);
+              termWidget->setColorScheme(colorIndex);
 
 
 
