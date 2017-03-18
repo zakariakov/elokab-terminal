@@ -16,6 +16,11 @@ MainWindow::MainWindow(const QString &wDir,
     QMainWindow(parent),
     ui(new Ui::MainWindow),numTab(0)
 {
+    //  this->setPalette(Qt::transparent);
+     this->setAttribute(Qt::WA_TranslucentBackground,true);
+
+
+    setAutoFillBackground(true);
     ui->setupUi(this);
     setupActions();
       QSettings setting;
@@ -23,7 +28,7 @@ MainWindow::MainWindow(const QString &wDir,
 
     const QClipboard *clipboard = QApplication::clipboard();
     connect(clipboard ,SIGNAL(dataChanged()),this,SLOT(clipboardChanged()));
-
+ui->tabWidget->setAutoFillBackground(true);
     connect(ui->tabWidget,SIGNAL(tabCloseRequested(int)),this,SLOT(closeTab(int)));
     connect(ui->tabWidget,SIGNAL(currentChanged(int)),this,SLOT(tabChanged(int)));
     clipboardChanged();
@@ -167,7 +172,8 @@ void MainWindow::addNewTab(const QString &wDir, const QString &command)
 {
     numTab++;
 
-    QTermWidget *terminaleWidget=new    QTermWidget(0);
+    QTermWidget *terminaleWidget=new    QTermWidget(0,this);
+
     QFont font = QApplication::font();
     font.setFamily("Monospace");
     font.setPointSize(10);
@@ -179,7 +185,7 @@ void MainWindow::addNewTab(const QString &wDir, const QString &command)
     int spos=setting.value("ScrollBar",0).toInt();
 //    QColor fcolor=setting.value("FontColor",QColor(255,255,255)).value<QColor>();
 //    QColor bcolor=setting.value("BackColor",QColor(0,0,0)).value<QColor>();
-
+int opacity=setting.value("Opacity",100).toInt();
     QString shell=setting.value("Shell",QString()).toString();
     terminaleWidget-> setShellProgram(shell);
     terminaleWidget->setTerminalFont(f);
@@ -188,6 +194,8 @@ void MainWindow::addNewTab(const QString &wDir, const QString &command)
     terminaleWidget->setInitialWorkingDirectory(wDir);
     terminaleWidget->startShellProgram();
 
+
+terminaleWidget->setTerminalOpacity(qreal(opacity)/100);
     if(!command.isEmpty())
     {
        // terminaleWidget-> setShellProgram(command);
@@ -275,8 +283,9 @@ void MainWindow::settingShow()
         QFont font=dlg->getFont();
         int colorIndex=dlg->getColorSheme();
         int spos=dlg->getScrollBar();
-        QColor bColor=dlg->getBcolor();
-        QColor fColor=dlg->getFcolor();
+//        QColor bColor=dlg->getBcolor();
+//        QColor fColor=dlg->getFcolor();
+        int opacity=dlg->getOpacity();
         for (int i = 0; i < ui->tabWidget->count(); ++i)
        {
             QTermWidget *termWidget= qobject_cast<QTermWidget *>(ui->tabWidget->widget(i));
@@ -290,7 +299,7 @@ void MainWindow::settingShow()
 
               termWidget->setColorScheme(colorIndex);
 
-
+              termWidget->setTerminalOpacity(qreal(opacity)/100);
 
            }
 

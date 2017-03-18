@@ -34,6 +34,7 @@ SettingDialog::SettingDialog(QWidget *parent) :
     QString txt=setting.value("Shell","/bin/bash").toString();
     QColor fcolor=setting.value("FontColor",QColor(255,255,255)).value<QColor>();
     QColor bcolor=setting.value("BackColor",QColor(0,0,0)).value<QColor>();
+    int opacity=setting.value("Opacity",100).toInt();
 
 
 
@@ -73,7 +74,7 @@ SettingDialog::SettingDialog(QWidget *parent) :
     ui->themesComboBox->setCurrentIndex(colorSheme);
     ui->ScrollBarComboBox->setCurrentIndex(sPos);
     ui->lineEditShell->setText(txt);
-
+    ui->spinBoxOPacity->setValue(opacity);
     ui->widgetCostumColor->setVisible(colorSheme==3);
 
 }
@@ -106,6 +107,11 @@ QColor SettingDialog::getFcolor()
      return btnFColor->color();
 }
 
+int SettingDialog::getOpacity()
+{
+     return ui->spinBoxOPacity->value();
+}
+
 void SettingDialog::on_buttonBox_accepted()
 {
     QSettings setting;
@@ -119,7 +125,7 @@ void SettingDialog::on_buttonBox_accepted()
   setting.setValue("BackColor",btnBColor->color());
 
   setting.setValue("FontColor",btnFColor->color());
-
+setting.setValue("Opacity",ui->spinBoxOPacity->value());
   for (int i = 0; i < 16; ++i) {
       setting.setValue("Color"+QString::number(i),btnColor[i]->color());
   }
@@ -130,5 +136,9 @@ void SettingDialog::on_themesComboBox_currentIndexChanged(int index)
       ui->widgetCostumColor->setVisible(index==3);
       resize(100,100);
       adjustSize();
-
+QTimer::singleShot(10,this,SLOT(meAdjustSize() ));
+}
+void SettingDialog::meAdjustSize()
+{
+     adjustSize();
 }

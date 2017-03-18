@@ -53,6 +53,26 @@
 #include "ColorTables.h"
 #include <QSettings>
 
+#include <QApplication>
+#include <QBoxLayout>
+#include <QClipboard>
+#include <QKeyEvent>
+#include <QEvent>
+#include <QTime>
+#include <QFile>
+#include <QGridLayout>
+#include <QLabel>
+#include <QLayout>
+#include <QPainter>
+#include <QPixmap>
+#include <QScrollBar>
+#include <QStyle>
+#include <QTimer>
+#include <QtDebug>
+#include <QUrl>
+#include <QMimeData>
+#include <QDrag>
+
 using namespace Konsole;
 
 #ifndef loc
@@ -362,7 +382,7 @@ TerminalDisplay::TerminalDisplay(QWidget *parent)
 
   // this is an important optimization, it tells Qt
   // that TerminalDisplay will handle repainting its entire area.
-  setAttribute(Qt::WA_OpaquePaintEvent);
+  setAttribute(Qt::WA_OpaquePaintEvent,false);
 
   _gridLayout = new QGridLayout(this);
   _gridLayout->setMargin(0);
@@ -582,14 +602,37 @@ void TerminalDisplay::drawBackground(QPainter& painter, const QRect& rect, const
         // applications.
         //
 
-        QRect scrollBarArea = _scrollBar->isVisible() ?
-                                    rect.intersected(_scrollBar->geometry()) :
-                                    QRect();
-        QRegion contentsRegion = QRegion(rect).subtracted(scrollBarArea);
-        QRect contentsRect = contentsRegion.boundingRect();
+//        QRect scrollBarArea = _scrollBar->isVisible() ?
+//                                    rect.intersected(_scrollBar->geometry()) :
+//                                    QRect();
+//        QRegion contentsRegion = QRegion(rect).subtracted(scrollBarArea);
+//        QRect contentsRect = contentsRegion.boundingRect();
 
-        if ( HAVE_TRANSPARENCY && qAlpha(_blendColor) < 0xff && useOpacitySetting )
-        {
+//        if ( HAVE_TRANSPARENCY && qAlpha(_blendColor) < 0xff && useOpacitySetting )
+//        {
+//            QColor color(backgroundColor);
+//            color.setAlpha(qAlpha(_blendColor));
+
+//            painter.save();
+//            painter.setCompositionMode(QPainter::CompositionMode_Source);
+//            painter.fillRect(contentsRect, color);
+//            painter.restore();
+//        }
+//        else {
+//      painter.fillRect(contentsRect, backgroundColor);
+//       }
+
+//        painter.fillRect(scrollBarArea,_scrollBar->palette().background());
+
+    QRect scrollBarArea = _scrollBar->isVisible() ?
+                                rect.intersected(_scrollBar->geometry()) :
+                                QRect();
+    QRegion contentsRegion = QRegion(rect).subtracted(scrollBarArea);
+    QRect contentsRect = contentsRegion.boundingRect();
+
+    if ( HAVE_TRANSPARENCY && qAlpha(_blendColor) < 0xff && useOpacitySetting )
+    {
+
             QColor color(backgroundColor);
             color.setAlpha(qAlpha(_blendColor));
 
@@ -597,12 +640,12 @@ void TerminalDisplay::drawBackground(QPainter& painter, const QRect& rect, const
             painter.setCompositionMode(QPainter::CompositionMode_Source);
             painter.fillRect(contentsRect, color);
             painter.restore();
-        }
-        else {
-      painter.fillRect(contentsRect, backgroundColor);
-  }
 
-        painter.fillRect(scrollBarArea,_scrollBar->palette().background());
+    }
+    else
+        painter.fillRect(contentsRect, backgroundColor);
+
+    painter.fillRect(scrollBarArea,_scrollBar->palette().background());
 }
 
 void TerminalDisplay::drawCursor(QPainter& painter,
@@ -1136,12 +1179,13 @@ void TerminalDisplay::paintEvent( QPaintEvent* pe )
     drawBackground(paint,rect,palette().background().color(),	true /* use opacity setting */);
     drawContents(paint, rect);
   }
-//    drawBackground(paint,contentsRect(),palette().background().color(),	true /* use opacity setting */);
-//    drawContents(paint, contentsRect());
+    drawBackground(paint,contentsRect(),palette().background().color(),	true /* use opacity setting */);
+    drawContents(paint, contentsRect());
   drawInputMethodPreeditString(paint,preeditRect());
   paintFilters(paint);
 
   paint.end();
+
 }
 
 QPoint TerminalDisplay::cursorPosition() const

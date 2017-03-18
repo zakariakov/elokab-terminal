@@ -16,7 +16,13 @@
   <property name="windowTitle">
    <string>Elokab-Terminal</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <property name="locale">
     <locale language="English" country="UnitedStates"/>
    </property>
@@ -35,6 +41,9 @@
     </property>
     <item>
      <widget class="QTabWidget" name="tabWidget">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <property name="currentIndex">
        <number>-1</number>
       </property>

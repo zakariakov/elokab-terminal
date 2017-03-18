@@ -19,11 +19,12 @@ int getColorSheme();
 int getScrollBar();
 QColor getBcolor();
 QColor getFcolor();
+int getOpacity();
 private slots:
 void on_buttonBox_accepted();
 
 void on_themesComboBox_currentIndexChanged(int index);
-
+void meAdjustSize();
 private:
     Ui::SettingDialog *ui;
 

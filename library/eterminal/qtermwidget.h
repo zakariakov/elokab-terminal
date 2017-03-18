@@ -100,6 +100,7 @@ public:
     void receiveData(bool);
 
 
+
     void clear();
     // Set zoom
     void zoomIn();
