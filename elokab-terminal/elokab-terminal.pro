@@ -55,3 +55,8 @@ linux-g++*: {
 #INSTALL
  target.path = /usr/bin
  INSTALLS +=   target
+
+DISTFILES += \
+    ../LICENSE \
+    ../INSTALL \
+    ../README.md

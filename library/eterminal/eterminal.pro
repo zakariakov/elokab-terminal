@@ -46,3 +46,6 @@ SOURCES 	= TerminalCharacterDecoder.cpp \
 target.path = /usr/lib
 INSTALLS    += target
 	
+
+DISTFILES += \
+    README

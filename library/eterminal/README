@@ -5,3 +5,5 @@ For creating shared lib (*.so) uncomment "dll" in "CONFIG" line in *.pro-file
 
 Library was tested both with HAVE_POSIX_OPENPT and HAVE_GETPT precompiler directives, 
 defined in "DEFINES" line. You should select variant which would be correct for your system.
+
+This library has been modified by AbuZakaria to support Arabic language
