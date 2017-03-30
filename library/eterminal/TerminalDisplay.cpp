@@ -53,25 +53,6 @@
 #include "ColorTables.h"
 #include <QSettings>
 
-#include <QApplication>
-#include <QBoxLayout>
-#include <QClipboard>
-#include <QKeyEvent>
-#include <QEvent>
-#include <QTime>
-#include <QFile>
-#include <QGridLayout>
-#include <QLabel>
-#include <QLayout>
-#include <QPainter>
-#include <QPixmap>
-#include <QScrollBar>
-#include <QStyle>
-#include <QTimer>
-#include <QtDebug>
-#include <QUrl>
-#include <QMimeData>
-#include <QDrag>
 
 using namespace Konsole;
 
@@ -382,7 +363,7 @@ TerminalDisplay::TerminalDisplay(QWidget *parent)
 
   // this is an important optimization, it tells Qt
   // that TerminalDisplay will handle repainting its entire area.
-  setAttribute(Qt::WA_OpaquePaintEvent,false);
+  setAttribute(Qt::WA_OpaquePaintEvent,true);
 
   _gridLayout = new QGridLayout(this);
   _gridLayout->setMargin(0);

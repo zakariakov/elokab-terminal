@@ -9,5 +9,6 @@
         <file>icons/view-list-details.png</file>
         <file>icons/terminal.png</file>
         <file>icons/color-picker.png</file>
+        <file>icons/application-exit.png</file>
     </qresource>
 </RCC>

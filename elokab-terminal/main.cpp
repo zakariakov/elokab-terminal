@@ -5,6 +5,17 @@
 #include <QDebug>
 #include <QLibraryInfo>
 #include <QSettings>
+
+void helpMe()
+{
+    printf("Usage: elokab-terminal [OPTION]\n");
+    puts("OPTION:\n");
+    puts(" -h  --help                            Print this help.\n");
+    puts(" -w  --working-directory  <dir>        Start session with specified work directory.\n");
+    puts(" -e, --execute            <command>    Execute command instead of shel\n");
+    puts(" -b, --hide-border                     FramelessWindow no border\n");
+}
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -49,42 +60,35 @@ int main(int argc, char *argv[])
     QIcon icon=QIcon::fromTheme("terminal",QIcon(":/icons/terminal.png"));
     a.setWindowIcon(icon);
     //------------------------------------argument-------------------------------------------------
-    QString workdir,command;
+    QString workdir= QDir::currentPath(),command;
+    bool framless=false;
     QStringList args = a.arguments();
 
     if(args.count()>1)
     {
 
-        QString help=QObject::tr
-                ("Usage: elokab-terminal [OPTION]\n"
-                 " \n"
-                 "OPTION:\n"
-                 " -h  --help                            Print this help.\n"
-                 " -w  --working-directory  <dir>        Start session with specified work directory.\n"
-                 " -e, --execute            <command>    Execute command instead of shel\n"
-                 );
+
 
         QString arg = args.at(1);
-        if (arg == "-h" || arg == "--help" ) { qDebug()<<help;return 0; }
+        if (arg == "-h" || arg == "--help" ) {helpMe();return 0; }
         else if (arg == "-w" || arg == "--working-directory" )  {workdir=args.at(2);}
-        else if (arg == "-e" ||arg == "-x" || arg == "--execute"|| arg == "--command" )     {command=args.at(2);}
-
+        else if (arg == "-e" ||arg == "-x" || arg == "--execute"|| arg == "--command" ) {command=args.at(2);}
+        else if (arg == "-b" || arg == "--hide-border" ) {framless=true;}
         else {
             QDir dir(arg);
             if(dir.exists())
                 workdir=arg;
             else
-               qWarning() << "Unknown option: " << args;  qDebug()<<help; return 0;}
+                 qWarning() << "echo Unknown option: " << args;  helpMe(); return 0;
+               // command= "echo \"Unknown option: " + arg+"\n"+ help+"\"";
+           }
 
 
     }
+         //   qWarning() << "echo Unknown option: " << args;  qDebug()<<help; return 0;}
     qDebug()<<"=======main========="<<workdir<<command;
 
-
-    if (workdir.isEmpty())
-        workdir = QDir::currentPath();
-
-    MainWindow w(workdir,command);
+    MainWindow w(workdir,command,framless);
 
     w.show();
 

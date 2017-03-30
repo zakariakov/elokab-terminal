@@ -15,6 +15,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(const QString &wDir=QDir::homePath(),
                         const QString &command=QString(),
+                        bool framless=false,
                         QWidget *parent = 0);
     ~MainWindow();
 signals:
@@ -58,7 +59,11 @@ private:
 QAction *mActAbout;
 QAction *mActAboutQt;
 QAction *mActQuit;
+
+QMenu *mMenu;
     int numTab;
+
+    bool mFramless;
 };
 
 #endif // MAINWINDOW_H

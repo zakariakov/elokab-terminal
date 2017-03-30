@@ -9,82 +9,68 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="49"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="57"/>
         <source>New Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="55"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="63"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="60"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="68"/>
         <source>Past</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="66"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="74"/>
         <source>Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="71"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="79"/>
         <source>Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="77"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="85"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="82"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="90"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="87"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="95"/>
         <source>About Qt...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="90"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="98"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="112"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="121"/>
         <source>Menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="207"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="216"/>
         <source>Shell </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="313"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="322"/>
         <source>About Elokab-terminal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="314"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="323"/>
         <source>&lt;p&gt;&lt;b&gt;Elokab-terminal %1&lt;/b&gt;&lt;/p&gt;&lt;p&gt;A lightweight  terminal emulator&lt;p&gt; See &lt;a href=&quot;https://elkirtasse.sourceforge.net/&quot;&gt;elkirtasse.sourceforge.net&lt;/a&gt; for more information.&lt;/p&gt;&lt;p&gt;&amp;copy; About Zakaria&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>QObject</name>
-    <message>
-        <location filename="../../../../../elokab-terminal/main.cpp" line="59"/>
-        <source>Usage: elokab-terminal [OPTION]
- 
-OPTION:
- -h  --help                            Print this help.
- -w  --working-directory  &lt;dir&gt;        Start session with specified work directory.
- -e, --execute            &lt;command&gt;    Execute command instead of shel
-</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -111,92 +97,92 @@ OPTION:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="71"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="77"/>
         <source>Themes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="85"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="130"/>
         <source>Color Sheme :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="93"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="138"/>
         <source>Black White</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="98"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="143"/>
         <source>Black Green</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="103"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="148"/>
         <source>Light Yellow Black</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="108"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="153"/>
         <source>Costum Color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="126"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="171"/>
         <source>Font Color:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="137"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="182"/>
         <source>BackGround Color:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="154"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="91"/>
         <source>OPacity:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="161"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="98"/>
         <source> %</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="179"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="191"/>
         <source>Scheme :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="195"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="207"/>
         <source>ScrollBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="207"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="219"/>
         <source>Position :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="215"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="227"/>
         <source>No ScrollBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="220"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="232"/>
         <source>ScrollBar Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="225"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="237"/>
         <source>ScrollBar Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="236"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="248"/>
         <source>Shell</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="242"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="254"/>
         <source>/bin/bash</source>
         <translation type="unfinished"></translation>
     </message>

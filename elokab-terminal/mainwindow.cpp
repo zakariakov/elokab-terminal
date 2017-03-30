@@ -12,23 +12,31 @@
 #include <QMessageBox>
 #include <QApplication>
 MainWindow::MainWindow(const QString &wDir,
-                       const QString &command,QWidget *parent) :
+                       const QString &command,
+                        bool framless,
+                       QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),numTab(0)
 {
-    //  this->setPalette(Qt::transparent);
-     this->setAttribute(Qt::WA_TranslucentBackground,true);
+
+    this->setAttribute(Qt::WA_TranslucentBackground,true);
+
+
+        if(framless)
+             setWindowFlags( Qt::FramelessWindowHint /*| Qt::WindowStaysOnTopHint*/);
+
+
 
 
     setAutoFillBackground(true);
     ui->setupUi(this);
     setupActions();
-      QSettings setting;
+    QSettings setting;
     restoreGeometry(setting.value("Geometry").toByteArray());
 
     const QClipboard *clipboard = QApplication::clipboard();
     connect(clipboard ,SIGNAL(dataChanged()),this,SLOT(clipboardChanged()));
-ui->tabWidget->setAutoFillBackground(true);
+    ui->tabWidget->setAutoFillBackground(true);
     connect(ui->tabWidget,SIGNAL(tabCloseRequested(int)),this,SLOT(closeTab(int)));
     connect(ui->tabWidget,SIGNAL(currentChanged(int)),this,SLOT(tabChanged(int)));
     clipboardChanged();
@@ -88,30 +96,31 @@ void MainWindow::setupActions()
     connect(mActAboutQt,SIGNAL(triggered()),qApp,SLOT(aboutQt()));
 
     mActQuit=new QAction(tr("Exit"),this);
+    mActQuit->setIcon(QIcon::fromTheme("application-exit",QIcon(":/icons/application-exit")));
     connect(mActQuit,SIGNAL(triggered()),qApp,SLOT(quit()));
     mActQuit->setShortcut(QKeySequence::Quit);
 
-    QMenu *menu=new QMenu(this);
-    menu->addAction(actionNewTab);
-    menu->addSeparator();
-    menu->addAction(actionCopy);
-    menu->addAction(actionPast);
-    menu->addSeparator();
-    menu->addAction(mZoomIn);
-    menu->addAction(mZoomOut);
-    menu->addSeparator();
-    menu->addAction(mActSetting);
-    menu->addSeparator();
-    menu->addAction(mActAbout);
-    menu->addAction(mActAboutQt);
-    menu->addSeparator();
-    menu->addAction(mActQuit);
+    mMenu=new QMenu(this);
+    mMenu->addAction(actionNewTab);
+    mMenu->addSeparator();
+    mMenu->addAction(actionCopy);
+    mMenu->addAction(actionPast);
+    mMenu->addSeparator();
+    mMenu->addAction(mZoomIn);
+    mMenu->addAction(mZoomOut);
+    mMenu->addSeparator();
+    mMenu->addAction(mActSetting);
+    mMenu->addSeparator();
+    mMenu->addAction(mActAbout);
+    mMenu->addAction(mActAboutQt);
+    mMenu->addSeparator();
+    mMenu->addAction(mActQuit);
 
     QToolButton *btnMenu=new QToolButton(this);
     btnMenu->setShortcut(QKeySequence("Ctrl+M"));
     btnMenu->setToolTip(tr("Menu")+"\n"+btnMenu->shortcut().toString());
     btnMenu->setIcon(QIcon::fromTheme("view-list-details",QIcon(":/icons/view-list-details.png")));
-    btnMenu->setMenu(menu);
+    btnMenu->setMenu(mMenu);
     btnMenu->setAutoRaise(true);
     btnMenu->setPopupMode(QToolButton::InstantPopup);
     ui->tabWidget->setCornerWidget(btnMenu,Qt::TopRightCorner);
@@ -162,10 +171,10 @@ void MainWindow::clipboardChanged()
 
 void MainWindow::customContextMenu(QPoint)
 {
-    QMenu menu;
-    menu.addAction(actionCopy);
-    menu.addAction(actionPast);
-    menu.exec(QCursor::pos());
+//    QMenu menu;
+//    menu.addAction(actionCopy);
+//    menu.addAction(actionPast);
+    mMenu->exec(QCursor::pos());
 }
 
 void MainWindow::addNewTab(const QString &wDir, const QString &command)
