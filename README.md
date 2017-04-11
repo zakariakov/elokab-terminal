@@ -10,4 +10,11 @@ ce programme fait partie de elokab desktop
 lightweight terminal program that supports the Arabic language......
 this program is part of the elokab desktop
 
+![Screenshots](https://github.com/zakariakov/screenshots/blob/master/elokab-terminal.png)
 
+# Install
+git clone https://github.com/zakariakov/elokab-terminal.git
+cd elokab-terminal
+qmake
+make
+sudo make install
