@@ -23,3 +23,11 @@ qmake
 make
 
 sudo make install
+
+# AppImage
+
+x86_64
+
+https://sourceforge.net/projects/elokab/files/elokab-terminal/Elokab_Terminal-x86_64.AppImage/download
+
+
