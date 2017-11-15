@@ -198,7 +198,7 @@ int opacity=setting.value("Opacity",100).toInt();
     QString shell=setting.value("Shell",QString()).toString();
     terminaleWidget-> setShellProgram(shell);
     terminaleWidget->setTerminalFont(f);
-    terminaleWidget->setColorScheme(color+1);
+    terminaleWidget->setColorScheme(4);
     terminaleWidget->setScrollBarPosition(spos);
     terminaleWidget->setInitialWorkingDirectory(wDir);
     terminaleWidget->startShellProgram();
@@ -306,7 +306,7 @@ void MainWindow::settingShow()
               termWidget->setScrollBarPosition(spos);
 
 
-              termWidget->setColorScheme(colorIndex);
+              termWidget->setColorScheme(4);
 
               termWidget->setTerminalOpacity(qreal(opacity)/100);
 

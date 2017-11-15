@@ -56,7 +56,9 @@ int main(int argc, char *argv[])
     //TODO
     translator.load(p);
     a.installTranslator(&translator);
+    QLocale lx=QLocale(locale);
 
+    a.setLayoutDirection(lx.textDirection());
     QIcon icon=QIcon::fromTheme("terminal",QIcon(":/icons/terminal.png"));
     a.setWindowIcon(icon);
     //------------------------------------argument-------------------------------------------------
@@ -93,5 +95,4 @@ int main(int argc, char *argv[])
     w.show();
 
     return a.exec();
-
 }

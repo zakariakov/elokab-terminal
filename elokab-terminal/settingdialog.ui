@@ -93,6 +93,25 @@
          </widget>
         </item>
         <item>
+         <widget class="QSlider" name="horizontalSlider">
+          <property name="minimum">
+           <number>10</number>
+          </property>
+          <property name="maximum">
+           <number>100</number>
+          </property>
+          <property name="singleStep">
+           <number>5</number>
+          </property>
+          <property name="value">
+           <number>100</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QSpinBox" name="spinBoxOPacity">
           <property name="suffix">
            <string> %</string>
@@ -133,26 +152,27 @@
         </item>
         <item>
          <widget class="QComboBox" name="themesComboBox">
+          <property name="currentIndex">
+           <number>-1</number>
+          </property>
           <item>
            <property name="text">
-            <string>Black White</string>
+            <string>DEfault</string>
            </property>
           </item>
-          <item>
-           <property name="text">
-            <string>Black Green</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Light Yellow Black</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Costum Color</string>
-           </property>
-          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Get sheme</string>
+          </property>
          </widget>
         </item>
        </layout>
@@ -292,8 +312,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
+     <x>257</x>
+     <y>576</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -308,12 +328,44 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
+     <x>325</x>
+     <y>576</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
      <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBoxOPacity</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>382</x>
+     <y>115</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>425</x>
+     <y>108</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBoxOPacity</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>horizontalSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>417</x>
+     <y>122</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>121</y>
     </hint>
    </hints>
   </connection>

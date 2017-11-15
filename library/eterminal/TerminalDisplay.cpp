@@ -134,16 +134,28 @@ void TerminalDisplay::setColorTable(const ColorEntry table[])
 
 void TerminalDisplay::setCostumColorTable()
 {
+    //DEFAULT COLORS
+    QList<QColor> listColor;
+    listColor<<QColor(0,   0,   0)<<QColor(178,  24,  24)
+            <<QColor(    24, 178,  24)<<QColor(   178, 104,  24)
+           <<QColor(    24,  24, 178)<<QColor(   178,  24, 178)
+          <<QColor(    24, 178, 178)<<QColor(   178, 178, 178)
+         <<QColor(  104, 104, 104)<<QColor(  255,  84,  84)
+        <<QColor(   84, 255,  84)<<QColor(  255, 255,  84)
+       <<QColor(   84,  84, 255)<<QColor(  255,  84, 255)
+      <<QColor(   84, 255, 255) <<QColor(  255, 255, 255);
 
     QSettings setting;
-    QColor fColor=setting.value("FontColor",QColor(255,255,255)).value<QColor>();
-    QColor bColor=setting.value("BackColor",QColor(0,0,0)).value<QColor>();
+     setting.beginGroup("colors");
+    QColor fColor=setting.value("foreground",QColor(255,255,255)).value<QColor>();
+    QColor bColor=setting.value("background",QColor(0,0,0)).value<QColor>();
     enum mi{mD=16};
      QColor Color[mD];
 
     for (int i = 0; i < 16; ++i) {
-       Color[i]=setting.value("Color"+QString::number(i)).value<QColor>();
+       Color[i]=setting.value("color"+QString::number(i),listColor.at(i)).value<QColor>();
     }
+    setting.endGroup();
 //==================================================
     ColorEntry costumw_color_table[TABLE_COLORS]={
                 ColorEntry(fColor,  0, 0), ColorEntry(bColor,  1, 0),

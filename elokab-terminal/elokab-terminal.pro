@@ -21,7 +21,6 @@ UI_DIR = build
 INCLUDEPATH +=build
 #-------
 
-
 LIBS += $(SUBLIBS)  -L../usr/lib -L$$PWD/../usr/lib  -leterminal
 QMAKE_INCDIR += $$PWD/../library/include $$PWD/../library
 

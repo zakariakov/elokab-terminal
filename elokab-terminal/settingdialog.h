@@ -25,6 +25,8 @@ void on_buttonBox_accepted();
 
 void on_themesComboBox_currentIndexChanged(int index);
 void meAdjustSize();
+void on_pushButton_clicked();
+void loadColorShemes(const QString &fileNames);
 private:
     Ui::SettingDialog *ui;
 
