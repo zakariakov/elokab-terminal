@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>490</width>
-    <height>586</height>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -271,7 +271,7 @@
       <item>
        <widget class="QLineEdit" name="lineEditShell">
         <property name="text">
-         <string>/bin/bash</string>
+         <string/>
         </property>
        </widget>
       </item>

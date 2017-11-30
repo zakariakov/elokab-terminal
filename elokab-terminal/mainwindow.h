@@ -16,12 +16,14 @@ public:
     explicit MainWindow(const QString &wDir=QDir::homePath(),
                         const QString &command=QString(),
                         bool framless=false,
+                        const QString &geometry=QString(),
+                        bool ontop=false,
                         QWidget *parent = 0);
     ~MainWindow();
 signals:
     void clipboardAvailable(bool);
 private slots:
-    void on_actionTest_triggered();
+
 
     void setupActions();
 
@@ -36,9 +38,12 @@ private slots:
     void customContextMenu(QPoint);
     void addNewTab(const QString &wDir=QDir::homePath(),
                    const QString &command=QString());
+
+    void changeTitle(const QString &txt);
+
     QTermWidget *termWidget();
     void closeTab(int index);
-    void tabChanged(int);
+    void tabChanged(int index);
     void zoomOut();
     void zoomIn();
     void settingShow();
@@ -56,14 +61,13 @@ private:
     QAction *mZoomIn;
 
     QAction *mActSetting;
-QAction *mActAbout;
-QAction *mActAboutQt;
-QAction *mActQuit;
+    QAction *mActAbout;
+    QAction *mActAboutQt;
+    QAction *mActQuit;
 
-QMenu *mMenu;
-    int numTab;
+    QMenu *mMenu;
 
-    bool mFramless;
+
 };
 
 #endif // MAINWINDOW_H

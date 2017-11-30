@@ -24,7 +24,28 @@ make
 
 sudo make install
 
-# AppImage
+#  Nautilus script - terminal-here
+
+This script will open a elokab-Terminal in the current directory.
+
+Save this script under $HOME/.local/nautilus/scripts/terminal-here. Make sure that
+
+you give this file executable permission. { chmod +x terminal-here }
+
+        #!/bin/bash
+
+        if [ "$NAUTILUS_SCRIPT_CURRENT_URI" == "x-nautilus-desktop:///" ]; then
+                DIR=$HOME
+        else
+                        DIR=`echo $NAUTILUS_SCRIPT_CURRENT_URI | sed 's/^file:\/\///' | sed 's/%20/ /g'`
+        fi
+
+        elokab-terminal --working-directory "$DIR"
+
+        exit 0
+
+
+# AppImage v:02
 
 x86_64
 

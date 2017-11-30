@@ -34,7 +34,7 @@ SettingDialog::SettingDialog(QWidget *parent) :
     QFont f=  setting.value("Font",font).value<QFont>();
     int colorSheme=setting.value("ColorSheme",0).toInt();
     int sPos=setting.value("ScrollBar",0).toInt();
-    QString txt=setting.value("Shell","/bin/bash").toString();
+    QString txt=setting.value("Shell").toString();
     int opacity=setting.value("Opacity",100).toInt();
 
 

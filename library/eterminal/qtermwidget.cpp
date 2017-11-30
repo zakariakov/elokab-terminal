@@ -23,6 +23,7 @@
 #include <QTextCodec>
 #include <QKeyEvent>
 #include <QSettings>
+#include <QDebug>
 // Konsole
 #include "Session.h"
 #include "TerminalDisplay.h"
@@ -137,7 +138,7 @@ void QTermWidget::init()
 
   connect(m_impl->m_session, SIGNAL(finished()), this, SLOT(sessionFinished()));
   connect(m_impl->m_terminalDisplay, SIGNAL(selectionAvailable(bool)), this, SIGNAL(selectionAvailable(bool)));
-
+ connect(m_impl->m_session, SIGNAL(titleChanged()), this, SLOT(changeTitle()));
 }
 
 
@@ -146,7 +147,17 @@ QTermWidget::~QTermWidget()
     m_impl->m_session->close();
   emit destroyed();
 }
+void QTermWidget::changeTitle()
+{
 
+     if ( m_impl->m_session ){
+
+         QString tit=m_impl->m_session->userTitle();
+         m_title=tit;
+          emit titleChanged(tit);
+     }
+
+}
 
 void QTermWidget::setTerminalFont(QFont &font)
 {

@@ -13,26 +13,43 @@
 #include <QApplication>
 MainWindow::MainWindow(const QString &wDir,
                        const QString &command,
-                        bool framless,
+                       bool framless,
+                       const QString &geometry,
+                       bool ontop,
                        QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),numTab(0)
+    ui(new Ui::MainWindow)
 {
 
     this->setAttribute(Qt::WA_TranslucentBackground,true);
+   setAutoFillBackground(true);
+   ui->setupUi(this);
+   setupActions();
+//Framless Border
+    if(framless && ontop)
+        setWindowFlags( Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    else if(framless && !ontop)
+         setWindowFlags( Qt::FramelessWindowHint /*| Qt::WindowStaysOnTopHint*/);
+     else if(!framless && ontop)
+         setWindowFlags( /*Qt::FramelessWindowHint |*/ Qt::WindowStaysOnTopHint);
 
 
-        if(framless)
-             setWindowFlags( Qt::FramelessWindowHint /*| Qt::WindowStaysOnTopHint*/);
-
-
-
-
-    setAutoFillBackground(true);
-    ui->setupUi(this);
-    setupActions();
+    //Geometry
+   QStringList list=geometry.split(",");
+  if(!geometry.isEmpty()&& list.count()==4){
+          int _x=QString(list.at(0)).toInt();
+          int _y=QString(list.at(1)).toInt();
+          int _w=QString(list.at(2)).toInt();
+          int _h=QString(list.at(3)).toInt();
+          qDebug()<<"MainWindow Geometry:"<<_x<<_y<<_w<<_h;
+          setGeometry(_x,_y,_w,_h);
+  }else{
     QSettings setting;
     restoreGeometry(setting.value("Geometry").toByteArray());
+  }
+
+
+
 
     const QClipboard *clipboard = QApplication::clipboard();
     connect(clipboard ,SIGNAL(dataChanged()),this,SLOT(clipboardChanged()));
@@ -133,26 +150,22 @@ void MainWindow::setupActions()
 
 }
 
-void MainWindow::on_actionTest_triggered()
-{
-    termWidget()->clear();
-termWidget()->zoomIn();
-}
+
 
 void MainWindow::copySelectedText()
 {
-  termWidget()->CopySelection();
+    termWidget()->CopySelection();
 }
 
 void MainWindow::pastText()
 {
     const QClipboard *clipboard = QApplication::clipboard();
-       const QMimeData *mimeData = clipboard->mimeData();
+    const QMimeData *mimeData = clipboard->mimeData();
 
-       if (mimeData->hasText()) {
-           QString text =mimeData->text();
-          termWidget()->sendText(text);
-       }
+    if (mimeData->hasText()) {
+        QString text =mimeData->text();
+        termWidget()->sendText(text);
+    }
 }
 
 void MainWindow::clipboardChanged()
@@ -161,25 +174,25 @@ void MainWindow::clipboardChanged()
     const QMimeData *mimeData = clipboard->mimeData();
     if(mimeData->hasText()){
         if(!mimeData->text().isEmpty())
-       emit clipboardAvailable(true);
+            emit clipboardAvailable(true);
         else
             emit clipboardAvailable(false);
     }else{
-       emit clipboardAvailable(false);
+        emit clipboardAvailable(false);
     }
 }
 
 void MainWindow::customContextMenu(QPoint)
 {
-//    QMenu menu;
-//    menu.addAction(actionCopy);
-//    menu.addAction(actionPast);
+    //    QMenu menu;
+    //    menu.addAction(actionCopy);
+    //    menu.addAction(actionPast);
     mMenu->exec(QCursor::pos());
 }
 
 void MainWindow::addNewTab(const QString &wDir, const QString &command)
 {
-    numTab++;
+
 
     QTermWidget *terminaleWidget=new    QTermWidget(0,this);
 
@@ -190,36 +203,46 @@ void MainWindow::addNewTab(const QString &wDir, const QString &command)
 
     QSettings setting;
     QFont f=  setting.value("Font",font).value<QFont>();
-    int color=setting.value("ColorSheme",0).toInt();
+    //   int color=setting.value("ColorSheme",0).toInt();
     int spos=setting.value("ScrollBar",0).toInt();
-//    QColor fcolor=setting.value("FontColor",QColor(255,255,255)).value<QColor>();
-//    QColor bcolor=setting.value("BackColor",QColor(0,0,0)).value<QColor>();
-int opacity=setting.value("Opacity",100).toInt();
+    //    QColor fcolor=setting.value("FontColor",QColor(255,255,255)).value<QColor>();
+    //    QColor bcolor=setting.value("BackColor",QColor(0,0,0)).value<QColor>();
+    int opacity=setting.value("Opacity",100).toInt();
     QString shell=setting.value("Shell",QString()).toString();
     terminaleWidget-> setShellProgram(shell);
     terminaleWidget->setTerminalFont(f);
+    //TODO FIXME
     terminaleWidget->setColorScheme(4);
     terminaleWidget->setScrollBarPosition(spos);
     terminaleWidget->setInitialWorkingDirectory(wDir);
     terminaleWidget->startShellProgram();
 
 
-terminaleWidget->setTerminalOpacity(qreal(opacity)/100);
+    terminaleWidget->setTerminalOpacity(qreal(opacity)/100);
     if(!command.isEmpty())
     {
-       // terminaleWidget-> setShellProgram(command);
-         terminaleWidget->getOutputFromCommand(command);
+        // terminaleWidget-> setShellProgram(command);
+        terminaleWidget->getOutputFromCommand(command);
     }
 
     terminaleWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     QIcon icon=QIcon::fromTheme("terminal",QIcon(":/icons/terminal.png"));
-    ui->tabWidget->addTab(terminaleWidget,icon,tr("Shell ")+QString::number(numTab));
+    ui->tabWidget->addTab(terminaleWidget,icon,terminaleWidget->title());
     connect(terminaleWidget,SIGNAL(selectionAvailable(bool)),actionCopy,SLOT(setEnabled(bool)));
     connect(terminaleWidget,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(customContextMenu(QPoint)));
 
+    connect(terminaleWidget,SIGNAL(titleChanged(QString)),this,SLOT(changeTitle(QString)));
 
     ui->tabWidget->setCurrentWidget(terminaleWidget);
-terminaleWidget->setFocus();
+    terminaleWidget->setFocus();
+}
+
+void MainWindow::changeTitle(const QString &txt)
+{
+    qDebug()<<"titleChanged"<<txt;
+    setWindowTitle(txt);
+    int index=ui->tabWidget->currentIndex();
+    ui->tabWidget->setTabText(index,termWidget()->title());
 }
 
 QTermWidget *MainWindow::termWidget()
@@ -234,37 +257,39 @@ QTermWidget *MainWindow::termWidget()
 void MainWindow::closeTab(int index)
 {
     QTermWidget   *w= qobject_cast<QTermWidget *>( ui->tabWidget->widget(index));
-//  if (w->sessionIsruning()){
-//      QMessageBox msgBox;
-//       msgBox.setText("The document has been modified.");
-//       msgBox.setInformativeText("Do you want to save your changes?");
-//       msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-//       msgBox.setDefaultButton(QMessageBox::No);
-//       int ret = msgBox.exec();
-//       if(ret==QMessageBox::No)
-//           return;
+    //  if (w->sessionIsruning()){
+    //      QMessageBox msgBox;
+    //       msgBox.setText("The document has been modified.");
+    //       msgBox.setInformativeText("Do you want to save your changes?");
+    //       msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    //       msgBox.setDefaultButton(QMessageBox::No);
+    //       int ret = msgBox.exec();
+    //       if(ret==QMessageBox::No)
+    //           return;
 
-//  }
-  w->close();
-   delete w;
+    //  }
+    w->close();
+    delete w;
 }
 
-void MainWindow::tabChanged(int /*index*/)
+void MainWindow::tabChanged(int index)
 {
-  ui->tabWidget->setTabsClosable(ui->tabWidget->count()-1);
+    ui->tabWidget->setTabsClosable(ui->tabWidget->count()-1);
+    setWindowTitle(termWidget()->title());
+    ui->tabWidget->setTabText(index,termWidget()->title());
 }
 
 void MainWindow::zoomIn()
 {
     for (int i = 0; i < ui->tabWidget->count(); ++i)
-   {
+    {
         QTermWidget *termWidget= qobject_cast<QTermWidget *>(ui->tabWidget->widget(i));
 
 
-       if(termWidget)
-       {
-          termWidget->zoomIn();
-       }
+        if(termWidget)
+        {
+            termWidget->zoomIn();
+        }
 
     }
 }
@@ -272,14 +297,14 @@ void MainWindow::zoomIn()
 void MainWindow::zoomOut()
 {
     for (int i = 0; i < ui->tabWidget->count(); ++i)
-   {
+    {
         QTermWidget *termWidget= qobject_cast<QTermWidget *>(ui->tabWidget->widget(i));
 
 
-       if(termWidget)
-       {
-          termWidget->zoomOut();
-       }
+        if(termWidget)
+        {
+            termWidget->zoomOut();
+        }
 
     }
 }
@@ -292,25 +317,25 @@ void MainWindow::settingShow()
         QFont font=dlg->getFont();
         int colorIndex=dlg->getColorSheme();
         int spos=dlg->getScrollBar();
-//        QColor bColor=dlg->getBcolor();
-//        QColor fColor=dlg->getFcolor();
+        //        QColor bColor=dlg->getBcolor();
+        //        QColor fColor=dlg->getFcolor();
         int opacity=dlg->getOpacity();
         for (int i = 0; i < ui->tabWidget->count(); ++i)
-       {
+        {
             QTermWidget *termWidget= qobject_cast<QTermWidget *>(ui->tabWidget->widget(i));
 
-           if(termWidget)
-           {
-              termWidget->setTerminalFont(font);
+            if(termWidget)
+            {
+                termWidget->setTerminalFont(font);
 
-              termWidget->setScrollBarPosition(spos);
+                termWidget->setScrollBarPosition(spos);
 
 
-              termWidget->setColorScheme(4);
+                termWidget->setColorScheme(4);
 
-              termWidget->setTerminalOpacity(qreal(opacity)/100);
+                termWidget->setTerminalOpacity(qreal(opacity)/100);
 
-           }
+            }
 
         }
     }
@@ -318,9 +343,9 @@ void MainWindow::settingShow()
 
 void MainWindow::aboutShow()
 {
-//    QMessageBox::about(this, QString("Elokab-terminal ") + QApplication::applicationVersion(), tr("A lightweight  terminal emulator"));
+    //    QMessageBox::about(this, QString("Elokab-terminal ") + QApplication::applicationVersion(), tr("A lightweight  terminal emulator"));
     QMessageBox::about(this, tr("About Elokab-terminal"),
                        tr("<p><b>Elokab-terminal %1</b></p><p>A lightweight  terminal emulator"
-                          "<p> See <a href=\"https://elkirtasse.sourceforge.net/\">elkirtasse.sourceforge.net</a> for more information.</p><p>&copy; About Zakaria</p>").arg(QApplication::applicationVersion()));
+                          "<p> See <a href=\"https://github.com/zakariakov/elokab-terminal/\">github</a> for more information.</p><p>&copy; Abouzakaria</p>").arg(QApplication::applicationVersion()));
 
 }

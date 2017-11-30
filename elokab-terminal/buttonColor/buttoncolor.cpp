@@ -30,8 +30,9 @@ ButtonColor::ButtonColor(const QString &text, bool showAlphaChannel, QColor colo
     tButtonColor->setFocusPolicy(Qt::StrongFocus);
     tButtonPicker->setAutoRaise(true);
     tButtonPicker->setIcon(QIcon::fromTheme("color-picker",QIcon(":/icons/color-picker")));
-    tButtonColor->setIconSize(QSize(32,16));
-    tButtonColor->setMinimumWidth(48);
+    tButtonPicker->setIconSize(QSize(16,16));
+    tButtonColor->setIconSize(QSize(24,16));
+    tButtonColor->setMinimumWidth(36);
 
     setLayout(layout);
     layout->addWidget(mLabel);
@@ -50,7 +51,7 @@ void ButtonColor::setColor(QColor color)
 {
 
     m_color=color;
-    QPixmap pix(32,16);
+    QPixmap pix(26,16);
     pix.fill(Qt::transparent);
     QPainter p;
 
@@ -60,7 +61,7 @@ void ButtonColor::setColor(QColor color)
     p.setPen(this->palette().shadow().color());
     p.drawRect(pix.rect());
     p.setPen(this->palette().light().color());
-    p.drawRect(-1,-1,32,16);
+    p.drawRect(-1,-1,26,16);
     // pix.fill(m_color);
      tButtonColor->setIcon(pix);
 }

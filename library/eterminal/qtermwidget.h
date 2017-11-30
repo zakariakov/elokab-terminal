@@ -108,7 +108,8 @@ public:
 
     void setTerminalOpacity(qreal level);
 QColor bColor;
-
+QString m_title;
+QString title(){return m_title;}
 
 
 public slots:
@@ -121,14 +122,14 @@ signals:
 
     void receivedData( const QString& text );
     void selectionAvailable(bool);
-
+void titleChanged( const QString& text);
 protected:
     virtual void resizeEvent(QResizeEvent *);
 
 protected slots:
     void sessionFinished();
     void onDataReceived(const QString&);
-
+void changeTitle();
 private:
     void setZoom(int step);
     void init();

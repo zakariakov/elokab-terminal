@@ -8,13 +8,18 @@
 
 void helpMe()
 {
+
     printf("Usage: elokab-terminal [OPTION]\n");
+    puts("elokab-terminal v: 0.3 \n" );
     puts("OPTION:\n");
-    puts(" -h  --help                            Print this help.\n");
-    puts(" -w  --working-directory  <dir>        Start session with specified work directory.\n");
-    puts(" -e, --execute            <command>    Execute command instead of shel\n");
-    puts(" -b, --hide-border                     FramelessWindow no border\n");
+    puts(" -h  --help                                             Print this help.\n");
+    puts(" -w  --working-directory  <dir>                         Start session with specified work directory.\n");
+    puts(" -e, --execute            <command>                     Execute command instead of shel\n");
+    puts(" -b, --hide-border                                      FramelessWindow no border\n");
+    puts(" -t, --on-top                                           On top hint\n");
+    puts(" -g, --geometry           <left,top,width,height>       Run in specific dimensions ex: 0,0,800,600 \n");
 }
+
 
 int main(int argc, char *argv[])
 {
@@ -23,9 +28,9 @@ int main(int argc, char *argv[])
 
     setenv("TERM", "xterm", 1); // TODO/FIXME: why?
 
-        a.setApplicationName("elokab-terminal");
+    a.setApplicationName("elokab-terminal");
     a.setOrganizationName("elokab");
-    a.setApplicationVersion("0.1");
+    a.setApplicationVersion("0.3");
 
     /// جلب ترجمة البرنامج من مجلد البرنامج
 
@@ -62,35 +67,72 @@ int main(int argc, char *argv[])
     QIcon icon=QIcon::fromTheme("terminal",QIcon(":/icons/terminal.png"));
     a.setWindowIcon(icon);
     //------------------------------------argument-------------------------------------------------
-    QString workdir= QDir::currentPath(),command;
+    QString workdir,command,geometry;
     bool framless=false;
+    bool ontop=false;
     QStringList args = a.arguments();
 
     if(args.count()>1)
     {
 
+        for (int i = 0; i < args.count(); ++i) {
+
+            QString arg = args.at(i);
+            if (arg == "-h" || arg == "--help" ) {helpMe();return 0; }
+
+            else if (arg == "-w" || arg == "--working-directory" )  {
+
+                if(i+1>args.count()-1){helpMe();return 0;}
+                QDir dir(args.at(i+1));
+                if(dir.exists()) workdir=args.at(i+1);
+
+            }
+
+            else if (arg == "-e" ||arg == "-x" || arg == "--execute"|| arg == "--command" ) {
+                if(i+1>args.count()-1){helpMe();return 0;}
+                command=args.at(i+1);
+            }
+
+            else if (arg == "-b" || arg == "--hide-border" ) {framless=true;}
+
+            else if (arg == "-g" || arg == "--geometry" ) {
+                 if(i+1>args.count()-1){helpMe();return 0;}
+                geometry=args.at(i+1);
+            }
+
+            else if (arg == "-t" || arg == "--on-top" ) {ontop=true;}
 
 
-        QString arg = args.at(1);
-        if (arg == "-h" || arg == "--help" ) {helpMe();return 0; }
-        else if (arg == "-w" || arg == "--working-directory" )  {workdir=args.at(2);}
-        else if (arg == "-e" ||arg == "-x" || arg == "--execute"|| arg == "--command" ) {command=args.at(2);}
-        else if (arg == "-b" || arg == "--hide-border" ) {framless=true;}
-        else {
-            QDir dir(arg);
+                    // qWarning() << "echo Unknown option: " << args;  helpMe(); return 0;
+                   // command= "echo \"Unknown option: " + arg+"\n"+ help+"\"";
+
+
+        }
+
+        if(workdir.isEmpty())
+        {
+
+            QDir dir(args.at(1));
             if(dir.exists())
-                workdir=arg;
-            else
-                 qWarning() << "echo Unknown option: " << args;  helpMe(); return 0;
-               // command= "echo \"Unknown option: " + arg+"\n"+ help+"\"";
-           }
+                workdir=args.at(1);
+        }
+
 
 
     }
          //   qWarning() << "echo Unknown option: " << args;  qDebug()<<help; return 0;}
-    qDebug()<<"=======main========="<<workdir<<command;
 
-    MainWindow w(workdir,command,framless);
+    if(workdir.isEmpty())
+    { workdir=QDir::currentPath();}
+
+   qWarning() <<"=======Main========="
+              <<"\n Workdir: "<<workdir
+              <<"\n Command: "<<command
+              <<"\n Framless:"<<framless
+              <<"\n Geometry:"<<geometry;
+
+    MainWindow w(workdir,command,framless,geometry,ontop);
+
 
     w.show();
 
