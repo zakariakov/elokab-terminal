@@ -11,6 +11,7 @@
 #include <QSettings>
 #include <QMessageBox>
 #include <QApplication>
+#include <QCheckBox>
 MainWindow::MainWindow(const QString &wDir,
                        const QString &command,
                        bool framless,
@@ -68,6 +69,38 @@ MainWindow::~MainWindow()
 
     delete ui;
 }
+
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+     QSettings setting;
+     bool checked= setting.value("CloseMsg",true).toBool();
+     if(!checked){
+          event->accept();
+          return;
+     }
+
+    QMessageBox msgBox;
+     msgBox.setText(tr("Do you want to exit ?."));
+
+     QCheckBox *cb=new QCheckBox(tr("Do not ask again"));
+     msgBox.setCheckBox(cb);
+     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+     msgBox.setDefaultButton(QMessageBox::No);
+     int ret = msgBox.exec();
+
+     checked=msgBox.checkBox()->isChecked();
+     setting.setValue("CloseMsg",!checked);
+
+
+     if(ret==QMessageBox::No)
+        event->ignore();
+     else
+        event->accept();
+
+
+}
+
 void MainWindow::setupActions()
 {
 
@@ -243,6 +276,21 @@ void MainWindow::changeTitle(const QString &txt)
     setWindowTitle(txt);
     int index=ui->tabWidget->currentIndex();
     ui->tabWidget->setTabText(index,termWidget()->title());
+      qDebug()<<termWidget()->sessionIsruning();
+    if(txt=="exit"){
+
+if(!termWidget()->sessionIsruning()){
+    if(ui->tabWidget->count()>1){
+        termWidget()->close();
+        delete termWidget();
+    }else{
+        qApp->quit();
+    }
+
+}
+
+    }
+
 }
 
 QTermWidget *MainWindow::termWidget()
@@ -256,20 +304,29 @@ QTermWidget *MainWindow::termWidget()
 
 void MainWindow::closeTab(int index)
 {
-    QTermWidget   *w= qobject_cast<QTermWidget *>( ui->tabWidget->widget(index));
-    //  if (w->sessionIsruning()){
-    //      QMessageBox msgBox;
-    //       msgBox.setText("The document has been modified.");
-    //       msgBox.setInformativeText("Do you want to save your changes?");
-    //       msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-    //       msgBox.setDefaultButton(QMessageBox::No);
-    //       int ret = msgBox.exec();
-    //       if(ret==QMessageBox::No)
-    //           return;
+    QSettings setting;
+    bool checked= setting.value("CloseMsg",true).toBool();
+    if(checked){
+        QMessageBox msgBox;
+         msgBox.setText(tr("Do you want to exit this tab?"));
+         QCheckBox *cb=new QCheckBox(tr("Do not ask again"));
+         msgBox.setCheckBox(cb);
 
-    //  }
-    w->close();
-    delete w;
+         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+         msgBox.setDefaultButton(QMessageBox::No);
+         int ret = msgBox.exec();
+         checked=msgBox.checkBox()->isChecked();
+         setting.setValue("CloseMsg",!checked);
+
+         if(ret==QMessageBox::No)
+             return;
+    }
+
+
+
+
+    termWidget()->close();
+    delete termWidget();
 }
 
 void MainWindow::tabChanged(int index)
@@ -312,33 +369,42 @@ void MainWindow::zoomOut()
 void MainWindow::settingShow()
 {
     SettingDialog *dlg=new SettingDialog;
-    if(dlg->exec()==QDialog::Accepted)
+
+    connect(dlg,SIGNAL(settingsChanged()),this,SLOT(applySettings()));
+
+     if(dlg->exec()==QDialog::Accepted)
     {
-        QFont font=dlg->getFont();
-        int colorIndex=dlg->getColorSheme();
-        int spos=dlg->getScrollBar();
-        //        QColor bColor=dlg->getBcolor();
-        //        QColor fColor=dlg->getFcolor();
-        int opacity=dlg->getOpacity();
-        for (int i = 0; i < ui->tabWidget->count(); ++i)
+       applySettings();
+    }
+}
+
+void MainWindow::applySettings()
+{
+    QSettings setting;
+    QFont font=  setting.value("Font",font).value<QFont>();
+    int spos=setting.value("ScrollBar",0).toInt();
+    int opacity=setting.value("Opacity",100).toInt();
+   // QString shell=setting.value("Shell",QString()).toString();
+
+
+    for (int i = 0; i < ui->tabWidget->count(); ++i)
+    {
+        QTermWidget *termWidget= qobject_cast<QTermWidget *>(ui->tabWidget->widget(i));
+
+        if(termWidget)
         {
-            QTermWidget *termWidget= qobject_cast<QTermWidget *>(ui->tabWidget->widget(i));
+            termWidget->setTerminalFont(font);
 
-            if(termWidget)
-            {
-                termWidget->setTerminalFont(font);
+            termWidget->setScrollBarPosition(spos);
 
-                termWidget->setScrollBarPosition(spos);
+            termWidget->setColorScheme(4);
 
-
-                termWidget->setColorScheme(4);
-
-                termWidget->setTerminalOpacity(qreal(opacity)/100);
-
-            }
+            termWidget->setTerminalOpacity(qreal(opacity)/100);
 
         }
+
     }
+
 }
 
 void MainWindow::aboutShow()

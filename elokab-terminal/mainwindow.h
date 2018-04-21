@@ -20,6 +20,7 @@ public:
                         bool ontop=false,
                         QWidget *parent = 0);
     ~MainWindow();
+    void closeEvent(QCloseEvent *event);
 signals:
     void clipboardAvailable(bool);
 private slots:
@@ -47,6 +48,7 @@ private slots:
     void zoomOut();
     void zoomIn();
     void settingShow();
+    void applySettings();
     void aboutShow();
 private:
     Ui::MainWindow *ui;

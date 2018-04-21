@@ -171,7 +171,23 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Get sheme</string>
+           <string>Get Scheme</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButtonXresources">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>get sheme from xresource file</string>
+          </property>
+          <property name="text">
+           <string>Xresources</string>
           </property>
          </widget>
         </item>
@@ -279,6 +295,13 @@
     </widget>
    </item>
    <item>
+    <widget class="QCheckBox" name="checkBoxConfirmClosing">
+     <property name="text">
+      <string>Ask for conformation when closing</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -297,7 +320,7 @@
       <enum>Qt::Horizontal</enum>
      </property>
      <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
     </widget>
    </item>

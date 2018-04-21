@@ -6,6 +6,11 @@
 #include <QFileDialog>
 #include <QApplication>
 #include <QComboBox>
+#include <QTextStream>
+#include <QTextCodec>
+#include <QDialogButtonBox>
+#include <QDebug>
+#include <QCheckBox>
 SettingDialog::SettingDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SettingDialog)
@@ -14,6 +19,7 @@ SettingDialog::SettingDialog(QWidget *parent) :
 
     btnFColor=new ButtonColor;
     btnBColor=new ButtonColor;
+
 
     for (int i = 0; i < 16; ++i) {
         btnColor[i]=new ButtonColor;
@@ -36,7 +42,7 @@ SettingDialog::SettingDialog(QWidget *parent) :
     int sPos=setting.value("ScrollBar",0).toInt();
     QString txt=setting.value("Shell").toString();
     int opacity=setting.value("Opacity",100).toInt();
-
+    bool confirmChecked= setting.value("CloseMsg",true).toBool();
 
     setting.beginGroup("colors");
     QColor fcolor=setting.value("foreground",QColor(255,255,255)).value<QColor>();
@@ -90,7 +96,7 @@ SettingDialog::SettingDialog(QWidget *parent) :
     ui->lineEditShell->setText(txt);
     ui->spinBoxOPacity->setValue(opacity);
     //ui->widgetCostumColor->setVisible(colorSheme!=1);
-
+ui->checkBoxConfirmClosing->setChecked(confirmChecked);
 }
 
 SettingDialog::~SettingDialog()
@@ -126,7 +132,7 @@ int SettingDialog::getOpacity()
      return ui->spinBoxOPacity->value();
 }
 
-void SettingDialog::on_buttonBox_accepted()
+void SettingDialog::saveSettings()
 {
     QSettings setting;
     QFont f=ui->fontComboBox->currentFont();
@@ -135,7 +141,8 @@ void SettingDialog::on_buttonBox_accepted()
     setting.setValue("ColorSheme",ui->themesComboBox->currentIndex());
     setting.setValue("ScrollBar",ui->ScrollBarComboBox->currentIndex());
     setting.setValue("Shell",ui->lineEditShell->text());
-        setting.setValue("Opacity",ui->spinBoxOPacity->value());
+    setting.setValue("Opacity",ui->spinBoxOPacity->value());
+    setting.setValue("CloseMsg",ui->checkBoxConfirmClosing->checkState());
 
     //colors-sheme
     setting.beginGroup("colors");
@@ -147,6 +154,7 @@ void SettingDialog::on_buttonBox_accepted()
     }
 
     setting.endGroup();
+
 }
 
 void SettingDialog::on_themesComboBox_currentIndexChanged(int index)
@@ -215,3 +223,118 @@ void SettingDialog::loadColorShemes(const QString &fileNames)
 
 }
 
+void SettingDialog::loadXresourceColorShemes()
+{
+    QString xresourceFile=QDir::homePath()+"/.Xresources";
+    if(!QFile::exists(xresourceFile))
+        xresourceFile=QDir::homePath()+"/.Xdefaults";
+    if(!QFile::exists(xresourceFile))
+        return;
+
+    QFile files(xresourceFile);
+    if(!files.open( QFile::ReadOnly))
+        return;
+
+    QTextStream textStream(&files);
+    textStream.setCodec(QTextCodec::codecForName("UTF-8"));
+    QString line ;//premier line;
+
+    while   (!textStream.atEnd()) {
+
+        line = textStream.readLine().trimmed();
+        if(line.startsWith("#"))continue;
+
+        if(line.startsWith("!"))continue;
+
+        if(!line.contains(":")) continue;
+
+
+        if(line.startsWith("*.")){
+
+            QString key=line.section(":",0,0).trimmed();
+            QString value=line.section(":",1,1).trimmed();
+
+            if (key.isEmpty())  continue;
+
+            if (value.isEmpty()) continue;
+
+           // qDebug()<<key.section(".",1,1) <<value;
+            QString color=key.section(".",1,1);
+
+
+            if(color=="background")     btnBColor->setColor(value);
+
+            else if(color=="foreground") btnFColor->setColor(value);
+
+            else if(color.startsWith("color")){
+
+                color.remove("color");
+
+                int num=color.toInt();
+                 qDebug()<<num <<value;
+                if(num>-1 && num<16)
+                btnColor[num]->setColor(value);
+
+            }
+            /*
+
+            else if(color=="color0") btnColor[0]->setColor(value);
+
+            else if(color=="color1") btnColor[1]->setColor(value);
+
+            else if(color=="color2") btnColor[2]->setColor(value);
+
+            else if(color=="color3") btnColor[3]->setColor(value);
+
+            else if(color=="color4") btnColor[4]->setColor(value);
+
+            else if(color=="color5") btnColor[5]->setColor(value);
+
+            else if(color=="color6") btnColor[6]->setColor(value);
+
+            else if(color=="color7") btnColor[7]->setColor(value);
+
+            else if(color=="color8") btnColor[8]->setColor(value);
+
+            else if(color=="color9") btnColor[9]->setColor(value);
+
+            else if(color=="color10") btnColor[10]->setColor(value);
+
+            else if(color=="color11") btnColor[11]->setColor(value);
+
+            else if(color=="color12") btnColor[12]->setColor(value);
+
+            else if(color=="color13") btnColor[13]->setColor(value);
+
+            else if(color=="color14") btnColor[14]->setColor(value);
+
+            else if(color=="color15") btnColor[15]->setColor(value);
+*/
+
+
+
+        }
+
+    }
+
+    files.close();
+
+
+}
+void SettingDialog::on_pushButtonXresources_clicked()
+{
+    loadXresourceColorShemes();
+}
+
+void SettingDialog::on_buttonBox_clicked(QAbstractButton *button)
+{
+    if(ui->buttonBox->standardButton(button)==QDialogButtonBox::Apply){
+        saveSettings();
+        emit settingsChanged();
+
+    }else if( ui->buttonBox->standardButton(button)==QDialogButtonBox::Ok){
+        saveSettings();
+        accept();
+    }
+
+}
