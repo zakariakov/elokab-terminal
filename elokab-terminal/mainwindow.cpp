@@ -23,31 +23,31 @@ MainWindow::MainWindow(const QString &wDir,
 {
 
     this->setAttribute(Qt::WA_TranslucentBackground,true);
-   setAutoFillBackground(true);
-   ui->setupUi(this);
-   setupActions();
-//Framless Border
+    setAutoFillBackground(true);
+    ui->setupUi(this);
+    setupActions();
+    //Framless Border
     if(framless && ontop)
         setWindowFlags( Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     else if(framless && !ontop)
-         setWindowFlags( Qt::FramelessWindowHint /*| Qt::WindowStaysOnTopHint*/);
-     else if(!framless && ontop)
-         setWindowFlags( /*Qt::FramelessWindowHint |*/ Qt::WindowStaysOnTopHint);
+        setWindowFlags( Qt::FramelessWindowHint /*| Qt::WindowStaysOnTopHint*/);
+    else if(!framless && ontop)
+        setWindowFlags( /*Qt::FramelessWindowHint |*/ Qt::WindowStaysOnTopHint);
 
 
     //Geometry
-   QStringList list=geometry.split(",");
-  if(!geometry.isEmpty()&& list.count()==4){
-          int _x=QString(list.at(0)).toInt();
-          int _y=QString(list.at(1)).toInt();
-          int _w=QString(list.at(2)).toInt();
-          int _h=QString(list.at(3)).toInt();
-          qDebug()<<"MainWindow Geometry:"<<_x<<_y<<_w<<_h;
-          setGeometry(_x,_y,_w,_h);
-  }else{
-    QSettings setting;
-    restoreGeometry(setting.value("Geometry").toByteArray());
-  }
+    QStringList list=geometry.split(",");
+    if(!geometry.isEmpty()&& list.count()==4){
+        int _x=QString(list.at(0)).toInt();
+        int _y=QString(list.at(1)).toInt();
+        int _w=QString(list.at(2)).toInt();
+        int _h=QString(list.at(3)).toInt();
+        qDebug()<<"MainWindow Geometry:"<<_x<<_y<<_w<<_h;
+        setGeometry(_x,_y,_w,_h);
+    }else{
+        QSettings setting;
+        restoreGeometry(setting.value("Geometry").toByteArray());
+    }
 
 
 
@@ -73,29 +73,29 @@ MainWindow::~MainWindow()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-     QSettings setting;
-     bool checked= setting.value("CloseMsg",true).toBool();
-     if(!checked){
-          event->accept();
-          return;
-     }
+    QSettings setting;
+    bool checked= setting.value("CloseMsg",true).toBool();
+    if(!checked){
+        event->accept();
+        return;
+    }
 
     QMessageBox msgBox;
-     msgBox.setText(tr("Do you want to exit ?."));
+    msgBox.setText(tr("Do you want to exit ?."));
 
-     QCheckBox *cb=new QCheckBox(tr("Do not ask again"));
-     msgBox.setCheckBox(cb);
-     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-     msgBox.setDefaultButton(QMessageBox::No);
-     int ret = msgBox.exec();
+    QCheckBox *cb=new QCheckBox(tr("Do not ask again"));
+    msgBox.setCheckBox(cb);
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msgBox.setDefaultButton(QMessageBox::Yes);
+    int ret = msgBox.exec();
 
-     checked=msgBox.checkBox()->isChecked();
-     setting.setValue("CloseMsg",!checked);
+    checked=msgBox.checkBox()->isChecked();
+    setting.setValue("CloseMsg",!checked);
 
 
-     if(ret==QMessageBox::No)
+    if(ret==QMessageBox::No)
         event->ignore();
-     else
+    else
         event->accept();
 
 
@@ -147,7 +147,7 @@ void MainWindow::setupActions()
 
     mActQuit=new QAction(tr("Exit"),this);
     mActQuit->setIcon(QIcon::fromTheme("application-exit",QIcon(":/icons/application-exit")));
-    connect(mActQuit,SIGNAL(triggered()),qApp,SLOT(quit()));
+    connect(mActQuit,SIGNAL(triggered()),this,SLOT(close()));
     mActQuit->setShortcut(QKeySequence::Quit);
 
     mMenu=new QMenu(this);
@@ -276,18 +276,18 @@ void MainWindow::changeTitle(const QString &txt)
     setWindowTitle(txt);
     int index=ui->tabWidget->currentIndex();
     ui->tabWidget->setTabText(index,termWidget()->title());
-      qDebug()<<termWidget()->sessionIsruning();
+    //qDebug()<<termWidget()->sessionIsruning();
     if(txt=="exit"){
 
-if(!termWidget()->sessionIsruning()){
-    if(ui->tabWidget->count()>1){
-        termWidget()->close();
-        delete termWidget();
-    }else{
-        qApp->quit();
-    }
+        if(!termWidget()->sessionIsruning()){
+            if(ui->tabWidget->count()>1){
+                termWidget()->close();
+                delete termWidget();
+            }else{
+                qApp->quit();
+            }
 
-}
+        }
 
     }
 
@@ -308,18 +308,18 @@ void MainWindow::closeTab(int index)
     bool checked= setting.value("CloseMsg",true).toBool();
     if(checked){
         QMessageBox msgBox;
-         msgBox.setText(tr("Do you want to exit this tab?"));
-         QCheckBox *cb=new QCheckBox(tr("Do not ask again"));
-         msgBox.setCheckBox(cb);
+        msgBox.setText(tr("Do you want to exit this tab?"));
+        QCheckBox *cb=new QCheckBox(tr("Do not ask again"));
+        msgBox.setCheckBox(cb);
 
-         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-         msgBox.setDefaultButton(QMessageBox::No);
-         int ret = msgBox.exec();
-         checked=msgBox.checkBox()->isChecked();
-         setting.setValue("CloseMsg",!checked);
+        msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+        msgBox.setDefaultButton(QMessageBox::Yes);
+        int ret = msgBox.exec();
+        checked=msgBox.checkBox()->isChecked();
+        setting.setValue("CloseMsg",!checked);
 
-         if(ret==QMessageBox::No)
-             return;
+        if(ret==QMessageBox::No)
+            return;
     }
 
 
@@ -372,9 +372,9 @@ void MainWindow::settingShow()
 
     connect(dlg,SIGNAL(settingsChanged()),this,SLOT(applySettings()));
 
-     if(dlg->exec()==QDialog::Accepted)
+    if(dlg->exec()==QDialog::Accepted)
     {
-       applySettings();
+        applySettings();
     }
 }
 
@@ -384,7 +384,7 @@ void MainWindow::applySettings()
     QFont font=  setting.value("Font",font).value<QFont>();
     int spos=setting.value("ScrollBar",0).toInt();
     int opacity=setting.value("Opacity",100).toInt();
-   // QString shell=setting.value("Shell",QString()).toString();
+    // QString shell=setting.value("Shell",QString()).toString();
 
 
     for (int i = 0; i < ui->tabWidget->count(); ++i)
