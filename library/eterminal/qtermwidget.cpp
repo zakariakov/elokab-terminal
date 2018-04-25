@@ -207,7 +207,24 @@ void QTermWidget::setColorScheme(int scheme)
       break;
   };
 }
+ void QTermWidget::setKeyboardCursorShape(int shape)
+ {
 
+     switch(shape) {
+     case 1:
+         m_impl->m_terminalDisplay->setKeyboardCursorShape( TerminalDisplay::KeyboardCursorShape::UnderlineCursor);
+         break;
+     case 2:
+         m_impl->m_terminalDisplay->setKeyboardCursorShape(TerminalDisplay::KeyboardCursorShape::IBeamCursor);
+         break;
+     default:
+     case 0:
+         m_impl->m_terminalDisplay->setKeyboardCursorShape(TerminalDisplay::KeyboardCursorShape::BlockCursor);
+         break;
+     }
+
+  // m_impl->m_terminalDisplay->setKeyboardCursorShape(  TerminalDisplay::KeyboardCursorShape::UnderlineCursor);
+ }
 void QTermWidget::setSize(int h, int v)
 {
   if (!m_impl->m_terminalDisplay)

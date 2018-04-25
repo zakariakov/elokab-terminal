@@ -50,6 +50,8 @@ class QTermWidget : public QWidget
 public:
 
 
+    //using KeyboardCursorShape = Konsole::Emulation::KeyboardCursorShape;
+
 
 
     //Creation of widget
@@ -77,6 +79,8 @@ public:
 
     //Color scheme, default is white on black
     void setColorScheme(int scheme);
+
+     void setKeyboardCursorShape(int shape);
 
     //set size
     void setSize(int h, int v);

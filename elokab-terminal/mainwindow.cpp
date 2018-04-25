@@ -236,16 +236,15 @@ void MainWindow::addNewTab(const QString &wDir, const QString &command)
 
     QSettings setting;
     QFont f=  setting.value("Font",font).value<QFont>();
-    //   int color=setting.value("ColorSheme",0).toInt();
     int spos=setting.value("ScrollBar",0).toInt();
-    //    QColor fcolor=setting.value("FontColor",QColor(255,255,255)).value<QColor>();
-    //    QColor bcolor=setting.value("BackColor",QColor(0,0,0)).value<QColor>();
     int opacity=setting.value("Opacity",100).toInt();
     QString shell=setting.value("Shell",QString()).toString();
+    int cursorShape=setting.value("CursorShape",0).toInt();
     terminaleWidget-> setShellProgram(shell);
     terminaleWidget->setTerminalFont(f);
     //TODO FIXME
     terminaleWidget->setColorScheme(4);
+    terminaleWidget->setKeyboardCursorShape(cursorShape);
     terminaleWidget->setScrollBarPosition(spos);
     terminaleWidget->setInitialWorkingDirectory(wDir);
     terminaleWidget->startShellProgram();
@@ -376,6 +375,7 @@ void MainWindow::settingShow()
     {
         applySettings();
     }
+    delete dlg;
 }
 
 void MainWindow::applySettings()
@@ -385,7 +385,7 @@ void MainWindow::applySettings()
     int spos=setting.value("ScrollBar",0).toInt();
     int opacity=setting.value("Opacity",100).toInt();
     // QString shell=setting.value("Shell",QString()).toString();
-
+       int cursorShape=setting.value("CursorShape",0).toInt();
 
     for (int i = 0; i < ui->tabWidget->count(); ++i)
     {
@@ -401,6 +401,7 @@ void MainWindow::applySettings()
 
             termWidget->setTerminalOpacity(qreal(opacity)/100);
 
+            termWidget->setKeyboardCursorShape(cursorShape);
         }
 
     }

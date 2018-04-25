@@ -43,6 +43,7 @@ SettingDialog::SettingDialog(QWidget *parent) :
     QString txt=setting.value("Shell").toString();
     int opacity=setting.value("Opacity",100).toInt();
     bool confirmChecked= setting.value("CloseMsg",true).toBool();
+    int shape= setting.value("CursorShape",0).toInt();
 
     setting.beginGroup("colors");
     QColor fcolor=setting.value("foreground",QColor(255,255,255)).value<QColor>();
@@ -78,7 +79,7 @@ SettingDialog::SettingDialog(QWidget *parent) :
 
     ui->fontComboBox->setCurrentFont(f);
     ui->fontComboBox->setEditable(false);
-
+ui->comboBoxCursor->setCurrentIndex(shape);
     //Color Shemes --------------------------------
     QDir appDir(QApplication::applicationDirPath());
     appDir.cdUp();
@@ -143,6 +144,7 @@ void SettingDialog::saveSettings()
     setting.setValue("Shell",ui->lineEditShell->text());
     setting.setValue("Opacity",ui->spinBoxOPacity->value());
     setting.setValue("CloseMsg",ui->checkBoxConfirmClosing->checkState());
+    setting.setValue("CursorShape",ui->comboBoxCursor->currentIndex());
 
     //colors-sheme
     setting.beginGroup("colors");
