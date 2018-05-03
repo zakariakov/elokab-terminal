@@ -1164,6 +1164,8 @@ void TerminalDisplay::setBlinkingCursor(bool blink)
 
 void TerminalDisplay::paintEvent( QPaintEvent* pe )
 {
+
+
 //qDebug("%s %d paintEvent", __FILE__, __LINE__);
   QPainter paint(this);
 
@@ -1172,10 +1174,10 @@ void TerminalDisplay::paintEvent( QPaintEvent* pe )
     drawBackground(paint,rect,palette().background().color(),	true /* use opacity setting */);
     drawContents(paint, rect);
   }
-    drawBackground(paint,contentsRect(),palette().background().color(),	true /* use opacity setting */);
-    drawContents(paint, contentsRect());
-  drawInputMethodPreeditString(paint,preeditRect());
-  paintFilters(paint);
+//    drawBackground(paint,contentsRect(),palette().background().color(),	true /* use opacity setting */);
+//    drawContents(paint, contentsRect());
+ drawInputMethodPreeditString(paint,preeditRect());
+//  paintFilters(paint);
 
   paint.end();
 
@@ -1311,6 +1313,8 @@ void TerminalDisplay::paintFilters(QPainter& painter)
 void TerminalDisplay::drawContents(QPainter &paint, const QRect &rect)
 {
 //qDebug("%s %d drawContents and rect x=%d y=%d w=%d h=%d", __FILE__, __LINE__, rect.x(), rect.y(),rect.width(),rect.height());
+
+
 
   QPoint tL  = contentsRect().topLeft();
 //  int    tLx = tL.x();
@@ -2189,6 +2193,7 @@ void TerminalDisplay::mouseDoubleClickEvent(QMouseEvent* ev)
 
 void TerminalDisplay::wheelEvent( QWheelEvent* ev )
 {
+    /*
   if (ev->orientation() != Qt::Vertical)
     return;
 
@@ -2205,6 +2210,54 @@ void TerminalDisplay::wheelEvent( QWheelEvent* ev )
                       charLine + 1 +_scrollBar->value() -_scrollBar->maximum() ,
                       0);
   }
+  */
+
+    if (ev->orientation() != Qt::Vertical)
+       return;
+
+     // if the terminal program is not interested mouse events
+     // then send the event to the scrollbar if the slider has room to move
+     // or otherwise send simulated up / down key presses to the terminal program
+     // for the benefit of programs such as 'less'
+     if ( _mouseMarks )
+     {
+       bool canScroll = _scrollBar->maximum() > 0;
+         if (canScroll)
+           _scrollBar->event(ev);
+       else
+       {
+           // assume that each Up / Down key event will cause the terminal application
+           // to scroll by one line.
+           //
+           // to get a reasonable scrolling speed, scroll by one line for every 5 degrees
+           // of mouse wheel rotation.  Mouse wheels typically move in steps of 15 degrees,
+           // giving a scroll of 3 lines
+           int key = ev->delta() > 0 ? Qt::Key_Up : Qt::Key_Down;
+
+           // QWheelEvent::delta() gives rotation in eighths of a degree
+           int wheelDegrees = ev->delta() / 8;
+           int linesToScroll = abs(wheelDegrees) / 5;
+
+           QKeyEvent keyScrollEvent(QEvent::KeyPress,key,Qt::NoModifier);
+
+           for (int i=0;i<linesToScroll;i++)
+               emit keyPressedSignal(&keyScrollEvent);
+       }
+     }
+     else
+     {
+       // terminal program wants notification of mouse activity
+
+       int charLine;
+       int charColumn;
+       getCharacterPosition( ev->pos() , charLine , charColumn );
+
+       emit mouseSignal( ev->delta() > 0 ? 4 : 5,
+                         charColumn + 1,
+                         charLine + 1 +_scrollBar->value() -_scrollBar->maximum() ,
+                         0);
+     }
+
 }
 
 void TerminalDisplay::tripleClickTimeout()
@@ -2778,7 +2831,7 @@ void TerminalDisplay::doDrag()
 
 void TerminalDisplay::outputSuspended(bool suspended)
 {
-      qDebug ()<<"rect";
+    //  qDebug ()<<"rect";
   //create the label when this function is first called
   if (!_outputSuspendedLabel)
   {

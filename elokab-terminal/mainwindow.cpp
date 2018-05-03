@@ -229,19 +229,28 @@ void MainWindow::addNewTab(const QString &wDir, const QString &command)
 
     QTermWidget *terminaleWidget=new    QTermWidget(0,this);
 
+
+
+    QSettings setting;
+
     QFont font = QApplication::font();
     font.setFamily("Monospace");
     font.setPointSize(10);
-    font.setStyleHint(QFont::TypeWriter);
-
-    QSettings setting;
-    QFont f=  setting.value("Font",font).value<QFont>();
+    QString fontName=setting.value("FontFamily",font.family()).toString();
+    int fontSize=setting.value("FontSize",font.pointSize()).toInt();
+    font.setPointSize(fontSize);
+    font.setFamily(fontName);
+//    if(!font.exactMatch()){
+//        qDebug()<<"MainWindow::applySettings() font no match return default font";
+//        font=QApplication::font().family();
+//    }
     int spos=setting.value("ScrollBar",0).toInt();
     int opacity=setting.value("Opacity",100).toInt();
     QString shell=setting.value("Shell",QString()).toString();
     int cursorShape=setting.value("CursorShape",0).toInt();
+
     terminaleWidget-> setShellProgram(shell);
-    terminaleWidget->setTerminalFont(f);
+    terminaleWidget->setTerminalFont(font);
     //TODO FIXME
     terminaleWidget->setColorScheme(4);
     terminaleWidget->setKeyboardCursorShape(cursorShape);
@@ -271,12 +280,13 @@ void MainWindow::addNewTab(const QString &wDir, const QString &command)
 
 void MainWindow::changeTitle(const QString &txt)
 {
-    qDebug()<<"titleChanged"<<txt;
+    // qDebug("%s %d %s %s", __FILE__, __LINE__,"titleChanged", txt);
+   qDebug()<<__FILE__<<__LINE__<<"titleChanged"<<txt;
     setWindowTitle(txt);
     int index=ui->tabWidget->currentIndex();
     ui->tabWidget->setTabText(index,termWidget()->title());
     //qDebug()<<termWidget()->sessionIsruning();
-    if(txt=="exit"){
+    //if(txt=="exit"){
 
         if(!termWidget()->sessionIsruning()){
             if(ui->tabWidget->count()>1){
@@ -288,7 +298,7 @@ void MainWindow::changeTitle(const QString &txt)
 
         }
 
-    }
+    //}
 
 }
 
@@ -381,7 +391,20 @@ void MainWindow::settingShow()
 void MainWindow::applySettings()
 {
     QSettings setting;
-    QFont font=  setting.value("Font",font).value<QFont>();
+
+    QFont font = QApplication::font();
+    font.setFamily("Monospace");
+    font.setPointSize(10);
+    QString fontName=setting.value("FontFamily",font.family()).toString();
+    int fontSize=setting.value("FontSize",font.pointSize()).toInt();
+    font.setPointSize(fontSize);
+    font.setFamily(fontName);
+//    if(!font.exactMatch()){
+//        qDebug()<<"MainWindow::applySettings() font no match return default font";
+//        font=QApplication::font().family();
+//    }
+
+    //QFont font=  setting.value("Font",font).value<QFont>();
     int spos=setting.value("ScrollBar",0).toInt();
     int opacity=setting.value("Opacity",100).toInt();
     // QString shell=setting.value("Shell",QString()).toString();

@@ -32,13 +32,21 @@ SettingDialog::SettingDialog(QWidget *parent) :
     }
 
     QFont font = QApplication::font();
-    font.setFamily("Monospace");
-    font.setPointSize(10);
-    font.setStyleHint(QFont::TypeWriter);
+   font.setFamily("Monospace");
+   font.setPointSize(10);
 
     QSettings setting;
-    QFont f=  setting.value("Font",font).value<QFont>();
-    int colorSheme=setting.value("ColorSheme",0).toInt();
+  //  QFont f=  setting.value("Font",font).value<QFont>();
+    QString fontName=setting.value("FontFamily",font.family()).toString();
+    int fontSize=setting.value("FontSize",font.pointSize()).toInt();
+    font.setPointSize(fontSize);
+    font.setFamily(fontName);
+//if(!font.exactMatch()){
+//    qDebug()<<"SettingDialog() font no match return default font";
+//   font.setFamily(QApplication::font().family());
+//}
+    qDebug()<<"----------------------------"<<font.family();
+    //int colorSheme=setting.value("ColorSheme",0).toInt();
     int sPos=setting.value("ScrollBar",0).toInt();
     QString txt=setting.value("Shell").toString();
     int opacity=setting.value("Opacity",100).toInt();
@@ -77,9 +85,12 @@ SettingDialog::SettingDialog(QWidget *parent) :
                                      | QFontComboBox::NonScalableFonts
                                      | QFontComboBox::ScalableFonts);
 
-    ui->fontComboBox->setCurrentFont(f);
-    ui->fontComboBox->setEditable(false);
+   ui->fontComboBox->setCurrentFont(font);
+   //  ui->fontComboBox->setCurrentText(font.family());
+  ui->fontComboBox->setEditable(false);
+    ui->sizeSpinBox->setValue(font.pointSize());
 ui->comboBoxCursor->setCurrentIndex(shape);
+
     //Color Shemes --------------------------------
     QDir appDir(QApplication::applicationDirPath());
     appDir.cdUp();
@@ -91,7 +102,7 @@ ui->comboBoxCursor->setCurrentIndex(shape);
        ui->themesComboBox->addItem(fi.completeBaseName(),fi.filePath());
    }
     //END Color Shemes --------------------------------
-    ui->sizeSpinBox->setValue(f.pointSize());
+
    // ui->themesComboBox->setCurrentIndex(-1);
     ui->ScrollBarComboBox->setCurrentIndex(sPos);
     ui->lineEditShell->setText(txt);
@@ -135,10 +146,17 @@ int SettingDialog::getOpacity()
 
 void SettingDialog::saveSettings()
 {
+
+    QFont font = QApplication::font();
+    font.setPointSize(ui->sizeSpinBox->value());
+    font.setFamily(ui->fontComboBox->currentText());
+
+
+
     QSettings setting;
-    QFont f=ui->fontComboBox->currentFont();
-    f.setPointSize(ui->sizeSpinBox->value());
-    setting.setValue("Font",f);
+    setting.setValue("FontFamily",font.family());
+    setting.setValue("FontSize",font.pointSize());
+
     setting.setValue("ColorSheme",ui->themesComboBox->currentIndex());
     setting.setValue("ScrollBar",ui->ScrollBarComboBox->currentIndex());
     setting.setValue("Shell",ui->lineEditShell->text());
