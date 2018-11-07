@@ -52,8 +52,21 @@ linux-g++*: {
              }
 
 #INSTALL
+target.path = /usr/bin
+
+applicationsData.files=../usr/share/applications/*
+applicationsData.path=/usr/share/applications/
+
+elokabData.files=../usr/share/elokab/*
+elokabData.path=/usr/share/elokab/
+
+#INSTALL Linux
  target.path = /usr/bin
- INSTALLS +=   target
+ data.files=../usr/share/*
+ data.path=/usr/share
+
+ INSTALLS +=    target \
+                data
 
 DISTFILES += \
     ../LICENSE \

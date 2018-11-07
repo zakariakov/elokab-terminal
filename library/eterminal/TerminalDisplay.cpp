@@ -130,6 +130,7 @@ void TerminalDisplay::setColorTable(const ColorEntry table[])
   _scrollBar->setPalette( QApplication::palette() );
 
   update();
+
 }
 
 void TerminalDisplay::setCostumColorTable()
@@ -180,6 +181,7 @@ void TerminalDisplay::setCostumColorTable()
   _scrollBar->setPalette( QApplication::palette() );
 
   update();
+
 }
 
 /* ------------------------------------------------------------------------- */
@@ -249,6 +251,7 @@ void TerminalDisplay::fontChange(const QFont&)
   emit changedFontMetricSignal( _fontHeight, _fontWidth );
   propagateSize();
   update();
+
 }
 
 void TerminalDisplay::setVTFont(const QFont& f)
@@ -1166,22 +1169,30 @@ void TerminalDisplay::paintEvent( QPaintEvent* pe )
 {
 
 
-//qDebug("%s %d paintEvent", __FILE__, __LINE__);
-  QPainter paint(this);
 
-  foreach (QRect rect, (pe->region() & contentsRect()).rects())
-  {
-    drawBackground(paint,rect,palette().background().color(),	true /* use opacity setting */);
-    drawContents(paint, rect);
-  }
-//    drawBackground(paint,contentsRect(),palette().background().color(),	true /* use opacity setting */);
-//    drawContents(paint, contentsRect());
- drawInputMethodPreeditString(paint,preeditRect());
-//  paintFilters(paint);
+   // qDebug("%s %d paintEvent", __FILE__, __LINE__);
+//qDebug()<<pe->region()<<this->rect();
+//if(pe->rect()==this->rect()){
+//    qDebug()<<"returned";
+//    return;
+//}
 
-  paint.end();
+    QPainter paint(this);
+
+    foreach (QRect rect, (pe->region() & contentsRect()).rects())
+    {
+        drawBackground(paint,rect,palette().background().color(),	true /* use opacity setting */);
+        drawContents(paint, rect);
+    }
+//        drawBackground(paint,contentsRect(),palette().background().color(),	true /* use opacity setting */);
+//        drawContents(paint, contentsRect());
+    drawInputMethodPreeditString(paint,preeditRect());
+      paintFilters(paint);
+
+    paint.end();
 
 }
+
 
 QPoint TerminalDisplay::cursorPosition() const
 {
@@ -1461,11 +1472,12 @@ void TerminalDisplay::blinkEvent()
   // where there is blinking text
   // rather than repainting the whole widget.
   update();
+
 }
 
 QRect TerminalDisplay::imageToWidget(const QRect& imageArea) const
 {
-//qDebug("%s %d imageToWidget", __FILE__, __LINE__);
+qDebug("%s %d imageToWidget", __FILE__, __LINE__);
     QRect result;
     result.setLeft( _leftMargin + _fontWidth * imageArea.left() );
     result.setTop( _topMargin + _fontHeight * imageArea.top() );
@@ -1624,6 +1636,7 @@ void TerminalDisplay::setScrollBarPosition(ScrollBarPosition position)
 
   propagateSize();
   update();
+
 }
 
 void TerminalDisplay::mousePressEvent(QMouseEvent* ev)
@@ -2534,36 +2547,38 @@ void TerminalDisplay::inputMethodEvent( QInputMethodEvent* event )
 QVariant TerminalDisplay::inputMethodQuery( Qt::InputMethodQuery query ) const
 {
     const QPoint cursorPos = _screenWindow ? _screenWindow->cursorPosition() : QPoint(0,0);
-    switch ( query )
-    {
-        case Qt::ImMicroFocus:
-                return imageToWidget(QRect(cursorPos.x(),cursorPos.y(),1,1));
-            break;
-        case Qt::ImFont:
-                return font();
-            break;
-        case Qt::ImCursorPosition:
-                // return the cursor position within the current line
-                return cursorPos.x();
-            break;
-        case Qt::ImSurroundingText:
-            {
-                // return the text from the current line
-                QString lineText;
-                QTextStream stream(&lineText);
-                PlainTextDecoder decoder;
-                decoder.begin(&stream);
-                decoder.decodeLine(&_image[loc(0,cursorPos.y())],_usedColumns,_lineProperties[cursorPos.y()]);
-                decoder.end();
-                return lineText;
-            }
-            break;
-        case Qt::ImCurrentSelection:
-                return QString();
-            break;
-    }
+      switch ( query )
+      {
+          case Qt::ImMicroFocus:
+                  return imageToWidget(QRect(cursorPos.x(),cursorPos.y(),1,1));
+              break;
+          case Qt::ImFont:
+                  return font();
+              break;
+          case Qt::ImCursorPosition:
+                  // return the cursor position within the current line
+                  return cursorPos.x();
+              break;
+          case Qt::ImSurroundingText:
+              {
+                  // return the text from the current line
+                  QString lineText;
+                  QTextStream stream(&lineText);
+                  PlainTextDecoder decoder;
+                  decoder.begin(&stream);
+                  decoder.decodeLine(&_image[loc(0,cursorPos.y())],_usedColumns,_lineProperties[cursorPos.y()]);
+                  decoder.end();
+                  return lineText;
+              }
+              break;
+          case Qt::ImCurrentSelection:
+                  return QString();
+              break;
+          default:
+              break;
+      }
 
-    return QVariant();
+      return QVariant();
 }
 
 bool TerminalDisplay::event( QEvent *e )
@@ -2650,10 +2665,12 @@ void TerminalDisplay::swapColorTable()
   _colorTable[0]= color;
   _colorsInverted = !_colorsInverted;
   update();
+
 }
 
 void TerminalDisplay::clearImage()
 {
+  //  qDebug("%s %d clearImage", __FILE__, __LINE__);
   // We initialize _image[_imageSize] too. See makeImage()
   for (int i = 0; i <= _imageSize; i++)
   {

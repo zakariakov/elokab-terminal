@@ -502,10 +502,12 @@ signals:
    void sendStringToEmu(const char*);
 
  void  selectionAvailable(bool);
+
 protected:
     virtual bool event( QEvent * );
 
-    virtual void paintEvent( QPaintEvent * );
+   virtual void paintEvent( QPaintEvent * );
+
 
     virtual void showEvent(QShowEvent*);
     virtual void hideEvent(QHideEvent*);
