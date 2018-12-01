@@ -16,7 +16,7 @@ MainWindow::MainWindow(const QString &wDir,
                        const QString &command,
                        bool framless,
                        const QString &geometry,
-                       bool ontop,
+                       bool ontop,int opacity,
                        QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -44,9 +44,11 @@ MainWindow::MainWindow(const QString &wDir,
         int _h=QString(list.at(3)).toInt();
         qDebug()<<"MainWindow Geometry:"<<_x<<_y<<_w<<_h;
         setGeometry(_x,_y,_w,_h);
+        mSaveGeometry=false;
     }else{
         QSettings setting;
         restoreGeometry(setting.value("Geometry").toByteArray());
+           mSaveGeometry=true;
     }
 
 
@@ -58,14 +60,16 @@ MainWindow::MainWindow(const QString &wDir,
     connect(ui->tabWidget,SIGNAL(tabCloseRequested(int)),this,SLOT(closeTab(int)));
     connect(ui->tabWidget,SIGNAL(currentChanged(int)),this,SLOT(tabChanged(int)));
     clipboardChanged();
-    addNewTab(wDir,command);
+    addNewTab(wDir,command,opacity);
 
 }
 
 MainWindow::~MainWindow()
 {
-    QSettings setting;
-    setting.setValue("Geometry",saveGeometry());
+    if(mSaveGeometry){
+        QSettings setting;
+        setting.setValue("Geometry",saveGeometry());
+    }
 
     delete ui;
 }
@@ -223,7 +227,7 @@ void MainWindow::customContextMenu(QPoint)
     mMenu->exec(QCursor::pos());
 }
 
-void MainWindow::addNewTab(const QString &wDir, const QString &command)
+void MainWindow::addNewTab(const QString &wDir, const QString &command,int opacity)
 {
 
 
@@ -245,7 +249,12 @@ void MainWindow::addNewTab(const QString &wDir, const QString &command)
 //        font=QApplication::font().family();
 //    }
     int spos=setting.value("ScrollBar",0).toInt();
-    int opacity=setting.value("Opacity",100).toInt();
+qDebug()<<"opacity"<<opacity;
+
+    if(opacity==-1)
+       opacity=setting.value("Opacity",100).toInt();
+
+
     QString shell=setting.value("Shell",QString()).toString();
     int cursorShape=setting.value("CursorShape",0).toInt();
 
@@ -307,12 +316,13 @@ QTermWidget *MainWindow::termWidget()
     QTermWidget   *w= qobject_cast<QTermWidget *>( ui->tabWidget->currentWidget());
     if(w)
         return w;
-    return 0;
+    return nullptr;
 
 }
 
 void MainWindow::closeTab(int index)
 {
+    Q_UNUSED(index);
     QSettings setting;
     bool checked= setting.value("CloseMsg",true).toBool();
     if(checked){

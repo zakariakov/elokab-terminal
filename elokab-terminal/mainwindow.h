@@ -18,7 +18,8 @@ public:
                         bool framless=false,
                         const QString &geometry=QString(),
                         bool ontop=false,
-                        QWidget *parent = 0);
+                        int opacity=-1,
+                        QWidget *parent = nullptr);
     ~MainWindow();
     void closeEvent(QCloseEvent *event);
 signals:
@@ -38,7 +39,7 @@ private slots:
 
     void customContextMenu(QPoint);
     void addNewTab(const QString &wDir=QDir::homePath(),
-                   const QString &command=QString());
+                   const QString &command=QString(), int opacity=-1);
 
     void changeTitle(const QString &txt);
 
@@ -68,7 +69,7 @@ private:
     QAction *mActQuit;
 
     QMenu *mMenu;
-
+bool mSaveGeometry=true;
 
 };
 

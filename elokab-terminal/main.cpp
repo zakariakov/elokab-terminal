@@ -18,6 +18,8 @@ void helpMe()
     puts(" -b, --hide-border                                      FramelessWindow no border\n");
     puts(" -t, --on-top                                           On top hint\n");
     puts(" -g, --geometry           <left,top,width,height>       Run in specific dimensions ex: 0,0,800,600 \n");
+    puts(" -o, --opacity            <int>                       Window opacity 0 to 100 \n");
+
 }
 
 
@@ -71,7 +73,7 @@ int main(int argc, char *argv[])
     bool framless=false;
     bool ontop=false;
     QStringList args = a.arguments();
-
+    int opacity=-1;
     if(args.count()>1)
     {
 
@@ -102,6 +104,12 @@ int main(int argc, char *argv[])
 
             else if (arg == "-t" || arg == "--on-top" ) {ontop=true;}
 
+            else if (arg == "-o" || arg == "--opacity" ) {
+                if(i+1>args.count()-1){helpMe();return 0;}
+                opacity=args.at(i+1).toInt();
+
+            }
+
 
                     // qWarning() << "echo Unknown option: " << args;  helpMe(); return 0;
                    // command= "echo \"Unknown option: " + arg+"\n"+ help+"\"";
@@ -129,9 +137,10 @@ int main(int argc, char *argv[])
               <<"\n Workdir: "<<workdir
               <<"\n Command: "<<command
               <<"\n Framless:"<<framless
-              <<"\n Geometry:"<<geometry;
+              <<"\n Geometry:"<<geometry
+              <<"\n Opacity:"<<opacity;
 
-    MainWindow w(workdir,command,framless,geometry,ontop);
+    MainWindow w(workdir,command,framless,geometry,ontop,opacity);
 
 
     w.show();
