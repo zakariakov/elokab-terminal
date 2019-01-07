@@ -9,16 +9,17 @@
 void helpMe()
 {
 
-    printf("Usage: elokab-terminal [OPTION]\n");
+    printf("Usage: elokab-terminal [OPTION][Execution]\n");
     puts("elokab-terminal v: 0.3 \n" );
     puts("OPTION:\n");
     puts(" -h  --help                                             Print this help.\n");
     puts(" -w  --working-directory  <dir>                         Start session with specified work directory.\n");
-    puts(" -e, --execute            <command>                     Execute command instead of shel\n");
     puts(" -b, --hide-border                                      FramelessWindow no border\n");
     puts(" -t, --on-top                                           On top hint\n");
     puts(" -g, --geometry           <left,top,width,height>       Run in specific dimensions ex: 0,0,800,600 \n");
     puts(" -o, --opacity            <int>                       Window opacity 0 to 100 \n");
+    puts("Execution:\n");
+    puts(" -e, --execute            <command>                     Execute command instead of shel\n");
 
 }
 
@@ -92,7 +93,12 @@ int main(int argc, char *argv[])
 
             else if (arg == "-e" ||arg == "-x" || arg == "--execute"|| arg == "--command" ) {
                 if(i+1>args.count()-1){helpMe();return 0;}
-                command=args.at(i+1);
+                for (int r = i+1; r < args.count(); ++r) {
+                     command+=" "+args.at(r)+" ";
+                }
+              // command= command.replace("\"","'");
+               // command=args.at(i+1);
+                break;
             }
 
             else if (arg == "-b" || arg == "--hide-border" ) {framless=true;}

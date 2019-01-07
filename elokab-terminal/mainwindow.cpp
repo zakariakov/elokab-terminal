@@ -12,6 +12,7 @@
 #include <QMessageBox>
 #include <QApplication>
 #include <QCheckBox>
+//#include <QGraphicsBlurEffect>
 MainWindow::MainWindow(const QString &wDir,
                        const QString &command,
                        bool framless,
@@ -23,7 +24,11 @@ MainWindow::MainWindow(const QString &wDir,
 {
 
     this->setAttribute(Qt::WA_TranslucentBackground,true);
-    setAutoFillBackground(true);
+//    QGraphicsBlurEffect *efect=new QGraphicsBlurEffect;
+//    efect->setBlurRadius(5.0);
+//        this->setGraphicsEffect(efect);
+
+   setAutoFillBackground(true);
     ui->setupUi(this);
     setupActions();
     //Framless Border
@@ -242,12 +247,16 @@ void MainWindow::addNewTab(const QString &wDir, const QString &command,int opaci
     font.setPointSize(10);
     QString fontName=setting.value("FontFamily",font.family()).toString();
     int fontSize=setting.value("FontSize",font.pointSize()).toInt();
-    font.setPointSize(fontSize);
+
     font.setFamily(fontName);
+    font.setPointSize(fontSize);
+    font.setBold(false);
+    font.setItalic(false);
 //    if(!font.exactMatch()){
 //        qDebug()<<"MainWindow::applySettings() font no match return default font";
 //        font=QApplication::font().family();
 //    }
+     terminaleWidget->setTerminalFont(font);
     int spos=setting.value("ScrollBar",0).toInt();
 qDebug()<<"opacity"<<opacity;
 
@@ -259,12 +268,13 @@ qDebug()<<"opacity"<<opacity;
     int cursorShape=setting.value("CursorShape",0).toInt();
 
     terminaleWidget-> setShellProgram(shell);
-    terminaleWidget->setTerminalFont(font);
+
     //TODO FIXME
     terminaleWidget->setColorScheme(4);
     terminaleWidget->setKeyboardCursorShape(cursorShape);
     terminaleWidget->setScrollBarPosition(spos);
     terminaleWidget->setInitialWorkingDirectory(wDir);
+
     terminaleWidget->startShellProgram();
 
 
@@ -285,6 +295,7 @@ qDebug()<<"opacity"<<opacity;
 
     ui->tabWidget->setCurrentWidget(terminaleWidget);
     terminaleWidget->setFocus();
+     terminaleWidget->setTerminalFont(font);
 }
 
 void MainWindow::changeTitle(const QString &txt)

@@ -7,7 +7,7 @@
 #include <QDesktopWidget>
 
 ButtonColor::ButtonColor(const QString &text, bool showAlphaChannel, QColor color, QWidget *parent) :
-    QWidget(parent),dlgc(0),
+    QWidget(parent),dlgc(nullptr),
     m_showAlphaChannel(showAlphaChannel),
     isDlgRunning(0)
 {

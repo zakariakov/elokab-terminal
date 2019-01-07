@@ -340,6 +340,7 @@ TerminalDisplay::TerminalDisplay(QWidget *parent)
   // so the layout is forced to Left-To-Right
   setLayoutDirection(Qt::LeftToRight);
 
+
   // The offsets are not yet calculated.
   // Do not calculate these too often to be more smoothly when resizing
   // konsole in opaque mode.

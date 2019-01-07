@@ -9,73 +9,73 @@
         <translation>طرفية العقاب</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="84"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="93"/>
         <source>Do you want to exit ?.</source>
         <translation>هل تريد الخروج ؟.</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="86"/>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="311"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="95"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="342"/>
         <source>Do not ask again</source>
         <translation>لا تعرض هذه الرسالة مرة اخرى</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="107"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="116"/>
         <source>New Tab</source>
         <translation>لسان جديد</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="113"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="122"/>
         <source>Copy</source>
         <translation>نسخ</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="118"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="127"/>
         <source>Past</source>
         <translation>لصق</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="124"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="133"/>
         <source>Zoom in</source>
         <translation>تكبير</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="129"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="138"/>
         <source>Zoom out</source>
         <translation>تصغير</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="135"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="144"/>
         <source>Settings</source>
         <translation>الإعدادات</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="140"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="149"/>
         <source>About</source>
         <translation>حول</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="145"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="154"/>
         <source>About Qt...</source>
         <translation>حول كيوتي...</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="148"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="157"/>
         <source>Exit</source>
         <translation>خروج</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="171"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="180"/>
         <source>Menu</source>
         <translation>القائمة</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="310"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="341"/>
         <source>Do you want to exit this tab?</source>
         <translation>هل تريد اغلاق اللسان ؟</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="415"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="459"/>
         <source>&lt;p&gt;&lt;b&gt;Elokab-terminal %1&lt;/b&gt;&lt;/p&gt;&lt;p&gt;A lightweight  terminal emulator&lt;p&gt; See &lt;a href=&quot;https://github.com/zakariakov/elokab-terminal/&quot;&gt;github&lt;/a&gt; for more information.&lt;/p&gt;&lt;p&gt;&amp;copy; Abouzakaria&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -84,7 +84,7 @@
         <translation type="vanished">طرفية </translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="414"/>
+        <location filename="../../../../../elokab-terminal/mainwindow.cpp" line="458"/>
         <source>About Elokab-terminal</source>
         <translation>حول طرفية العقاب</translation>
     </message>
@@ -105,22 +105,22 @@
         <translation type="vanished">الخطوط</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="36"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="73"/>
         <source>Font :</source>
         <translation>الخط :</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="52"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="143"/>
         <source>Font Size :</source>
         <translation>حجم الخط :</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="171"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="178"/>
         <source>Themes</source>
         <translation>السمات</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="249"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="256"/>
         <source>Color Sheme :</source>
         <translation>تشكيلات الالوان :</translation>
     </message>
@@ -141,17 +141,17 @@
         <translation type="vanished">تخصيص الالوان</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="307"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="314"/>
         <source>Font Color:</source>
         <translation>لون الحط:</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="318"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="325"/>
         <source>BackGround Color:</source>
         <translation type="unfinished">لون الخلفية:</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="191"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="198"/>
         <source>OPacity:</source>
         <translatorcomment>الشفافية:</translatorcomment>
         <translation type="unfinished">الشفافية:</translation>
@@ -162,64 +162,109 @@
         <translation type="unfinished">عام</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="84"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="36"/>
         <source>ScrollBar Position :</source>
         <translation type="unfinished">موقع شريط التمرير :</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="91"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="163"/>
         <source>Shell:</source>
         <translation type="unfinished">الصدفة:</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="105"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="50"/>
         <source>Cursor:</source>
         <translation type="unfinished">المؤشر:</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="113"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="81"/>
         <source>BlockCursor</source>
         <translation type="unfinished">مؤشر مستطيل</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="118"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="86"/>
         <source>UnderlineCursor</source>
         <translation type="unfinished">خط تحت الكتابة</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="123"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="91"/>
         <source>IBeamCursor</source>
         <translation type="unfinished">خط عمودي</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="217"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="170"/>
+        <source>All fonts</source>
+        <translation type="unfinished">كل الخطوط</translation>
+    </message>
+    <message>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="224"/>
         <source> %</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="260"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="267"/>
         <source>DEfault</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="274"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="281"/>
         <source>Get Scheme</source>
         <translation type="unfinished">جلب سمة الوان</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="287"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="294"/>
         <source>get sheme from xresource file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="290"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="297"/>
         <source>Xresources</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="327"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="334"/>
         <source>Scheme :</source>
         <translation>التشكيلة:</translation>
+    </message>
+    <message>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="343"/>
+        <source>Blue</source>
+        <translation type="unfinished">أزرق</translation>
+    </message>
+    <message>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="350"/>
+        <source>Black</source>
+        <translation type="unfinished">أسود</translation>
+    </message>
+    <message>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="357"/>
+        <source>Yellow</source>
+        <translation type="unfinished">أصفر</translation>
+    </message>
+    <message>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="364"/>
+        <source>Cyan</source>
+        <translation type="unfinished">سماوي</translation>
+    </message>
+    <message>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="371"/>
+        <source>Green</source>
+        <translation type="unfinished">أخظر</translation>
+    </message>
+    <message>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="378"/>
+        <source>Red</source>
+        <translation type="unfinished">أحمر</translation>
+    </message>
+    <message>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="385"/>
+        <source>White</source>
+        <translation type="unfinished">أبيض</translation>
+    </message>
+    <message>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="392"/>
+        <source>Magenta</source>
+        <translation type="unfinished">أرجواني</translation>
     </message>
     <message>
         <source>ScrollBar</source>
@@ -230,17 +275,17 @@
         <translation type="vanished">الموضع :</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="152"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="100"/>
         <source>No ScrollBar</source>
         <translation>بدون شريط</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="157"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="105"/>
         <source>ScrollBar Left</source>
         <translation>شريط على اليسار</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="162"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="110"/>
         <source>ScrollBar Right</source>
         <translation>شريط على اليمين</translation>
     </message>
@@ -249,7 +294,7 @@
         <translation type="vanished">الطرفية</translation>
     </message>
     <message>
-        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="131"/>
+        <location filename="../../../../../elokab-terminal/settingdialog.ui" line="60"/>
         <source>Ask for conformation when closing</source>
         <translation type="unfinished">عرض رسالة تنبيه عند الخروج</translation>
     </message>

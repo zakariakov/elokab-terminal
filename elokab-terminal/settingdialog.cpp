@@ -24,9 +24,9 @@ SettingDialog::SettingDialog(QWidget *parent) :
     for (int i = 0; i < 16; ++i) {
         btnColor[i]=new ButtonColor;
         if(i<8){
-            ui->gridLayoutBtn->addWidget(btnColor[i],1,i);
+            ui->gridLayoutBtn->addWidget(btnColor[i],2,i);
         }else{
-            ui->gridLayoutBtn->addWidget(btnColor[i],2,i-8);
+            ui->gridLayoutBtn->addWidget(btnColor[i],3,i-8);
         }
 
     }
@@ -41,10 +41,8 @@ SettingDialog::SettingDialog(QWidget *parent) :
     int fontSize=setting.value("FontSize",font.pointSize()).toInt();
     font.setPointSize(fontSize);
     font.setFamily(fontName);
-//if(!font.exactMatch()){
-//    qDebug()<<"SettingDialog() font no match return default font";
-//   font.setFamily(QApplication::font().family());
-//}
+bool allfonts=setting.value("AllFonts",false).toBool();
+
     qDebug()<<"----------------------------"<<font.family();
     //int colorSheme=setting.value("ColorSheme",0).toInt();
     int sPos=setting.value("ScrollBar",0).toInt();
@@ -81,15 +79,18 @@ SettingDialog::SettingDialog(QWidget *parent) :
     //    ui->hLayoutForColor
 
 
-    ui->fontComboBox->setFontFilters(QFontComboBox::MonospacedFonts
-                                     | QFontComboBox::NonScalableFonts
-                                     | QFontComboBox::ScalableFonts);
+//    ui->fontComboBox->setFontFilters(QFontComboBox::MonospacedFonts
+//                                     | QFontComboBox::NonScalableFonts
+//                                     | QFontComboBox::ScalableFonts
+//                                    );
+    ui->checkBoxFont->setChecked(allfonts);
+    on_checkBoxFont_toggled(allfonts);
 
    ui->fontComboBox->setCurrentFont(font);
    //  ui->fontComboBox->setCurrentText(font.family());
   ui->fontComboBox->setEditable(false);
     ui->sizeSpinBox->setValue(font.pointSize());
-ui->comboBoxCursor->setCurrentIndex(shape);
+    ui->comboBoxCursor->setCurrentIndex(shape);
 
     //Color Shemes --------------------------------
     QDir appDir(QApplication::applicationDirPath());
@@ -150,12 +151,13 @@ void SettingDialog::saveSettings()
     QFont font = QApplication::font();
     font.setPointSize(ui->sizeSpinBox->value());
     font.setFamily(ui->fontComboBox->currentText());
-
+font.setBold(false);
 
 
     QSettings setting;
     setting.setValue("FontFamily",font.family());
     setting.setValue("FontSize",font.pointSize());
+    setting.setValue("AllFonts",ui->checkBoxFont->isChecked());
 
     setting.setValue("ColorSheme",ui->themesComboBox->currentIndex());
     setting.setValue("ScrollBar",ui->ScrollBarComboBox->currentIndex());
@@ -269,7 +271,9 @@ void SettingDialog::loadXresourceColorShemes()
         if(!line.contains(":")) continue;
 
 
-        if(line.startsWith("*.")){
+        if(line.startsWith("*") ){
+            if(line.contains("background")||line.contains("foreground")||line.contains("color") ){
+
 
             QString key=line.section(":",0,0).trimmed();
             QString value=line.section(":",1,1).trimmed();
@@ -279,9 +283,10 @@ void SettingDialog::loadXresourceColorShemes()
             if (value.isEmpty()) continue;
 
            // qDebug()<<key.section(".",1,1) <<value;
-            QString color=key.section(".",1,1);
-
-
+          //  QString color=key.section(".",1,1);
+key.remove("*");
+key.remove(".");
+QString color=key.trimmed();
             if(color=="background")     btnBColor->setColor(value);
 
             else if(color=="foreground") btnFColor->setColor(value);
@@ -336,7 +341,7 @@ void SettingDialog::loadXresourceColorShemes()
         }
 
     }
-
+}
     files.close();
 
 
@@ -356,5 +361,21 @@ void SettingDialog::on_buttonBox_clicked(QAbstractButton *button)
         saveSettings();
         accept();
     }
+
+}
+
+void SettingDialog::on_checkBoxFont_toggled(bool checked)
+{
+     ui->fontComboBox->clear();
+    if(checked){
+        ui->fontComboBox->setFontFilters(QFontComboBox::AllFonts );
+
+    }else{
+        ui->fontComboBox->setFontFilters(QFontComboBox::MonospacedFonts
+                                         | QFontComboBox::NonScalableFonts
+                                         | QFontComboBox::ScalableFonts );
+
+    }
+
 
 }

@@ -35,6 +35,8 @@ void on_pushButtonXresources_clicked();
 
 void on_buttonBox_clicked(QAbstractButton *button);
 
+void on_checkBoxFont_toggled(bool checked);
+
 private:
     Ui::SettingDialog *ui;
 
