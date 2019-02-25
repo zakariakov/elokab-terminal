@@ -29,7 +29,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
 
-    setenv("TERM", "xterm", 1); // TODO/FIXME: why?
+  setenv("TERM", "xterm", 1); // TODO/FIXME: why?
+    //  setenv("TERM", "rxvt", 1); // TODO/FIXME: why?
 
     a.setApplicationName("elokab-terminal");
     a.setOrganizationName("elokab");

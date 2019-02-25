@@ -12,6 +12,7 @@
 #include <QMessageBox>
 #include <QApplication>
 #include <QCheckBox>
+#include <QTimer>
 //#include <QGraphicsBlurEffect>
 MainWindow::MainWindow(const QString &wDir,
                        const QString &command,
@@ -27,7 +28,7 @@ MainWindow::MainWindow(const QString &wDir,
 //    QGraphicsBlurEffect *efect=new QGraphicsBlurEffect;
 //    efect->setBlurRadius(5.0);
 //        this->setGraphicsEffect(efect);
-
+mOpacity=opacity;
    setAutoFillBackground(true);
     ui->setupUi(this);
     setupActions();
@@ -65,7 +66,7 @@ MainWindow::MainWindow(const QString &wDir,
     connect(ui->tabWidget,SIGNAL(tabCloseRequested(int)),this,SLOT(closeTab(int)));
     connect(ui->tabWidget,SIGNAL(currentChanged(int)),this,SLOT(tabChanged(int)));
     clipboardChanged();
-    addNewTab(wDir,command,opacity);
+    addNewTab(wDir,command);
 
 }
 
@@ -232,7 +233,7 @@ void MainWindow::customContextMenu(QPoint)
     mMenu->exec(QCursor::pos());
 }
 
-void MainWindow::addNewTab(const QString &wDir, const QString &command,int opacity)
+void MainWindow::addNewTab(const QString &wDir, const QString &command)
 {
 
 
@@ -240,50 +241,6 @@ void MainWindow::addNewTab(const QString &wDir, const QString &command,int opaci
 
 
 
-    QSettings setting;
-
-    QFont font = QApplication::font();
-    font.setFamily("Monospace");
-    font.setPointSize(10);
-    QString fontName=setting.value("FontFamily",font.family()).toString();
-    int fontSize=setting.value("FontSize",font.pointSize()).toInt();
-
-    font.setFamily(fontName);
-    font.setPointSize(fontSize);
-    font.setBold(false);
-    font.setItalic(false);
-//    if(!font.exactMatch()){
-//        qDebug()<<"MainWindow::applySettings() font no match return default font";
-//        font=QApplication::font().family();
-//    }
-     terminaleWidget->setTerminalFont(font);
-    int spos=setting.value("ScrollBar",0).toInt();
-qDebug()<<"opacity"<<opacity;
-
-    if(opacity==-1)
-       opacity=setting.value("Opacity",100).toInt();
-
-
-    QString shell=setting.value("Shell",QString()).toString();
-    int cursorShape=setting.value("CursorShape",0).toInt();
-
-    terminaleWidget-> setShellProgram(shell);
-
-    //TODO FIXME
-    terminaleWidget->setColorScheme(4);
-    terminaleWidget->setKeyboardCursorShape(cursorShape);
-    terminaleWidget->setScrollBarPosition(spos);
-    terminaleWidget->setInitialWorkingDirectory(wDir);
-
-    terminaleWidget->startShellProgram();
-
-
-    terminaleWidget->setTerminalOpacity(qreal(opacity)/100);
-    if(!command.isEmpty())
-    {
-        // terminaleWidget-> setShellProgram(command);
-        terminaleWidget->getOutputFromCommand(command);
-    }
 
     terminaleWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     QIcon icon=QIcon::fromTheme("terminal",QIcon(":/icons/terminal.png"));
@@ -295,7 +252,53 @@ qDebug()<<"opacity"<<opacity;
 
     ui->tabWidget->setCurrentWidget(terminaleWidget);
     terminaleWidget->setFocus();
-     terminaleWidget->setTerminalFont(font);
+
+
+
+
+//    QFont font = QApplication::font();
+//    font.setFamily("Monospace");
+//    font.setPointSize(10);
+//    QString fontName=setting.value("FontFamily",font.family()).toString();
+//    int fontSize=setting.value("FontSize",font.pointSize()).toInt();
+//    font.setPointSize(fontSize);
+//    font.setFamily(fontName);
+
+
+//    int spos=setting.value("ScrollBar",0).toInt();
+//    qDebug()<<"opacity"<<opacity;
+
+//    if(opacity==-1)
+//        opacity=setting.value("Opacity",100).toInt();
+
+
+ terminaleWidget->setInitialWorkingDirectory(wDir);
+//    int cursorShape=setting.value("CursorShape",0).toInt();
+    QSettings setting;
+    QString shell=setting.value("Shell",QString()).toString();
+    terminaleWidget-> setShellProgram(shell);
+   terminaleWidget->startShellProgram();
+    //TODO FIXME
+//      terminaleWidget->setTerminalFont(font);
+//    terminaleWidget->setColorScheme(4);
+//    terminaleWidget->setKeyboardCursorShape(cursorShape);
+//    terminaleWidget->setScrollBarPosition(spos);
+
+
+qDebug()<<wDir;
+
+  //  terminaleWidget->setTerminalOpacity(qreal(opacity)/100);
+
+
+    if(!command.isEmpty())
+    {
+        terminaleWidget->getOutputFromCommand(command);
+    }
+
+
+  //  terminaleWidget->setTerminalFont(font);
+   QTimer::singleShot(10,this,SLOT(applySettings()))  ;
+
 }
 
 void MainWindow::changeTitle(const QString &txt)
@@ -420,14 +423,16 @@ void MainWindow::applySettings()
     int fontSize=setting.value("FontSize",font.pointSize()).toInt();
     font.setPointSize(fontSize);
     font.setFamily(fontName);
-//    if(!font.exactMatch()){
-//        qDebug()<<"MainWindow::applySettings() font no match return default font";
-//        font=QApplication::font().family();
-//    }
+//    QString shell=setting.value("Shell",QString()).toString();
+//    terminaleWidget-> setShellProgram(shell);
+// terminaleWidget->startShellProgram();
 
     //QFont font=  setting.value("Font",font).value<QFont>();
     int spos=setting.value("ScrollBar",0).toInt();
-    int opacity=setting.value("Opacity",100).toInt();
+    if(mOpacity==-1){
+         mOpacity=setting.value("Opacity",100).toInt();
+    }
+
     // QString shell=setting.value("Shell",QString()).toString();
        int cursorShape=setting.value("CursorShape",0).toInt();
 
@@ -443,13 +448,13 @@ void MainWindow::applySettings()
 
             termWidget->setColorScheme(4);
 
-            termWidget->setTerminalOpacity(qreal(opacity)/100);
+            termWidget->setTerminalOpacity(qreal(mOpacity)/100);
 
             termWidget->setKeyboardCursorShape(cursorShape);
         }
 
     }
-
+mOpacity=-1;
 }
 
 void MainWindow::aboutShow()

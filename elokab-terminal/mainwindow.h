@@ -39,7 +39,7 @@ private slots:
 
     void customContextMenu(QPoint);
     void addNewTab(const QString &wDir=QDir::homePath(),
-                   const QString &command=QString(), int opacity=-1);
+                   const QString &command=QString());
 
     void changeTitle(const QString &txt);
 
@@ -70,7 +70,7 @@ private:
 
     QMenu *mMenu;
 bool mSaveGeometry=true;
-
+int mOpacity;
 };
 
 #endif // MAINWINDOW_H
