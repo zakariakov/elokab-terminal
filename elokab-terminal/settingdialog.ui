@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>413</width>
+    <width>552</width>
     <height>327</height>
    </rect>
   </property>
@@ -227,7 +227,7 @@
                <string/>
               </property>
               <property name="minimum">
-               <number>10</number>
+               <number>0</number>
               </property>
               <property name="maximum">
                <number>100</number>
