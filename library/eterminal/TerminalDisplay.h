@@ -748,8 +748,8 @@ private:
 
     //the delay in milliseconds between redrawing blinking text
     static const int BLINK_DELAY = 500;
-  static const int DEFAULT_LEFT_MARGIN = 1;
-  static const int DEFAULT_TOP_MARGIN = 1;
+  static const int DEFAULT_LEFT_MARGIN = 5;
+  static const int DEFAULT_TOP_MARGIN = 10;
 
 public:
     static void setTransparencyEnabled(bool enable)

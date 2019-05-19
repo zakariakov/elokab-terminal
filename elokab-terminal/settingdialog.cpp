@@ -33,7 +33,7 @@ SettingDialog::SettingDialog(QWidget *parent) :
 
     QFont font = QApplication::font();
    font.setFamily("Monospace");
-   font.setPointSize(10);
+   font.setPointSize(11);
 
     QSettings setting;
   //  QFont f=  setting.value("Font",font).value<QFont>();

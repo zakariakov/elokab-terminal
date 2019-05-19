@@ -418,7 +418,7 @@ void MainWindow::applySettings()
 
     QFont font = QApplication::font();
     font.setFamily("Monospace");
-    font.setPointSize(10);
+    font.setPointSize(11);
     QString fontName=setting.value("FontFamily",font.family()).toString();
     int fontSize=setting.value("FontSize",font.pointSize()).toInt();
     font.setPointSize(fontSize);

@@ -82,6 +82,8 @@ public:
 
      void setKeyboardCursorShape(int shape);
 
+    //void setKeyboardCursorColor(bool useForegroundColor , const QColor& color);
+
     //set size
     void setSize(int h, int v);
 

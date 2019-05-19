@@ -281,7 +281,7 @@ void TerminalDisplay::setFont(const QFont &)
 {
   // ignore font change request if not coming from konsole itself
     QFont font;
-    font.setPointSize(14);
+    font.setPointSize(11);
     setFont(font);
 }
 

@@ -95,6 +95,7 @@ QTermWidget::QTermWidget(int startnow, QWidget *parent)
 {
 // setWindowOpacity(0.0);
   setLayoutDirection(Qt::LeftToRight);
+
   m_impl = new TermWidgetImpl(this);
 
   init();
@@ -205,7 +206,7 @@ void QTermWidget::setColorScheme(int scheme)
     break;
     default: //do nothing
       break;
-  };
+  }
 }
  void QTermWidget::setKeyboardCursorShape(int shape)
  {
