@@ -56,7 +56,7 @@ public:
 
     //Creation of widget
     QTermWidget(int startnow = 1, //start shell programm immediatelly
-                QWidget *parent = 0);
+                QWidget *parent = nullptr);
     ~QTermWidget();
 
     //start shell program if it was not started in constructor
@@ -65,8 +65,11 @@ public:
     //look-n-feel, if you don`t like defaults
 
     //	Terminal font
-    // Default is application font with family Monospace, size 10
+    // Default is application font with family Monospace, size 11
     void setTerminalFont(QFont &font);
+
+    // terminal margin default=5
+    void setTerminalMargin(int arg);
 
     //	Shell program, default is /bin/bash
     void setShellProgram(const QString &progname);
@@ -82,11 +85,18 @@ public:
 
      void setKeyboardCursorShape(int shape);
 
-    //void setKeyboardCursorColor(bool useForegroundColor , const QColor& color);
+     // Specifies whether or not the cursor blinks.
+     void setBlinkingCursor(bool blink);
+
+     //  Sets the color used to draw the keyboard cursor.
+     void setKeyboardCursorColor(bool useForegroundColor , const QColor& color);
 
     //set size
     void setSize(int h, int v);
 
+    void setLineSpacing(uint arg);
+
+    void updateColorScheme();
     // History size for scrolling
     void setHistorySize(int lines); //infinite if lines < 0
 

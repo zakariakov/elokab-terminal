@@ -4,6 +4,9 @@
 #include <QTermWidget>
 #include <QMainWindow>
 #include <QDir>
+#include <QFileSystemWatcher>
+#include <QTabBar>
+#include "titlewidget.h"
 namespace Ui {
 class MainWindow;
 }
@@ -18,7 +21,7 @@ public:
                         bool framless=false,
                         const QString &geometry=QString(),
                         bool ontop=false,
-                        int opacity=-1,
+                        int opacity=-1, bool full=false,
                         QWidget *parent = nullptr);
     ~MainWindow();
     void closeEvent(QCloseEvent *event);
@@ -29,7 +32,7 @@ private slots:
 
     void setupActions();
 
-
+   void setupKeys();
 
     void copySelectedText();
 
@@ -45,23 +48,31 @@ private slots:
 
     QTermWidget *termWidget();
     void closeTab(int index);
+    void tabClose();
     void tabChanged(int index);
     void zoomOut();
     void zoomIn();
+    void opacityOut();
+    void opacityIn();
+
     void settingShow();
     void applySettings();
     void aboutShow();
 private:
     Ui::MainWindow *ui;
-
+QTabBar *m_tabBar;
     QTermWidget *terminaleWidget;
-
+TitleWidget *mTitleWidget;
+    QFileSystemWatcher *mFileSystemWatcher;
     QAction *actionCopy;
     QAction *actionPast;
     QAction *actionNewTab;
 
     QAction *mZoomOut;
     QAction *mZoomIn;
+
+    QAction *mOpacityOut;
+    QAction *mOpacityIn;
 
     QAction *mActSetting;
     QAction *mActAbout;
@@ -70,7 +81,9 @@ private:
 
     QMenu *mMenu;
 bool mSaveGeometry=true;
+bool mNativeWin=false;
 int mOpacity;
+int curOpacity;
 };
 
 #endif // MAINWINDOW_H

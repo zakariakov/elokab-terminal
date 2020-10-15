@@ -27,94 +27,98 @@
 // Konsole
 #include "Session.h"
 #include "TerminalDisplay.h"
-
+#include <QLayout>
 using namespace Konsole;
 
 void *createTermWidget(int startnow, void *parent)
 {
-  return (void*)new QTermWidget(startnow, (QWidget*)parent);
+    return (void*)new QTermWidget(startnow, (QWidget*)parent);
 }
 
 struct TermWidgetImpl
 {
-  TermWidgetImpl(QWidget* parent = 0);
+    TermWidgetImpl(QWidget* parent = nullptr);
 
-  TerminalDisplay *m_terminalDisplay;
-  Session *m_session;
+    TerminalDisplay *m_terminalDisplay;
+    Session *m_session;
 
-  Session* createSession();
-  TerminalDisplay* createTerminalDisplay(Session *session, QWidget* parent);
+    Session* createSession();
+    TerminalDisplay* createTerminalDisplay(Session *session, QWidget* parent);
 };
 
 TermWidgetImpl::TermWidgetImpl(QWidget* parent)
 {
-  m_session = createSession();
-  m_terminalDisplay = createTerminalDisplay(m_session, parent);
+    m_session = createSession();
+    m_terminalDisplay = createTerminalDisplay(m_session, parent);
 }
 
 
 
 Session *TermWidgetImpl::createSession()
 {
-  Session *session = new Session();
+    Session *session = new Session();
 
-  session->setTitle(Session::NameRole, "QTermWidget");
-  session->setProgram("/bin/bash");
-  QStringList args("");
-  session->setArguments(args);
-  session->setAutoClose(true);
+    session->setTitle(Session::NameRole, "QTermWidget");
+    session->setProgram("/bin/bash");
+    QStringList args("");
+    session->setArguments(args);
+    session->setAutoClose(true);
 
-  session->setCodec(QTextCodec::codecForName("UTF-8"));
+    session->setCodec(QTextCodec::codecForName("UTF-8"));
 
-  session->setFlowControlEnabled(true);
-  session->setHistoryType(HistoryTypeBuffer(1000));
+    session->setFlowControlEnabled(true);
+    session->setHistoryType(HistoryTypeBuffer(1000));
 
-  session->setDarkBackground(true);
+    session->setDarkBackground(true);
 
-  session->setKeyBindings("");
-  return session;
+    session->setKeyBindings("");
+    return session;
 }
 
 TerminalDisplay *TermWidgetImpl::createTerminalDisplay(Session *session, QWidget* parent)
 {
-  TerminalDisplay* display = new TerminalDisplay(parent);
+    TerminalDisplay* display = new TerminalDisplay(parent);
 
-  display->setBellMode(TerminalDisplay::NotifyBell);
-  display->setTerminalSizeHint(true);
-  display->setTripleClickMode(TerminalDisplay::SelectWholeLine);
-  display->setTerminalSizeStartup(true);
+    display->setBellMode(TerminalDisplay::NotifyBell);
+    display->setTerminalSizeHint(true);
+    display->setTripleClickMode(TerminalDisplay::SelectWholeLine);
+    display->setTerminalSizeStartup(true);
 
-  display->setRandomSeed(session->sessionId() * 31);
+    display->setRandomSeed(session->sessionId() * 31);
 
-  return display;
+    return display;
 }
 
 
 QTermWidget::QTermWidget(int startnow, QWidget *parent)
-  :QWidget(parent)
+    :QWidget(parent)
 {
-// setWindowOpacity(0.0);
-  setLayoutDirection(Qt::LeftToRight);
+    setObjectName("TermWidget");
+    // setWindowOpacity(0.0);
+    setLayoutDirection(Qt::LeftToRight);
 
-  m_impl = new TermWidgetImpl(this);
 
-  init();
+    m_impl = new TermWidgetImpl(this);
+    ///layout-------------------------------------------
+//QVBoxLayout *verticalLayout = new QVBoxLayout(this);
+//verticalLayout->addWidget(m_impl->m_terminalDisplay);
+    init();
 
-  if (startnow && m_impl->m_session)
-    m_impl->m_session->run();
+    if (startnow && m_impl->m_session)
+        m_impl->m_session->run();
 
-  setFocus( Qt::OtherFocusReason );
-  m_impl->m_terminalDisplay->resize(size());
+    setFocus( Qt::OtherFocusReason );
+    m_impl->m_terminalDisplay->resize(size());
 
-  setFocusProxy(m_impl->m_terminalDisplay);
+    setFocusProxy(m_impl->m_terminalDisplay);
 
 }
 
 void QTermWidget::startShellProgram()
 {
-  if ( m_impl->m_session->isRunning() ) return;
+    if ( m_impl->m_session->isRunning() ) return;
 
-  m_impl->m_session->run();
+    m_impl->m_session->run();
 }
 
 bool QTermWidget::sessionIsruning()
@@ -124,122 +128,152 @@ bool QTermWidget::sessionIsruning()
 
 void QTermWidget::init()
 {
-  m_impl->m_terminalDisplay->setSize(80, 40);
+    m_impl->m_terminalDisplay->setSize(80, 40);
 
-  QFont font = QApplication::font();
-  font.setFamily("Monospace");
-  font.setPointSize(10);
-  font.setStyleHint(QFont::TypeWriter);
-  QSettings setting;
-  QFont f=  setting.value("Font",font).value<QFont>();
-  setTerminalFont(f);
- // setScrollBarPosition(NoScrollBar);
+    QFont font = QApplication::font();
+    font.setFamily("Monospace");
+    font.setPointSize(11);
+    font.setStyleHint(QFont::TypeWriter);
+    QSettings setting(QApplication::organizationName(),QApplication::applicationDisplayName());
+    QFont f=  setting.value("Font",font).value<QFont>();
+    setTerminalFont(f);
+    // setScrollBarPosition(NoScrollBar);
 
-  m_impl->m_session->addView(m_impl->m_terminalDisplay);
+    m_impl->m_session->addView(m_impl->m_terminalDisplay);
 
-  connect(m_impl->m_session, SIGNAL(finished()), this, SLOT(sessionFinished()));
-  connect(m_impl->m_terminalDisplay, SIGNAL(selectionAvailable(bool)), this, SIGNAL(selectionAvailable(bool)));
- connect(m_impl->m_session, SIGNAL(titleChanged()), this, SLOT(changeTitle()));
+    connect(m_impl->m_session, SIGNAL(finished()), this, SLOT(sessionFinished()));
+    connect(m_impl->m_terminalDisplay, SIGNAL(selectionAvailable(bool)), this, SIGNAL(selectionAvailable(bool)));
+    connect(m_impl->m_session, SIGNAL(titleChanged()), this, SLOT(changeTitle()));
 }
 
 
 QTermWidget::~QTermWidget()
 {
     m_impl->m_session->close();
-  emit destroyed();
+    emit destroyed();
 }
 void QTermWidget::changeTitle()
 {
 
-     if ( m_impl->m_session ){
+    if ( m_impl->m_session ){
 
-         QString tit=m_impl->m_session->userTitle();
-         m_title=tit;
-          emit titleChanged(tit);
-     }
+        QString tit=m_impl->m_session->userTitle();
+        m_title=tit;
+        emit titleChanged(tit);
+    }
 
 }
 
 void QTermWidget::setTerminalFont(QFont &font)
 {
-  if (!m_impl->m_terminalDisplay)
-    return;
-  m_impl->m_terminalDisplay->setVTFont(font);
+    if (!m_impl->m_terminalDisplay) return;
+    m_impl->m_terminalDisplay->setVTFont(font);
 }
 
+void QTermWidget::setTerminalMargin(int arg)
+{
+    if (!m_impl->m_terminalDisplay) return;
+    m_impl->m_terminalDisplay->setMargin(arg);
+}
 void QTermWidget::setShellProgram(const QString &progname)
 {
-  if (!m_impl->m_session)
-    return;
-  m_impl->m_session->setProgram(progname);
+    if (!m_impl->m_terminalDisplay) return;
+    m_impl->m_session->setProgram(progname);
 }
 
 void QTermWidget::setArgs(QStringList &args)
 {
-  if (!m_impl->m_session)
-    return;
-  m_impl->m_session->setArguments(args);
+    if (!m_impl->m_terminalDisplay) return;
+    m_impl->m_session->setArguments(args);
 }
 
 void QTermWidget::setTextCodec(QTextCodec *codec)
 {
-  if (!m_impl->m_session)
-    return;
-  m_impl->m_session->setCodec(codec);
+    if (!m_impl->m_terminalDisplay) return;
+    m_impl->m_session->setCodec(codec);
+}
+
+void QTermWidget::updateColorScheme()
+{
+   if (!m_impl->m_terminalDisplay) return;
+    m_impl->m_terminalDisplay->setCostumColorTable();
 }
 
 void QTermWidget::setColorScheme(int scheme)
 {
-  switch(scheme)
-  {
+    if (!m_impl->m_terminalDisplay) return;
+
+    switch(scheme)
+    {
     case COLOR_SCHEME_WHITE_ON_BLACK:
-      m_impl->m_terminalDisplay->setColorTable(whiteonblack_color_table);
-      break;
+        m_impl->m_terminalDisplay->setColorTable(whiteonblack_color_table);
+        break;
     case COLOR_SCHEME_GREEN_ON_BLACK:
-      m_impl->m_terminalDisplay->setColorTable(greenonblack_color_table);
-      break;
+        m_impl->m_terminalDisplay->setColorTable(greenonblack_color_table);
+        break;
     case COLOR_SCHEME_BLACK_ON_LIGHT_YELLOW:
-      m_impl->m_terminalDisplay->setColorTable(blackonlightyellow_color_table);
-      break;
+        m_impl->m_terminalDisplay->setColorTable(blackonlightyellow_color_table);
+        break;
     case COLOR_SCHEME_COSTUM:
-      m_impl->m_terminalDisplay->setCostumColorTable();
-    break;
+        m_impl->m_terminalDisplay->setCostumColorTable();
+        break;
     default: //do nothing
-      break;
-  }
+        break;
+    }
 }
- void QTermWidget::setKeyboardCursorShape(int shape)
- {
+void QTermWidget::setKeyboardCursorShape(int shape)
+{
+    if (!m_impl->m_terminalDisplay) return;
 
-     switch(shape) {
-     case 1:
-         m_impl->m_terminalDisplay->setKeyboardCursorShape( TerminalDisplay::KeyboardCursorShape::UnderlineCursor);
-         break;
-     case 2:
-         m_impl->m_terminalDisplay->setKeyboardCursorShape(TerminalDisplay::KeyboardCursorShape::IBeamCursor);
-         break;
-     default:
-     case 0:
-         m_impl->m_terminalDisplay->setKeyboardCursorShape(TerminalDisplay::KeyboardCursorShape::BlockCursor);
-         break;
-     }
 
-  // m_impl->m_terminalDisplay->setKeyboardCursorShape(  TerminalDisplay::KeyboardCursorShape::UnderlineCursor);
- }
+    switch(shape) {
+    case 1:
+        m_impl->m_terminalDisplay->setKeyboardCursorShape( TerminalDisplay::KeyboardCursorShape::UnderlineCursor);
+        break;
+    case 2:
+        m_impl->m_terminalDisplay->setKeyboardCursorShape(TerminalDisplay::KeyboardCursorShape::IBeamCursor);
+        break;
+    default:
+    case 0:
+        m_impl->m_terminalDisplay->setKeyboardCursorShape(TerminalDisplay::KeyboardCursorShape::BlockCursor);
+        break;
+    }
+
+    // m_impl->m_terminalDisplay->setKeyboardCursorShape(  TerminalDisplay::KeyboardCursorShape::UnderlineCursor);
+}
+
+void QTermWidget::setBlinkingCursor(bool blink)
+{
+    if (!m_impl->m_terminalDisplay) return;
+    m_impl->m_terminalDisplay->setBlinkingCursor(blink);
+}
+
+void QTermWidget::setKeyboardCursorColor(bool useForegroundColor , const QColor& color)
+{
+    if (!m_impl->m_terminalDisplay) return;
+
+    m_impl->m_terminalDisplay->setKeyboardCursorColor(useForegroundColor,color);
+}
+
 void QTermWidget::setSize(int h, int v)
 {
-  if (!m_impl->m_terminalDisplay)
-    return;
-  m_impl->m_terminalDisplay->setSize(h, v);
+    if (!m_impl->m_terminalDisplay) return;
+    m_impl->m_terminalDisplay->setSize(h, v);
 }
 
+void QTermWidget::setLineSpacing(uint arg)
+{
+    if (!m_impl->m_terminalDisplay) return;
+    m_impl->m_terminalDisplay->setLineSpacing(arg);
+}
 void QTermWidget::setHistorySize(int lines)
 {
-  if (lines < 0)
-    m_impl->m_session->setHistoryType(HistoryTypeFile());
-  else
-    m_impl->m_session->setHistoryType(HistoryTypeBuffer(lines));
+    if (lines < 0)
+        m_impl->m_session->setHistoryType(HistoryTypeFile());
+    else
+        m_impl->m_session->setHistoryType(HistoryTypeBuffer(lines));
 }
+
 void QTermWidget::setScrollBarPosition(int pos)
 {
     switch (pos) {
@@ -247,13 +281,13 @@ void QTermWidget::setScrollBarPosition(int pos)
         setScrollBarPosition(NoScrollBar);
         break;
     case 1:
-         setScrollBarPosition(ScrollBarLeft);
+        setScrollBarPosition(ScrollBarLeft);
         break;
     case 2:
-         setScrollBarPosition(ScrollBarRight);
+        setScrollBarPosition(ScrollBarRight);
         break;
     default:
-         setScrollBarPosition(NoScrollBar);
+        setScrollBarPosition(NoScrollBar);
         break;
     }
 }
@@ -261,25 +295,25 @@ void QTermWidget::setScrollBarPosition(int pos)
 void QTermWidget::setScrollBarPosition(ScrollBarPosition pos)
 {
 
-  if (!m_impl->m_terminalDisplay)
-    return;
-  m_impl->m_terminalDisplay->setScrollBarPosition((TerminalDisplay::ScrollBarPosition)pos);
+    if (!m_impl->m_terminalDisplay) return;
+    m_impl->m_terminalDisplay->setScrollBarPosition((TerminalDisplay::ScrollBarPosition)pos);
 }
 
 void QTermWidget::sendText(QString &text)
 {
-  m_impl->m_session->sendText(text);
+    m_impl->m_session->sendText(text);
 }
 
 void QTermWidget::resizeEvent(QResizeEvent*)
 {
-  //qDebug("global window resizing...with %d %d", size().width(), size().height());
-  m_impl->m_terminalDisplay->resize(size());
+    //qDebug("global window resizing...with %d %d", size().width(), size().height());
+    if (!m_impl->m_terminalDisplay) return;
+    m_impl->m_terminalDisplay->resize(size());
 }
 
 void QTermWidget::sessionFinished()
 {
-  emit finished();
+    emit finished();
 }
 
 void QTermWidget::setInitialWorkingDirectory(const QString& path)
@@ -332,43 +366,42 @@ void QTermWidget::receiveData(bool receive)
         disconnect(m_impl->m_session, SIGNAL(receivedData(const QString&)), this, SLOT(onDataReceived(const QString&)));
 }
 //--------------------------
- void  QTermWidget::CopySelection()
- {
-     m_impl->m_terminalDisplay->copyClipboard();
- }
+void  QTermWidget::CopySelection()
+{
+    m_impl->m_terminalDisplay->copyClipboard();
+}
 //------------------------------
- void QTermWidget::clear()
- {
-   //  m_impl->m_session->emulation();
-     m_impl->m_session->refresh();
-     m_impl->m_session->clearHistory();
- }
+void QTermWidget::clear()
+{
+    //  m_impl->m_session->emulation();
+    m_impl->m_session->refresh();
+    m_impl->m_session->clearHistory();
+}
 
- void QTermWidget::setZoom(int step)
- {
-     if (!m_impl->m_terminalDisplay)
-         return;
+void QTermWidget::setZoom(int step)
+{
+    if (!m_impl->m_terminalDisplay)
+        return;
 
-     QFont font = m_impl->m_terminalDisplay->getVTFont();
+    QFont font = m_impl->m_terminalDisplay->getVTFont();
 
-     font.setPointSize(font.pointSize() + step);
-     setTerminalFont(font);
- }
+    font.setPointSize(font.pointSize() + step);
+    setTerminalFont(font);
+}
 
- void QTermWidget::zoomIn()
- {
-     setZoom(1);
- }
+void QTermWidget::zoomIn()
+{
+    setZoom(1);
+}
 
- void QTermWidget::zoomOut()
- {
-     setZoom(-1);
- }
+void QTermWidget::zoomOut()
+{
+    setZoom(-1);
+}
 
- void QTermWidget::setTerminalOpacity(qreal level)
- {
-     if (!m_impl->m_terminalDisplay)
-         return;
+void QTermWidget::setTerminalOpacity(qreal level)
+{
+    if (!m_impl->m_terminalDisplay) return;
 
-     m_impl->m_terminalDisplay->setOpacity(level);
- }
+    m_impl->m_terminalDisplay->setOpacity(level);
+}

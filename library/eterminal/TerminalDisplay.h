@@ -71,7 +71,7 @@ class TerminalDisplay : public QWidget
 
 public:
     /** Constructs a new terminal display widget with the specified parent. */
-    TerminalDisplay(QWidget *parent=0);
+    TerminalDisplay(QWidget *parent=nullptr);
     virtual ~TerminalDisplay();
 
     /** Returns the terminal color palette used by the display. */
@@ -345,6 +345,7 @@ public:
      */
     void setVTFont(const QFont& font);
 
+    void setMargin(int arg);
     /**
      * Specified whether anti-aliasing of text in the terminal display
      * is enabled or not.  Defaults to enabled.
@@ -389,6 +390,7 @@ public:
     void setScreenWindow( ScreenWindow* window );
     /** Returns the terminal screen section which is displayed in this widget.  See setScreenWindow() */
     ScreenWindow* screenWindow() const;
+
 
     static bool HAVE_TRANSPARENCY;
 
@@ -646,7 +648,7 @@ private:
 
     int _leftMargin;    // offset
     int _topMargin;    // offset
-
+    int _margin;    // offset
     int _lines;      // the number of lines that can be displayed in the widget
     int _columns;    // the number of columns that can be displayed in the widget
 
@@ -749,7 +751,7 @@ private:
     //the delay in milliseconds between redrawing blinking text
     static const int BLINK_DELAY = 500;
   static const int DEFAULT_LEFT_MARGIN = 5;
-  static const int DEFAULT_TOP_MARGIN = 10;
+  static const int DEFAULT_TOP_MARGIN = 5;
 
 public:
     static void setTransparencyEnabled(bool enable)

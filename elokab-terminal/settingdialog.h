@@ -12,9 +12,9 @@ class SettingDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit SettingDialog(QWidget *parent = 0);
+    explicit SettingDialog(QWidget *parent = nullptr);
     ~SettingDialog();
-QFont getFont();
+
 int getColorSheme();
 int getScrollBar();
 QColor getBcolor();
@@ -24,6 +24,7 @@ int getOpacity();
 signals:
 void settingsChanged();
 private slots:
+void setupKeys();
 void saveSettings();
 
 void on_themesComboBox_currentIndexChanged(int index);
@@ -31,11 +32,17 @@ void meAdjustSize();
 void on_pushButton_clicked();
 void loadColorShemes(const QString &fileNames);
 void loadXresourceColorShemes();
-void on_pushButtonXresources_clicked();
+
 
 void on_buttonBox_clicked(QAbstractButton *button);
 
-void on_checkBoxFont_toggled(bool checked);
+void on_pushButtonFont_clicked();
+void xrdbquey();
+
+
+void on_comboBoxUnicode_currentIndexChanged(int index);
+
+void on_fontComboBox_currentIndexChanged(const QString &arg1);
 
 private:
     Ui::SettingDialog *ui;
@@ -43,10 +50,15 @@ private:
     ButtonColor *btnFColor;
 
     ButtonColor *btnBColor;
+
+    ButtonColor *btnCursorColor;
+
 enum mi{mD=16};
 
     ButtonColor *btnColor[mD];
 
+    QString mfontUnicod;
+     QStringList listColor;
 };
 
 #endif // SETTINGDIALOG_H

@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QLibraryInfo>
 #include <QSettings>
+#include <QDateTime>
 
 void helpMe()
 {
@@ -17,7 +18,10 @@ void helpMe()
     puts(" -b, --hide-border                                      FramelessWindow no border\n");
     puts(" -t, --on-top                                           On top hint\n");
     puts(" -g, --geometry           <left,top,width,height>       Run in specific dimensions ex: 0,0,800,600 \n");
-    puts(" -o, --opacity            <int>                       Window opacity 0 to 100 \n");
+    puts(" -o, --opacity            <int>                        Window opacity 0 to 100 \n");
+    puts(" -n, --name               <int>                        change  instance name \n");
+    puts(" -r, --reload                                          reload configuration and exit \n");
+    puts(" -f, --fullscreen                                      show fullscreen \n");
     puts("Execution:\n");
     puts(" -e, --execute            <command>                     Execute command instead of shel\n");
 
@@ -29,15 +33,100 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
 
-  setenv("TERM", "xterm", 1); // TODO/FIXME: why?
+    setenv("TERM", "xterm", 1); // TODO/FIXME: why?
     //  setenv("TERM", "rxvt", 1); // TODO/FIXME: why?
 
     a.setApplicationName("elokab-terminal");
     a.setOrganizationName("elokab");
+    a.setApplicationDisplayName("elokab-terminal");
     a.setApplicationVersion("0.3");
 
-    /// جلب ترجمة البرنامج من مجلد البرنامج
+    //------------------------------------argument-------------------------------------------------
+    QString workdir,command,geometry;
+    bool framless=false;
+    bool ontop=false;
+    bool fullscreen=false;
+    QStringList args = a.arguments();
+    int opacity=-1;
+    if(args.count()>1)
+    {
 
+        for (int i = 0; i < args.count(); ++i) {
+
+            QString arg = args.at(i);
+            if (arg == "-h" || arg == "--help" ) {helpMe();return 0; }
+
+            else if (arg == "-r" || arg == "--reload" ) {
+                QDateTime dateTime(QDate::currentDate(),QTime::currentTime());
+                QString date=dateTime.toString("dd.MM.yyyy/hh:mm:ss");
+                QSettings s("elokab","terminal");
+                s.setValue("Reload",date);
+                puts("elokab-terminal v: 0.3 reloaded\n" );
+                return 0;
+            }
+            else if (arg == "-w" || arg == "--working-directory" )  {
+
+                if(i+1>args.count()-1){helpMe();return 0;}
+                QDir dir(args.at(i+1));
+                if(dir.exists()) workdir=args.at(i+1);
+
+            }
+
+            else if (arg == "-n" || arg == "--name" ) {
+                if(i+1>args.count()-1){helpMe();return 0;}
+                QString name=args.at(i+1);
+                if(name.isEmpty()) break;
+                a.setApplicationName(name);
+            }
+
+            else if (arg == "-e" ||arg == "-x" || arg == "--execute"|| arg == "--command" ) {
+                if(i+1>args.count()-1){helpMe();return 0;}
+                for (int r = i+1; r < args.count(); ++r) {
+                    command+=" "+args.at(r)+" ";
+                }
+                // command= command.replace("\"","'");
+                // command=args.at(i+1);
+                break;
+            }
+
+            else if (arg == "-b" || arg == "--hide-border" ) {framless=true;}
+
+            else if (arg == "-g" || arg == "--geometry" ) {
+                if(i+1>args.count()-1){helpMe();return 0;}
+                geometry=args.at(i+1);
+            }
+
+            else if (arg == "-t" || arg == "--on-top" ) {ontop=true;}
+
+            else if (arg == "-f" || arg == "--fullscreen" ) {fullscreen=true;}
+
+            else if (arg == "-o" || arg == "--opacity" ) {
+                if(i+1>args.count()-1){helpMe();return 0;}
+                opacity=args.at(i+1).toInt();
+
+            }
+
+
+
+
+            // qWarning() << "echo Unknown option: " << args;  helpMe(); return 0;
+            // command= "echo \"Unknown option: " + arg+"\n"+ help+"\"";
+
+
+        }
+
+        if(workdir.isEmpty())
+        {
+
+            QDir dir(args.at(1));
+            if(dir.exists())
+                workdir=args.at(1);
+        }
+
+
+
+    }
+    //-------------------------------------------------------------------------------
     /// جلب اعدادات اللغة
     QSettings globalSetting(a.organizationName(),"elokabsettings");
     globalSetting.beginGroup("Language");
@@ -59,7 +148,7 @@ int main(int argc, char *argv[])
     appDir.cdUp();
     QString dirPath=  appDir.absolutePath()+"/share/"+a.organizationName();
 
-    QString p= dirPath+"/translations/"+locale+"/"+a.applicationName();
+    QString p= dirPath+"/translations/"+locale+"/"+a.applicationDisplayName();
 
     QTranslator translator;
     //TODO
@@ -70,87 +159,24 @@ int main(int argc, char *argv[])
     a.setLayoutDirection(lx.textDirection());
     QIcon icon=QIcon::fromTheme("terminal",QIcon(":/icons/terminal.png"));
     a.setWindowIcon(icon);
-    //------------------------------------argument-------------------------------------------------
-    QString workdir,command,geometry;
-    bool framless=false;
-    bool ontop=false;
-    QStringList args = a.arguments();
-    int opacity=-1;
-    if(args.count()>1)
-    {
-
-        for (int i = 0; i < args.count(); ++i) {
-
-            QString arg = args.at(i);
-            if (arg == "-h" || arg == "--help" ) {helpMe();return 0; }
-
-            else if (arg == "-w" || arg == "--working-directory" )  {
-
-                if(i+1>args.count()-1){helpMe();return 0;}
-                QDir dir(args.at(i+1));
-                if(dir.exists()) workdir=args.at(i+1);
-
-            }
-
-            else if (arg == "-e" ||arg == "-x" || arg == "--execute"|| arg == "--command" ) {
-                if(i+1>args.count()-1){helpMe();return 0;}
-                for (int r = i+1; r < args.count(); ++r) {
-                     command+=" "+args.at(r)+" ";
-                }
-              // command= command.replace("\"","'");
-               // command=args.at(i+1);
-                break;
-            }
-
-            else if (arg == "-b" || arg == "--hide-border" ) {framless=true;}
-
-            else if (arg == "-g" || arg == "--geometry" ) {
-                 if(i+1>args.count()-1){helpMe();return 0;}
-                geometry=args.at(i+1);
-            }
-
-            else if (arg == "-t" || arg == "--on-top" ) {ontop=true;}
-
-            else if (arg == "-o" || arg == "--opacity" ) {
-                if(i+1>args.count()-1){helpMe();return 0;}
-                opacity=args.at(i+1).toInt();
-
-            }
-
-
-                    // qWarning() << "echo Unknown option: " << args;  helpMe(); return 0;
-                   // command= "echo \"Unknown option: " + arg+"\n"+ help+"\"";
-
-
-        }
-
-        if(workdir.isEmpty())
-        {
-
-            QDir dir(args.at(1));
-            if(dir.exists())
-                workdir=args.at(1);
-        }
-
-
-
-    }
-         //   qWarning() << "echo Unknown option: " << args;  qDebug()<<help; return 0;}
 
     if(workdir.isEmpty())
     { workdir=QDir::currentPath();}
 
-   qWarning() <<"=======Main========="
+    qWarning() <<"=======Main========="
               <<"\n Workdir: "<<workdir
-              <<"\n Command: "<<command
-              <<"\n Framless:"<<framless
-              <<"\n Geometry:"<<geometry
-              <<"\n Opacity:"<<opacity;
-
+             <<"\n Command: "<<command
+            <<"\n Framless:"<<framless
+           <<"\n Geometry:"<<geometry
+          <<"\n Opacity:"<<opacity
+         <<"\n Name:"<<a.applicationName()
+        <<"\n DisplayName:"<<a.applicationDisplayName()
+    <<"\n====================";
     MainWindow w(workdir,command,framless,geometry,ontop,opacity);
 
+    if(fullscreen){ w.showFullScreen();}
 
-    w.show();
+    else{ w.show();}
 
     return a.exec();
 }

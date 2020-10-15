@@ -5,6 +5,7 @@
 #include <QHBoxLayout>
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QScreen>
 
 ButtonColor::ButtonColor(const QString &text, bool showAlphaChannel, QColor color, QWidget *parent) :
     QWidget(parent),dlgc(nullptr),
@@ -80,7 +81,17 @@ void ButtonColor::mouseReleaseEvent(QMouseEvent* event)
         return;
 
     WId id = QApplication::desktop()->winId();
-    QPixmap pixmap = QPixmap::grabWindow(id, event->globalX(), event->globalY(), 1, 1);
+
+    /* warning: 'grabWindow' is deprecated: Use QScreen::grabWindow() instead
+    qpixmap.h:119:5: note: 'grabWindow' has been explicitly marked deprecated here
+    qglobal.h:294:33: note: expanded from macro 'QT_DEPRECATED_X'
+    qcompilerdetection.h:649:55: note: expanded from macro 'Q_DECL_DEPRECATED_X'*/
+ QPixmap pixmap;
+#if QT_VERSION >= QT_VERSION_CHECK(5,10,0)
+ pixmap = QApplication::screenAt(QCursor::pos())->grabWindow(id, event->globalX(), event->globalY(), 1, 1);
+#else
+ pixmap = QPixmap::grabWindow(id,event->globalX(),event->globalY(),1,1);
+#endif
 
     QImage img = pixmap.toImage();
     QColor col = QColor(img.pixel(0,0));

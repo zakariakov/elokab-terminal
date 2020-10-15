@@ -12,7 +12,7 @@ TARGET = elokab-terminal
 TEMPLATE = app
 #---------
 DESTDIR = ../usr/bin
-VERSION		= 0.1
+VERSION	= 0.1
 CONFIG += qt \
           release
 OBJECTS_DIR = build
@@ -27,11 +27,13 @@ QMAKE_INCDIR += $$PWD/../library/include $$PWD/../library
 SOURCES += main.cpp\
            mainwindow.cpp \
            settingdialog.cpp \
-    buttonColor/buttoncolor.cpp
+    buttonColor/buttoncolor.cpp \
+    titlewidget.cpp
 
 HEADERS  += mainwindow.h \
             settingdialog.h \
-    buttonColor/buttoncolor.h
+    buttonColor/buttoncolor.h \
+    titlewidget.h
 
 FORMS    += mainwindow.ui \
             settingdialog.ui

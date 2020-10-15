@@ -1,9 +1,11 @@
 #ifndef _COLOR_TABLE_H
 #define _COLOR_TABLE_H
+#include "qapplication.h"
 
 #include "CharacterColor.h"
 
 using namespace Konsole;
+
 
 static const ColorEntry whiteonblack_color_table[TABLE_COLORS] =
 {
@@ -50,7 +52,6 @@ static const ColorEntry blackonlightyellow_color_table[TABLE_COLORS] =
     ColorEntry(QColor( 84,  84, 255),  0, 0),  ColorEntry(QColor( 255,  84, 255),  0, 0),  
     ColorEntry(QColor( 84, 255, 255),  0, 0),  ColorEntry(QColor( 255, 255, 255),  0, 0)
 };
- 			  
 
 
 

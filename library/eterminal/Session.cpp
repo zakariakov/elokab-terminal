@@ -274,7 +274,7 @@ void Session::run()
   QString pexec = exec;
 
   if ( pexec.isEmpty() ) {
-    qDebug()<<"can not execute "<<exec<<endl;
+    qDebug()<<"can not execute "<<exec;
     QTimer::singleShot(1, this, SIGNAL(finished()));
     return;
   }
@@ -543,6 +543,7 @@ void Session::close()
      // Forced close.
      QTimer::singleShot(1, this, SIGNAL(finished()));
   }
+
 }
 
 void Session::sendText(const QString &text) const
@@ -566,9 +567,11 @@ QString Session::profileKey() const { return _profileKey; }
 
 void Session::done(int exitStatus)
 {
+    Q_UNUSED(exitStatus)
   if (!_autoClose)
   {
     _userTitle = ("<Finished>");
+
     emit titleChanged();
     return;
   }
@@ -958,8 +961,8 @@ void SessionGroup::setMasterStatus(Session* session , bool master)
     bool wasMaster = _sessions[session];
     _sessions[session] = master;
 
-    if (    !wasMaster && !master
-         || wasMaster && master )
+    if (    (!wasMaster && !master)
+         || (wasMaster && master) )
       return;
 
     QListIterator<Session*> iter(_sessions.keys());
